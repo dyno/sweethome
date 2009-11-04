@@ -1,7 +1,7 @@
 # .bashrc
 
 #for interactive shell only
-[ -z "$PS1" ] && return
+#[ -z "$PS1" ] && return
 
 #----------------------------------------------------------------------
 pathmunge () {
@@ -28,7 +28,9 @@ if [ -f /etc/bash.bashrc ]; then
 fi
 
 #----------------------------------------------------------------------
-for path in /bin /usr/bin /usr/local/bin /sbin /usr/sbin/ /usr/local/sbin $HOME/bin $HOME/usr/bin
+for path in /bin /usr/bin /usr/local/bin /sbin /usr/sbin/ /usr/local/sbin \
+    $HOME/bin $HOME/usr/bin \
+    /build/apps/bin /build/trees/bin
 do
     pathmunge $path
 done
