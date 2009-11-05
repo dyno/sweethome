@@ -36,8 +36,11 @@ do
 done
 
 #----------------------------------------------------------------------
-PS1='[\u@\h:\W]$ '
-
+if [ "`whoami`" == "root" ]; then
+  PS1='[\u@\h:\W]# '
+else
+  PS1='[\u@\h:\W]$ '
+fi
 #----------------------------------------------------------------------
 # history
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
