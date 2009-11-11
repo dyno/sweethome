@@ -57,11 +57,11 @@ export HISTFILESIZE=1000
  
 #----------------------------------------------------------------------
 # User specific aliases and functions
+alias ls='ls --color=auto'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias vi=vim
-
 #----------------------------------------------------------------------
 export EDITOR=vim
 
