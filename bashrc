@@ -3,18 +3,6 @@
 #for interactive shell only
 #[ -z "$PS1" ] && return
 
-#----------------------------------------------------------------------
-pathmunge () {
-    if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" ; then
-        if [ "$2" = "after" ] ; then
-            PATH=$PATH:$1
-        else
-            PATH=$1:$PATH
-        fi
-    fi
-}
-
-
 #######################################################################
 
 # Source global definitions
@@ -32,7 +20,9 @@ for path in /bin /usr/bin /usr/local/bin /sbin /usr/sbin/ /usr/local/sbin \
     $HOME/bin $HOME/usr/bin \
     /build/apps/bin /build/trees/bin
 do
-    pathmunge $path
+    if ! grep -q ":$path:" <<< ":$PATH:"; then
+        PATH=$PATH:$path
+    fi
 done
 
 #----------------------------------------------------------------------
@@ -57,17 +47,17 @@ export HISTFILESIZE=1000
  
 #----------------------------------------------------------------------
 # User specific aliases and functions
-alias ls='ls --color=auto'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias vi=vim
+
 #----------------------------------------------------------------------
 export EDITOR=vim
 
 #----------------------------------------------------------------------
 if [[ -d $HOME/env.d ]]; then
-    for _env in $HOME/env.d/*.env; do 
+    for _env in $HOME/env.d/*.env; do
         . $_env
     done
 fi
