@@ -31,7 +31,7 @@ set shiftwidth=2
 set smarttab
 ""set expandtab
 "":retab "to expand existing tab
-set list listchars=tab:»·,trail:§
+"set list listchars=tab:»·,trail:§
 
 autocmd FileType make       setlocal noexpandtab
 autocmd FileType python     setlocal expandtab

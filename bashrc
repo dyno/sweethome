@@ -52,6 +52,10 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias vi=vim
 
+if [ "$(uname)" == "Darwin" ];then
+  alias ls='ls -G'
+fi
+
 #----------------------------------------------------------------------
 export EDITOR=vim
 

@@ -7,7 +7,13 @@ set -x
 
 [ -d ~/env.d ] && rm -f ~/env.d
 ln -sf ${BASEDIR}/env.d ~/env.d
-ln -sf ${BASEDIR}/bashrc ~/.bashrc
+if [ $(uname) == "Linux" ]; then
+  ln -sf ${BASEDIR}/bashrc ~/.bashrc
+elif [ "$(uname)" == "Darwin" ]; then
+  ln -sf ${BASEDIR}/bashrc ~/.bash_profile
+else
+  ln -sf ${BASEDIR}/bashrc ~/.bash_profile
+fi
 
 [ -d ~/.vim ] && rm -f ~/.vim
 ln -sf ${BASEDIR}/vim ~/.vim
