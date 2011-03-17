@@ -52,8 +52,10 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias vi=vim
 
-if [ "$(uname)" == "Darwin" ];then
+if [ "$(uname)" == "Darwin" ]; then
   alias ls='ls -G'
+elif [ "$(uname)" == "Linux" ]; then
+  alias ls='ls --color'
 fi
 
 #----------------------------------------------------------------------
