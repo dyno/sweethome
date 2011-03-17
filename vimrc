@@ -1,4 +1,5 @@
 syntax on
+colorscheme desert
 
 "----------------------------------------------------------
 "backspace behavior
@@ -27,7 +28,7 @@ set autowrite          " Automatically save before commands like :next and :make
 set tabstop=8
 ""set tabstop=4
 set softtabstop=4
-set shiftwidth=2
+set shiftwidth=4
 set smarttab
 ""set expandtab
 "":retab "to expand existing tab
@@ -62,6 +63,7 @@ autocmd BufRead,BufNewFile *.sql,afiedt.buf set filetype=plsql
 autocmd BufRead,BufNewFile vm.cfg           set filetype=python
 autocmd BufRead,BufNewFile /etc/apache2/*   set filetype=apache
 autocmd BufRead,BufNewFile *.sc,SCons*      set filetype=scons
+autocmd BufRead,BufNewFile *.mako	    set filetype=mako
 
 "----------------------------------------------------------
 "help expand()
