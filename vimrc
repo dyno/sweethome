@@ -66,5 +66,9 @@ autocmd BufRead,BufNewFile *.sc,SCons*      set filetype=scons
 autocmd BufRead,BufNewFile *.mako	    set filetype=mako
 
 "----------------------------------------------------------
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+
+"----------------------------------------------------------
 "help expand()
 autocmd BufEnter * lcd %:p:h
