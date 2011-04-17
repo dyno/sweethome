@@ -93,18 +93,20 @@ autocmd VimEnter * wincmd p
 "Delete buffer while keeping window layout (don't close buffer's windows).
 "http://vim.wikia.com/wiki/VimTip165
 ":help :bar
-function! SafeBufferDelete(autosave)
-    if (a:autosave == 1) | w! | endif
-
+function! SafeBufferDelete(force)
     let bufToBeDel = bufnr("%")
-    let bufAlt = bufnr("#")
-
     " If this is an unlisted buffer, simply bd
     if !buflisted(bufToBeDel) | bd | return | endif
 
+    let bufAlt = bufnr("#")
+    if !a:force && getbufvar(bufToBeDel, "&modified")
+	echohl ErrorMsg | echo "Save buffer first!" | echohl None
+	return
+    endif
+
     " Try alternative "#" if it is listed, or try next listed
     if ((bufAlt != -1) && (bufAlt != bufToBeDel) && buflisted(bufAlt))
-	execute "b".bufAlt
+	execute "b" . bufAlt
     else
 	bnext
     endif
@@ -114,10 +116,15 @@ function! SafeBufferDelete(autosave)
     if (bufnr("%") == bufToBeDel) | new | endif
 
     " Finally do the real bd job
-    execute "bd".bufToBeDel
+    if a:force
+	execute "bd! " . bufToBeDel
+    else
+	execute "bd " . bufToBeDel
+    endif
 endfunction
 
 :call CmdAlias('bd', 'call SafeBufferDelete(0)')
+:call CmdAlias('bdf', 'call SafeBufferDelete(1)')
 
 "TODO: won't it be more elegant if we can skip the buffer/windows manager?
 "autocmd BufDelete * SkipNERD_TreeBuffer()
