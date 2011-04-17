@@ -22,14 +22,14 @@
 "
 " Usage
 " -----
-" 
+"
 " This script draws buffer tabs on vim startup, when a new buffer is created
 " and when switching between buffers.
 "
 " It might be handy to create a few maps for easy switching of buffers in your
 " .vimrc file. For example, using F1 and F2 keys:
 "
-"   noremap <f1> :bprev<CR> 
+"   noremap <f1> :bprev<CR>
 "   noremap <f2> :bnext<CR>
 "
 " or using control-left and control-right keys:
@@ -39,7 +39,7 @@
 "
 "
 " The following extra configuration variables are availabe:
-" 
+"
 " * g:buftabs_only_basename
 "
 "   Define this variable to make buftabs only print the filename of each buffer,
@@ -56,7 +56,7 @@
 "
 "   set laststatus=2
 "   :let g:buftabs_in_statusline=1
-"    
+"
 "   By default buftabs will take up the whole of the left-aligned section of
 "   your statusline. You can alternatively specify precisely where it goes
 "   using %{buftabs#statusline()} e.g.:
@@ -80,10 +80,10 @@
 " * g:buftabs_separator       -
 " * g:buftabs_marker_modified !
 "
-"   These strings are drawn around each tab as separators, the 'marker_modified' 
+"   These strings are drawn around each tab as separators, the 'marker_modified'
 "   symbol is used to denote a modified (unsaved) buffer.
 "
-"   :let g:buftabs_separator = "."  
+"   :let g:buftabs_separator = "."
 "   :let g:buftabs_marker_start = "("
 "   :let g:buftabs_marker_end = ")"
 "   :let g:buftabs_marker_modified = "*"
@@ -91,8 +91,8 @@
 "
 " Changelog
 " ---------
-" 
-" 0.1  2006-09-22  Initial version 
+"
+" 0.1  2006-09-22  Initial version
 "
 " 0.2  2006-09-22  Better handling when the list of buffers is longer then the
 "                  window width.
@@ -106,7 +106,7 @@
 "                  in tabs
 "
 " 0.6  2007-03-04  'only_basename' changed to a global variable.  Removed
-"                  functions and add event handlers instead.  'hidden' mode 
+"                  functions and add event handlers instead.  'hidden' mode
 "                  broke some things, so is disabled now. Fixed documentation
 "
 " 0.7  2007-03-07  Added configuration option to show tabs in statusline
@@ -126,7 +126,7 @@
 "
 " 0.14 2010-01-28  Fixed bug that caused buftabs in command line being
 "                  overwritten when 'hidden' mode is enabled.
-" 
+"
 " 0.15 2010-02-16  Fixed window width handling bug which caused strange
 "                  behaviour in combination with the bufferlist plugin.
 "                  Fixed wrong buffer display when deleting last window.
@@ -153,9 +153,9 @@ let w:original_statusline = matchstr(&statusline, "%=.*")
 " Don't bother when in diff mode
 "
 
-if &diff                                      
+if &diff
 	finish
-endif     
+endif
 
 
 "
@@ -163,13 +163,19 @@ endif
 "
 
 function! Buftabs_enable()
+	if !buflisted(bufnr("%"))
+	    let w:buftabs_enabled = 0
+	    return
+	endif
+
 	let w:buftabs_enabled = 1
+	let w:original_statusline = matchstr(&statusline, "%=.*")
 endfunction
 
 
 "
 " Persistent echo to avoid overwriting of status line when 'hidden' is enabled
-" 
+"
 
 let s:Pecho=''
 function! s:Pecho(msg)
@@ -193,11 +199,11 @@ function! Buftabs_show(deleted_buf)
 	let s:list = ''
 	let l:start = 0
 	let l:end = 0
-	if ! exists("w:from") 
+	if ! exists("w:from")
 		let w:from = 0
 	endif
 
-	if ! exists("w:buftabs_enabled")
+	if (!exists("w:buftabs_enabled") || !w:buftabs_enabled)
 		return
 	endif
 
@@ -226,7 +232,7 @@ function! Buftabs_show(deleted_buf)
 	while(l:i <= bufnr('$'))
 
 		" Only show buffers in the list, and omit help screens
-	
+
 		if buflisted(l:i) && getbufvar(l:i, "&modifiable") && a:deleted_buf != l:i
 
 			" Get the name of the current buffer, and escape characters that might
@@ -238,7 +244,7 @@ function! Buftabs_show(deleted_buf)
 				let l:name = bufname(l:i)
 			endif
 			let l:name = substitute(l:name, "%", "%%", "g")
-			
+
 			" Append the current buffer number and name to the list. If the buffer
 			" is the active buffer, enclose it in some magick characters which will
 			" be replaced by markers later. If it is modified, it is appended with
@@ -250,14 +256,14 @@ function! Buftabs_show(deleted_buf)
 			else
 				let s:list = s:list . ' '
 			endif
-				
+
 			let s:list = s:list . l:i . l:buftabs_separator
 			let s:list = s:list . l:name
 
 			if getbufvar(l:i, "&modified") == 1
 				let s:list = s:list . l:buftabs_marker_modified
 			endif
-			
+
 			if winbufnr(winnr()) == l:i
 				let s:list = s:list . "\x02"
 				let l:end = strlen(s:list)
@@ -274,19 +280,19 @@ function! Buftabs_show(deleted_buf)
 
 	let l:width = winwidth(0) - 12
 
-	if(l:start < w:from) 
+	if(l:start < w:from)
 		let w:from = l:start - 1
 	endif
 	if l:end > w:from + l:width
-		let w:from = l:end - l:width 
+		let w:from = l:end - l:width
 	endif
-		
+
 	let s:list = strpart(s:list, w:from, l:width)
 
 	" Replace the magic characters by visible markers for highlighting the
 	" current buffer. The markers can be simple characters like square brackets,
 	" but can also be special codes with highlight groups
-  
+
 	if exists("g:buftabs_active_highlight_group")
 		if exists("g:buftabs_in_statusline")
 			let l:buftabs_marker_start = "%#" . g:buftabs_active_highlight_group . "#" . l:buftabs_marker_start
@@ -339,7 +345,7 @@ endfunction
 " buffers
 "
 
-autocmd VimEnter * call Buftabs_enable()
+autocmd VimEnter,BufEnter * call Buftabs_enable()
 autocmd VimEnter,BufNew,BufEnter,BufWritePost * call Buftabs_show(-1)
 autocmd BufDelete * call Buftabs_show(expand('<abuf>'))
 if version >= 700
