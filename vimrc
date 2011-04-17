@@ -1,5 +1,11 @@
 syntax on
-colorscheme desert
+
+if has('gui_running')
+    set guioptions-=T  " no toolbar
+    colorscheme desert
+else
+    colorscheme darkblue
+endif
 
 "----------------------------------------------------------
 "backspace behavior
@@ -32,16 +38,22 @@ set shiftwidth=4
 set smarttab
 ""set expandtab
 "":retab "to expand existing tab
-"set list listchars=tab:»·,trail:§
+set list listchars=tab:»·,trail:§
 
 autocmd FileType make       setlocal noexpandtab
 autocmd FileType python     setlocal expandtab
 autocmd FileType flexwiki   setlocal expandtab
 
 "----------------------------------------------------------
+"cmdalias.vim : Create aliases for Vim commands.
+"http://www.vim.org/scripts/script.php?script_id=746
+source $HOME/.vim/plugin/cmdalias.vim
+":call CmdAlias('q', 'qa')
+
+"----------------------------------------------------------
 "remove trailing spaces
 "http://www.vim.org/tips/tip.php?tip_id=878
-function TrimSpaces()
+function! TrimSpaces()
 :mark '
 "except:
 "   ISF=<space> in bash scripts
@@ -51,10 +63,10 @@ function TrimSpaces()
 :''
 :endfunction
 
-"autocmd FileWritePre   *.{py,sh,wiki,txt} :call TrimSpaces()
-"autocmd FileAppendPre  *.{py,sh,wiki,txt} :call TrimSpaces()
-"autocmd FilterWritePre *.{py,sh,wiki,txt} :call TrimSpaces()
-"autocmd BufWritePre    *.{py,sh,wiki,txt} :call TrimSpaces()
+autocmd FileWritePre   *.{py,mako,sh,wiki,txt} :call TrimSpaces()
+autocmd FileAppendPre  *.{py,mako,sh,wiki,txt} :call TrimSpaces()
+autocmd FilterWritePre *.{py,mako,sh,wiki,txt} :call TrimSpaces()
+autocmd BufWritePre    *.{py,mako,sh,wiki,txt} :call TrimSpaces()
 
 "----------------------------------------------------------
 autocmd BufRead,BufNewFile *{vimrc}         set filetype=vim
@@ -66,9 +78,98 @@ autocmd BufRead,BufNewFile *.sc,SCons*      set filetype=scons
 autocmd BufRead,BufNewFile *.mako	    set filetype=mako
 
 "----------------------------------------------------------
+"The NERD tree : A tree explorer plugin for navigating the filesystem
+"http://www.vim.org/scripts/script.php?script_id=1658
+
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
+:Alias q qa
+:Alias wq wqa
+
+"SafeBufferDelete() is a revised version of CleanClose() in
+"http://stackoverflow.com/questions/256204/vim-close-file-without-quiting-vim-application/290110#290110
+"Below link seems to do something similar but I did not try it.
+"Delete buffer while keeping window layout (don't close buffer's windows).
+"http://vim.wikia.com/wiki/VimTip165
+":help :bar
+function! SafeBufferDelete(autosave)
+    if (a:autosave == 1) | w! | endif
+
+    let bufToBeDel = bufnr("%")
+    let bufAlt = bufnr("#")
+
+    " If this is an unlisted buffer, simply bd
+    if !buflisted(bufToBeDel) | bd | return | endif
+
+    " Try alternative "#" if it is listed, or try next listed
+    if ((bufAlt != -1) && (bufAlt != bufToBeDel) && buflisted(bufAlt))
+	execute "b".bufAlt
+    else
+	bnext
+    endif
+
+    " If this is the last listed buffer (bnext stays in current buffer),
+    " create a new buffer first
+    if (bufnr("%") == bufToBeDel) | new | endif
+
+    " Finally do the real bd job
+    execute "bd".bufToBeDel
+endfunction
+
+:call CmdAlias('bd', 'call SafeBufferDelete(0)')
+
+"TODO: won't it be more elegant if we can skip the buffer/windows manager?
+"autocmd BufDelete * SkipNERD_TreeBuffer()
+
 "----------------------------------------------------------
-"help expand()
+"buftabs : Minimalistic buffer tabs saving screen space
+"http://www.vim.org/scripts/script.php?script_id=1664
+set laststatus=2
+:let g:buftabs_in_statusline=1
+:let g:buftabs_only_basename=1
+
+"When restore a session, an empty NERD_Tree window is not desirable.
+function! NERDTree_GetBuffers()
+    let vBufList = []
+    let l:i = 1
+    while(l:i <= bufnr('$'))
+	let vBufName = bufname(l:i)
+	if vBufName =~ "NERD_tree_.*"
+	    call add(vBufList, vBufName)
+	endif
+	let l:i = l:i + 1
+    endwhile
+    return vBufList
+endfunction
+
+function! NERDTree_Reload()
+    let vBufList = NERDTree_GetBuffers()
+    for vBufName in vBufList
+	let vBufNr = bufnr(vBufName)
+	if (vBufNr != -1) && getbufline(vBufNr, 1)[0] == ""
+		execute "bwipeout".vBufNr
+	endif
+    endfor
+
+    if !empty(vBufList) && empty(NERDTree_GetBuffers())
+	"Put debug message in register @e
+	":help line-continuation, new-line-continuation
+	let @e = "@" . substitute(system('date'),"\n","", "g")
+		 \ . " NERDTree Reloaded!\n"
+	:NERDTree
+    endif
+endfunction
+
+autocmd SessionLoadPost * call NERDTree_Reload()
+
+"----------------------------------------------------------
+":help DiffOrig
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+
+:Alias idiff DiffOrig
+
+"----------------------------------------------------------
+":help expand()
 autocmd BufEnter * lcd %:p:h
+
