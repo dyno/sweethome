@@ -3,8 +3,14 @@ syntax on
 if has('gui_running')
     set guioptions-=T  " no toolbar
     colorscheme desert
+
+    if has("gui_macvim")
+	set guifont=Monaco:h16
+    endif
+
 else
-    colorscheme darkblue
+    "colorscheme darkblue
+    colorscheme elflord
 endif
 
 "----------------------------------------------------------
@@ -81,8 +87,8 @@ autocmd BufRead,BufNewFile *.mako	    set filetype=mako
 "The NERD tree : A tree explorer plugin for navigating the filesystem
 "http://www.vim.org/scripts/script.php?script_id=1658
 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
+"autocmd VimEnter * NERDTree
+"autocmd VimEnter * wincmd p
 
 :Alias q qa
 :Alias wq wqa
@@ -179,4 +185,9 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 "----------------------------------------------------------
 ":help expand()
 autocmd BufEnter * lcd %:p:h
+
+"----------------------------------------------------------
+"http://stackoverflow.com/questions/406230/regular-expression-to-match-string-not-containing-a-word
+"http://vimdoc.sourceforge.net/htmldoc/pattern.html
+"^\(.\(hostCPUID\)\@!\)*$
 
