@@ -43,6 +43,7 @@ set list listchars=tab:»·,trail:§
 autocmd FileType make       setlocal noexpandtab
 autocmd FileType python     setlocal expandtab
 autocmd FileType flexwiki   setlocal expandtab
+autocmd FileType mako	    setlocal syntax sync minlines=200
 
 "----------------------------------------------------------
 "cmdalias.vim : Create aliases for Vim commands.
@@ -98,12 +99,12 @@ function! SafeBufferDelete(force)
     " If this is an unlisted buffer, simply bd
     if !buflisted(bufToBeDel) | bd | return | endif
 
-    let bufAlt = bufnr("#")
     if !a:force && getbufvar(bufToBeDel, "&modified")
 	echohl ErrorMsg | echo "Save buffer first!" | echohl None
 	return
     endif
 
+    let bufAlt = bufnr("#")
     " Try alternative "#" if it is listed, or try next listed
     if ((bufAlt != -1) && (bufAlt != bufToBeDel) && buflisted(bufAlt))
 	execute "b" . bufAlt
