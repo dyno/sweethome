@@ -55,7 +55,7 @@ alias vi=vim
 if [ "$(uname)" == "Darwin" ]; then
   alias ls='ls -G'
 elif [ "$(uname)" == "Linux" ]; then
-  alias ls='ls --color'
+  alias ls='ls --color --ignore=*.pyc '
 fi
 
 #----------------------------------------------------------------------
@@ -66,5 +66,9 @@ if [[ -d $HOME/env.d ]]; then
     for _env in $HOME/env.d/*.env; do
         . $_env
     done
+fi
+
+if [[ "$TERM" == "linux" ]]; then
+    sudo loadkeys -q ~/.keymap
 fi
 
