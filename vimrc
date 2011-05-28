@@ -49,7 +49,7 @@ set list listchars=tab:»·,trail:§
 autocmd FileType make       setlocal noexpandtab
 autocmd FileType python     setlocal expandtab
 autocmd FileType flexwiki   setlocal expandtab
-autocmd FileType mako	    setlocal syntax sync minlines=200
+autocmd FileType mako	    :syntax sync minlines=200
 
 "----------------------------------------------------------
 "cmdalias.vim : Create aliases for Vim commands.
@@ -88,6 +88,7 @@ autocmd BufRead,BufNewFile *.mako	    set filetype=mako
 "The NERD tree : A tree explorer plugin for navigating the filesystem
 "http://www.vim.org/scripts/script.php?script_id=1658
 
+let NERDTreeIgnore = ['\~$', '\.swp$', '\.pyc$', '\.pyo$']
 "autocmd VimEnter * NERDTree
 "autocmd VimEnter * wincmd p
 
