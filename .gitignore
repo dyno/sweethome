@@ -25,3 +25,7 @@ build/
 
 #vim
 *.swp
+eclim*
+
+#env
+env.d/5*
