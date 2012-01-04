@@ -1,8 +1,9 @@
 syntax on
 
 if has('gui_running')
-    set guioptions-=T  " no toolbar
-    colorscheme desert
+    "set guioptions-=T  " no toolbar
+    "colorscheme desert
+    colorscheme koehler
 
     if has("gui_macvim")
 	set guifont=Monaco:h16
@@ -83,6 +84,7 @@ autocmd BufRead,BufNewFile vm.cfg           set filetype=python
 autocmd BufRead,BufNewFile /etc/apache2/*   set filetype=apache
 autocmd BufRead,BufNewFile *.sc,SCons*      set filetype=scons
 autocmd BufRead,BufNewFile *.mako	    set filetype=mako
+autocmd BufRead,BufNewFile *.dump.txt	    set filetype=java
 
 "----------------------------------------------------------
 "The NERD tree : A tree explorer plugin for navigating the filesystem
@@ -193,3 +195,5 @@ autocmd BufEnter * lcd %:p:h
 "http://vimdoc.sourceforge.net/htmldoc/pattern.html
 "^\(.\(hostCPUID\)\@!\)*$
 
+"----------------------------------------------------------
+set history=1024
