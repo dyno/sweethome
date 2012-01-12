@@ -16,9 +16,9 @@ if [ -f /etc/bash.bashrc ]; then
 fi
 
 #----------------------------------------------------------------------
-for path in /bin /usr/bin /usr/local/bin /sbin /usr/sbin/ /usr/local/sbin \
-    $HOME/bin $HOME/usr/bin \
-    /build/apps/bin /build/trees/bin
+for path in $HOME/bin $HOME/usr/bin \
+    /build/apps/bin /build/trees/bin \
+    /usr/local/bin /bin /usr/bin /sbin /usr/sbin
 do
     if ! grep -q ":$path:" <<< ":$PATH:"; then
         PATH=$PATH:$path
