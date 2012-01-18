@@ -11,7 +11,8 @@ if has('gui_running')
 
 else
     "colorscheme darkblue
-    colorscheme elflord
+    "colorscheme elflord
+    colorscheme desert
 endif
 
 "----------------------------------------------------------
@@ -85,6 +86,7 @@ autocmd BufRead,BufNewFile /etc/apache2/*   set filetype=apache
 autocmd BufRead,BufNewFile *.sc,SCons*      set filetype=scons
 autocmd BufRead,BufNewFile *.mako	    set filetype=mako
 autocmd BufRead,BufNewFile *.dump.txt	    set filetype=java
+autocmd BufRead,BufNewFile *.wiki	    set filetype=creole
 
 "----------------------------------------------------------
 "The NERD tree : A tree explorer plugin for navigating the filesystem
