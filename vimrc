@@ -42,7 +42,7 @@ set autowrite          " Automatically save before commands like :next and :make
 set tabstop=8
 ""set tabstop=4
 set softtabstop=4
-set shiftwidth=4
+set shiftwidth=2
 set smarttab
 ""set expandtab
 "":retab "to expand existing tab
@@ -87,6 +87,7 @@ autocmd BufRead,BufNewFile *.sc,SCons*      set filetype=scons
 autocmd BufRead,BufNewFile *.mako	    set filetype=mako
 autocmd BufRead,BufNewFile *.dump.txt	    set filetype=java
 autocmd BufRead,BufNewFile *.wiki	    set filetype=creole
+autocmd BufRead,BufNewFile *.gradle	    set filetype=groovy
 
 "----------------------------------------------------------
 "The NERD tree : A tree explorer plugin for navigating the filesystem
