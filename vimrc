@@ -1,3 +1,7 @@
+"https://github.com/uarun/vim-protobuf
+"http://www.vim.org/scripts/script.php?script_id=2332
+execute pathogen#infect()
+
 syntax on
 
 if has('gui_running')
@@ -6,7 +10,7 @@ if has('gui_running')
     colorscheme koehler
 
     if has("gui_macvim")
-	set guifont=Monaco:h16
+	set guifont=Monaco:h12
     endif
 
 else
