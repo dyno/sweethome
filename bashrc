@@ -43,7 +43,7 @@ fi # end of if is bash
 #----------------------------------------------------------------------
 for pth in $HOME/bin /usr/local/bin /bin /usr/bin /sbin /usr/sbin
 do
-    if ! echo ":$PATH:" | /usr/bin/grep -q ":$pth:"; then
+    if ! echo ":$PATH:" | grep -q ":$pth:"; then
         PATH=$PATH:$pth
     fi
 done
