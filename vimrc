@@ -28,7 +28,7 @@ Plugin 'ap/vim-buftabline'
 
 "Create aliases for Vim commands.
 "http://www.vim.org/scripts/script.php?script_id=746
-"Plugin 'cmdalias.vim'
+Plugin 'cmdalias.vim'
 ":call CmdAlias('q', 'qa')
 
 "The NERD tree : A tree explorer plugin for navigating the filesystem
@@ -132,8 +132,8 @@ function! NERDTree_Reload()
     endif
 endfunction
 
-autocmd VimEnter * if exists(':CmdAlias') | call CmdAlias('bd', 'call SafeBufferDelete(0)') | endif
-autocmd VimEnter * if exists(':CmdAlias') | call CmdAlias('bdf', 'call SafeBufferDelete(1)') | endif
+autocmd VimEnter * if exists(':Alias') | call CmdAlias('bd', 'call SafeBufferDelete(0)') | endif
+autocmd VimEnter * if exists(':Alias') | call CmdAlias('bdf', 'call SafeBufferDelete(1)') | endif
 autocmd VimEnter * NERDTree
 autocmd SessionLoadPost * call NERDTree_Reload()
 "autocmd VimEnter * wincmd p
@@ -239,13 +239,13 @@ autocmd BufRead,BufNewFile *.gradle         set filetype=groovy
 ":help DiffOrig
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
-autocmd VimEnter * if exists(':CmdAlias') | call CmdAlias('idiff', 'DiffOrig') | endif
+autocmd VimEnter * if exists(':Alias') | call CmdAlias('idiff', 'DiffOrig') | endif
 
 "----------------------------------------------------------
 ":help expand()
 autocmd BufEnter * lcd %:p:h
-autocmd VimEnter * if exists(':CmdAlias') | call CmdAlias('q', 'qa') | endif
-autocmd VimEnter * if exists(':CmdAlias') | call CmdAlias('wq', 'wqa') | endif
+autocmd VimEnter * if exists(':Alias') | call CmdAlias('q', 'qa') | endif
+autocmd VimEnter * if exists(':Alias') | call CmdAlias('wq', 'wqa') | endif
 
 "----------------------------------------------------------
 "http://stackoverflow.com/questions/406230/regular-expression-to-match-string-not-containing-a-word
