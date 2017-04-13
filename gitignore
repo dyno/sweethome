@@ -1,0 +1,12 @@
+*.swp
+*~
+
+.DS_Store
+
+*.py[co]
+__pycache__
+.ipynb_checkpoints/
+
+x.*
+y.*
+zold

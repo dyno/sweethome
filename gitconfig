@@ -1,0 +1,9 @@
+[credential]
+	helper = osxkeychain
+[push]
+	default = tracking
+[user]
+	name = Dyno Fu
+	email = dyno.fu@gmail.com
+[core]
+	excludesfile = /Users/dyno/.gitignore_global
