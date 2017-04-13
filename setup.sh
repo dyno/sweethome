@@ -22,4 +22,4 @@ fi
 [ ! -e ~/.vimrc -o -L ~/.vimrc ] && rm -f ~/.vimrc && ln -sf ${BASEDIR}/vimrc ~/.vimrc
 
 # SSH
-[ -d ~/.ssh ] && ln -sf ${BASEDIR}/ssh_config ~/.ssh/config
+[ -d ~/.ssh ] && ln -sf ${BASEDIR}/ssh_config ~/.ssh/config && chmod 600 ~/.ssh/config
