@@ -6,23 +6,20 @@ cd - &>/dev/null
 
 set -x
 
-[ -d ~/env.d ] && rm -f ~/env.d
-ln -sf ${BASEDIR}/env.d ~/env.d
+# Bash
+[ ! -e ~/env.d -o -L ~/env.d ] && ln -sf ${BASEDIR}/env.d ~/
 
 if [ $(uname) == "Linux" ]; then
     ln -sf ${BASEDIR}/bashrc ~/.bashrc
-    if [ $TERM == "linux" ]; then
-	ln -sf ${BASEDIR}/keymap ~/.keymap
-    fi
+    [ $TERM == "linux" ] && ln -sf ${BASEDIR}/keymap ~/.keymap
 
 elif [ "$(uname)" == "Darwin" ]; then
-  ln -sf ${BASEDIR}/bashrc ~/.bash_profile
-
-else
-  ln -sf ${BASEDIR}/bashrc ~/.bash_profile
+    ln -sf ${BASEDIR}/bashrc ~/.bash_profile
 fi
 
-[ -d ~/.vim ] && rm -f ~/.vim
-ln -sf ${BASEDIR}/vim ~/.vim
-ln -sf ${BASEDIR}/vimrc ~/.vimrc
+# Vim
+[ ! -e ~/.vim -o -L ~/.vim ] && rm -f ~/.vim && ln -sf ${BASEDIR}/vim ~/.vim
+[ ! -e ~/.vimrc -o -L ~/.vimrc ] && rm -f ~/.vimrc && ln -sf ${BASEDIR}/vimrc ~/.vimrc
 
+# SSH
+[ -d ~/.ssh ] && ln -sf ${BASEDIR}/ssh_config ~/.ssh/config

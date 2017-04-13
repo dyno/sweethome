@@ -10,7 +10,7 @@ if has('gui_running')
     colorscheme koehler
 
     if has("gui_macvim")
-	set guifont=Monaco:h12
+        set guifont=Monaco:h12
     endif
 
 else
@@ -55,7 +55,7 @@ set list listchars=tab:»·,trail:§
 autocmd FileType make       setlocal noexpandtab
 autocmd FileType python     setlocal expandtab
 autocmd FileType flexwiki   setlocal expandtab
-autocmd FileType mako	    :syntax sync minlines=200
+autocmd FileType mako       :syntax sync minlines=200
 
 "----------------------------------------------------------
 "cmdalias.vim : Create aliases for Vim commands.
@@ -83,15 +83,18 @@ autocmd BufWritePre    *.{py,mako,sh,wiki,txt} :call TrimSpaces()
 
 "----------------------------------------------------------
 autocmd BufRead,BufNewFile *{vimrc}         set filetype=vim
+autocmd BufRead,BufNewFile /etc/apache2/*   set filetype=apache
+"
 autocmd BufRead,BufNewFile *.tsc            set filetype=tsc
 autocmd BufRead,BufNewFile *.sql,afiedt.buf set filetype=plsql
 autocmd BufRead,BufNewFile vm.cfg           set filetype=python
-autocmd BufRead,BufNewFile /etc/apache2/*   set filetype=apache
+"
 autocmd BufRead,BufNewFile *.sc,SCons*      set filetype=scons
-autocmd BufRead,BufNewFile *.mako	    set filetype=mako
-autocmd BufRead,BufNewFile *.dump.txt	    set filetype=java
-autocmd BufRead,BufNewFile *.wiki	    set filetype=creole
-autocmd BufRead,BufNewFile *.gradle	    set filetype=groovy
+autocmd BufRead,BufNewFile *.mako           set filetype=mako
+autocmd BufRead,BufNewFile *.dump.txt       set filetype=java
+autocmd BufRead,BufNewFile *.wiki           set filetype=creole
+"
+autocmd BufRead,BufNewFile *.gradle         set filetype=groovy
 
 "----------------------------------------------------------
 "The NERD tree : A tree explorer plugin for navigating the filesystem
@@ -116,16 +119,16 @@ function! SafeBufferDelete(force)
     if !buflisted(bufToBeDel) | bd | return | endif
 
     if !a:force && getbufvar(bufToBeDel, "&modified")
-	echohl ErrorMsg | echo "Save buffer first!" | echohl None
-	return
+        echohl ErrorMsg | echo "Save buffer first!" | echohl None
+        return
     endif
 
     let bufAlt = bufnr("#")
     " Try alternative "#" if it is listed, or try next listed
     if ((bufAlt != -1) && (bufAlt != bufToBeDel) && buflisted(bufAlt))
-	execute "b" . bufAlt
+        execute "b" . bufAlt
     else
-	bnext
+        bnext
     endif
 
     " If this is the last listed buffer (bnext stays in current buffer),
@@ -134,9 +137,9 @@ function! SafeBufferDelete(force)
 
     " Finally do the real bd job
     if a:force
-	execute "bd! " . bufToBeDel
+        execute "bd! " . bufToBeDel
     else
-	execute "bd " . bufToBeDel
+        execute "bd " . bufToBeDel
     endif
 endfunction
 
@@ -158,11 +161,11 @@ function! NERDTree_GetBuffers()
     let vBufList = []
     let l:i = 1
     while(l:i <= bufnr('$'))
-	let vBufName = bufname(l:i)
-	if vBufName =~ "NERD_tree_.*"
-	    call add(vBufList, vBufName)
-	endif
-	let l:i = l:i + 1
+        let vBufName = bufname(l:i)
+        if vBufName =~ "NERD_tree_.*"
+            call add(vBufList, vBufName)
+        endif
+        let l:i = l:i + 1
     endwhile
     return vBufList
 endfunction
@@ -170,18 +173,18 @@ endfunction
 function! NERDTree_Reload()
     let vBufList = NERDTree_GetBuffers()
     for vBufName in vBufList
-	let vBufNr = bufnr(vBufName)
-	if (vBufNr != -1) && getbufline(vBufNr, 1)[0] == ""
-		execute "bwipeout".vBufNr
-	endif
+        let vBufNr = bufnr(vBufName)
+        if (vBufNr != -1) && getbufline(vBufNr, 1)[0] == ""
+                execute "bwipeout".vBufNr
+        endif
     endfor
 
     if !empty(vBufList) && empty(NERDTree_GetBuffers())
-	"Put debug message in register @e
-	":help line-continuation, new-line-continuation
-	let @e = "@" . substitute(system('date'),"\n","", "g")
-		 \ . " NERDTree Reloaded!\n"
-	:NERDTree
+        "Put debug message in register @e
+        ":help line-continuation, new-line-continuation
+        let @e = "@" . substitute(system('date'),"\n","", "g")
+                 \ . " NERDTree Reloaded!\n"
+        :NERDTree
     endif
 endfunction
 
