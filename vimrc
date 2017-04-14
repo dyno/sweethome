@@ -134,7 +134,7 @@ endfunction
 
 autocmd VimEnter * if exists(':Alias') | call CmdAlias('bd', 'call SafeBufferDelete(0)') | endif
 autocmd VimEnter * if exists(':Alias') | call CmdAlias('bdf', 'call SafeBufferDelete(1)') | endif
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree
 autocmd SessionLoadPost * call NERDTree_Reload()
 "autocmd VimEnter * wincmd p
 
