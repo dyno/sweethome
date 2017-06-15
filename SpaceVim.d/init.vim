@@ -7,7 +7,7 @@ call SpaceVim#layers#load('incsearch')
 call SpaceVim#layers#load('lang#java')
 call SpaceVim#layers#load('lang#javascript')
 call SpaceVim#layers#load('lang#vim')
-call SpaceVim#layers#load('lang#python')
+"call SpaceVim#layers#load('lang#python')
 call SpaceVim#layers#load('lang#haskell')
 call SpaceVim#layers#load('lang#markdown')
 call SpaceVim#layers#load('tools#screensaver')
@@ -48,3 +48,28 @@ set clipboard=unnamedplus
 " https://github.com/vim-airline/vim-airline/wiki/FAQ
 set laststatus=2
 let g:airline_powerline_fonts = 1
+
+" -----------------------------------------------------------------------------
+augroup lcd
+    autocmd BufEnter * lcd %:p:h
+augroup END
+
+"------------------------------------------------------------------------------
+"remove trailing spaces
+"http://www.vim.org/tips/tip.php?tip_id=878
+function! TrimSpaces()
+:mark '
+"except:
+"   ISF=<space> in bash scripts
+"   --<space> in mail signature
+:% s/\(^\(--\|ISF=\)\)\@<!\s\+$//e
+"go back to where we were
+:''
+:endfunction
+
+augroup TrimSpaces
+    autocmd FileWritePre   *.py :call TrimSpaces()
+    autocmd FileAppendPre  *.py :call TrimSpaces()
+    autocmd FilterWritePre *.py :call TrimSpaces()
+    autocmd BufWritePre    *.py :call TrimSpaces()
+augroup END
