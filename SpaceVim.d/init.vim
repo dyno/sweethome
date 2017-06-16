@@ -44,8 +44,8 @@ if has('nvim') && !has('python3')
         unlet g:loaded_python3_provider
     endif
     runtime autoload/provider/python3.vim
-    ":verbose function provider#pythonx#Detect
-    ":echo provider#python3#Prog()
+    " :verbose function provider#pythonx#Detect
+    " :echo provider#python3#Prog()
 endif
 
 if has('python3')
@@ -57,7 +57,9 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 " :NeomakeInfo
-"let g:neomake_python_enabled_makers = ['python']
+" autoload/neomake/makers/ft/python.vim
+" https://github.com/neomake/neomake/blob/master/autoload/neomake/makers/ft/python.vim
+" let g:neomake_python_enabled_makers = ['python']
 
 " -----------------------------------------------------------------------------
 " pip install vim-vint
@@ -79,15 +81,15 @@ augroup END
 
 "------------------------------------------------------------------------------
 " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
-"remove trailing spaces
-"http://www.vim.org/tips/tip.php?tip_id=878
+" remove trailing spaces
+" http://www.vim.org/tips/tip.php?tip_id=878
 function! TrimSpaces()
 :mark '
-"except:
+" except:
 "   ISF=<space> in bash scripts
 "   --<space> in mail signature
 :% s/\(^\(--\|ISF=\)\)\@<!\s\+$//e
-"go back to where we were
+" go back to where we were
 :''
 :endfunction
 " vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
