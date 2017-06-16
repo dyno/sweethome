@@ -24,10 +24,27 @@ let g:clang2_placeholder_next = ''
 let g:clang2_placeholder_prev = ''
 
 " https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovitalism
-" help nvim-python
+" http://learnvimscriptthehardway.stevelosh.com/chapters/53.html, Autoloading
+" https://github.com/neovim/neovim/issues/5360, python3 issue
 " pip install neovim
 let g:python_host_prog  = $HOME.'/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+
+" !! to has('python3'), python3 must be in $PATH when nvim started
+" PATH=$PATH:~/.pyenv/versions/neovim3/bin nvim
+" https://github.com/neovim/neovim/blob/master/src/nvim/eval.c
+" https://github.com/neovim/neovim/blob/master/runtime/autoload/provider/python3.vim
+
+" below won't get deoplete to work because we cannot tweak has('python3')
+if has('nvim') && !has('python3')
+    " :set verbose=2
+    if exists('g:loaded_python3_provider')
+        unlet g:loaded_python3_provider
+    endif
+    runtime autoload/provider/python3.vim
+    ":verbose function provider#pythonx#Detect
+    ":echo provider#python3#Prog()
+endif
 
 if has('python3')
     let g:ctrlp_map = ''
@@ -55,6 +72,7 @@ augroup lcd
 augroup END
 
 "------------------------------------------------------------------------------
+" vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
 "remove trailing spaces
 "http://www.vim.org/tips/tip.php?tip_id=878
 function! TrimSpaces()
@@ -66,6 +84,7 @@ function! TrimSpaces()
 "go back to where we were
 :''
 :endfunction
+" vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
 
 augroup TrimSpaces
     autocmd FileWritePre   *.py :call TrimSpaces()
