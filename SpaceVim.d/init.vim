@@ -75,11 +75,13 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 
 " -----------------------------------------------------------------------------
-augroup lcd
-    autocmd BufEnter * lcd %:p:h
+augroup BufEnter
+    " https://github.com/tpope/vim-fugitive/issues/3
+    autocmd BufEnter * if expand('%:p') !~ '://' | :chdir %:p:h | endif
+    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup END
 
-"------------------------------------------------------------------------------
+" -----------------------------------------------------------------------------
 " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
 " remove trailing spaces
 " http://www.vim.org/tips/tip.php?tip_id=878
@@ -100,3 +102,14 @@ augroup TrimSpaces
     autocmd FilterWritePre *.py :call TrimSpaces()
     autocmd BufWritePre    *.py :call TrimSpaces()
 augroup END
+
+" -----------------------------------------------------------------------------
+" * https://stackoverflow.com/questions/2228353/how-to-swap-files-between-windows-in-vim
+"   Ctrl+W,r  " rotate windows
+"   Ctrl+W,x  " swap windows
+"
+" * :help terminal
+"
+" * https://github.com/vim-airline/vim-airline
+"   'Automatically displays all buffers when there's only one tab open.'
+"
