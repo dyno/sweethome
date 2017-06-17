@@ -96,16 +96,23 @@ augroup TrimSpaces
 augroup END
 
 " -----------------------------------------------------------------------------
+" Restore the behavior of lcd %:p:h
+
 " https://github.com/airblade/vim-rooter
 let g:rooter_manual_only = 1
 
 augroup BufferEnter
     " https://github.com/tpope/vim-fugitive/issues/3
-    autocmd BufEnter * if expand('%:p') !~ '://' | :chdir %:p:h | pwd | endif
+    autocmd BufEnter * if expand('%:p') !~ '://' | :lcd %:p:h | echomsg 'PWD=' . getcwd() | endif
     autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup END
 
 " -----------------------------------------------------------------------------
+"  https://superuser.com/questions/40378/how-to-make-vims-auto-complete-behave-like-bashs-default-auto-complete
+set wildmenu
+set wildmode=list:longest
+
+" #############################################################################
 " * https://stackoverflow.com/questions/2228353/how-to-swap-files-between-windows-in-vim
 "   Ctrl+W,r  " rotate windows
 "   Ctrl+W,x  " swap windows
