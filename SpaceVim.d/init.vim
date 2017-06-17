@@ -96,9 +96,12 @@ augroup TrimSpaces
 augroup END
 
 " -----------------------------------------------------------------------------
+" https://github.com/airblade/vim-rooter
+let g:rooter_manual_only = 1
+
 augroup BufferEnter
     " https://github.com/tpope/vim-fugitive/issues/3
-    autocmd BufEnter * if expand('%:p') !~ '://' | :chdir %:p:h | endif
+    autocmd BufEnter * if expand('%:p') !~ '://' | :chdir %:p:h | pwd | endif
     autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup END
 
