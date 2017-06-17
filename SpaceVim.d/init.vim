@@ -18,7 +18,6 @@ call SpaceVim#layers#load('tools#screensaver')
 call SpaceVim#layers#load('shell')
 
 let g:spacevim_enable_vimfiler_welcome = 1
-let g:spacevim_enable_debug = 1
 "let g:deoplete#auto_complete_delay = 150
 let g:spacevim_enable_tabline_filetype_icon = 1
 let g:spacevim_enable_os_fileformat_icon = 1
@@ -75,13 +74,6 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 
 " -----------------------------------------------------------------------------
-augroup BufEnter
-    " https://github.com/tpope/vim-fugitive/issues/3
-    autocmd BufEnter * if expand('%:p') !~ '://' | :chdir %:p:h | endif
-    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
-augroup END
-
-" -----------------------------------------------------------------------------
 " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
 " remove trailing spaces
 " http://www.vim.org/tips/tip.php?tip_id=878
@@ -101,6 +93,13 @@ augroup TrimSpaces
     autocmd FileAppendPre  *.py :call TrimSpaces()
     autocmd FilterWritePre *.py :call TrimSpaces()
     autocmd BufWritePre    *.py :call TrimSpaces()
+augroup END
+
+" -----------------------------------------------------------------------------
+augroup BufferEnter
+    " https://github.com/tpope/vim-fugitive/issues/3
+    autocmd BufEnter * if expand('%:p') !~ '://' | :chdir %:p:h | endif
+    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup END
 
 " -----------------------------------------------------------------------------
