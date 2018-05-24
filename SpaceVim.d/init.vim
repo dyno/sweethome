@@ -5,16 +5,17 @@ let g:spacevim_realtime_leader_guide = 1
 " :set verbose=2
 " :runtime **/layers/lang/python.vim
 call SpaceVim#layers#load('lang#python')
+call SpaceVim#layers#load('lang#java')
+call SpaceVim#layers#load('lang#scala')
 
 call SpaceVim#layers#load('lang#go')
-call SpaceVim#layers#load('lang#c')
-call SpaceVim#layers#load('incsearch')
-call SpaceVim#layers#load('lang#java')
+"call SpaceVim#layers#load('lang#c')
+"call SpaceVim#layers#load('incsearch')
 call SpaceVim#layers#load('lang#javascript')
 call SpaceVim#layers#load('lang#vim')
-call SpaceVim#layers#load('lang#haskell')
+"call SpaceVim#layers#load('lang#haskell')
 call SpaceVim#layers#load('lang#markdown')
-call SpaceVim#layers#load('tools#screensaver')
+"call SpaceVim#layers#load('tools#screensaver')
 call SpaceVim#layers#load('shell')
 
 let g:spacevim_enable_vimfiler_welcome = 1
@@ -23,13 +24,15 @@ let g:spacevim_enable_tabline_filetype_icon = 1
 let g:spacevim_enable_os_fileformat_icon = 1
 let g:spacevim_buffer_index_type = 1
 
+let g:dotspacevim_additional_plugins = []
+
 " -----------------------------------------------------------------------------
 " https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovitalism
 " http://learnvimscriptthehardway.stevelosh.com/chapters/53.html, Autoloading
 " https://github.com/neovim/neovim/issues/5360, python3 issue
 " pip install neovim
-let g:python_host_prog  = $HOME.'/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+"let g:python_host_prog  = $HOME.'/.pyenv/versions/neovim2/bin/python'
+"let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
 
 " !! to has('python3'), python3 must be in $PATH when nvim started
 " PATH=$PATH:~/.pyenv/versions/neovim3/bin nvim
@@ -58,16 +61,20 @@ let g:deoplete#enable_at_startup = 1
 " :NeomakeInfo
 " autoload/neomake/makers/ft/python.vim
 " https://github.com/neomake/neomake/blob/master/autoload/neomake/makers/ft/python.vim
-" let g:neomake_python_enabled_makers = ['python']
+let g:neomake_python_enabled_makers = ['python', 'pep8']
+" E501 is line length of 80 characters
+"let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=120', '--ignore=E115,E266'], }
+let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=120'], }
 
 " -----------------------------------------------------------------------------
 " pip install vim-vint
 let g:neomake_vim_enabled_makers = ['vint']
 
-set colorcolumn=80
+"set colorcolumn=80
+set colorcolumn=120
 
 " :help clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " https://github.com/vim-airline/vim-airline/wiki/FAQ
 set laststatus=2
