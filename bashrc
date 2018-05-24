@@ -4,7 +4,7 @@
 #[ -z "$PS1" ] && return
 
 #######################################################################
-if [[ $SHELL == /bin/bash ]]; then
+if [[ "$SHELL" == *bash ]]; then
 #======================================================================
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -41,7 +41,7 @@ export HISTFILESIZE=1000
 fi # end of if is bash
 
 #----------------------------------------------------------------------
-for pth in $HOME/bin /usr/local/bin /bin /usr/bin /sbin /usr/sbin
+for pth in /bin /usr/bin /usr/local/bin $HOME/bin $HOME/.okta/bin /Library/TeX/texbin
 do
     if ! echo ":$PATH:" | grep -q ":$pth:"; then
         PATH=$PATH:$pth
@@ -75,3 +75,5 @@ if [[ "$TERM" == "linux" ]]; then
     sudo loadkeys -q ~/.keymap
 fi
 
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
