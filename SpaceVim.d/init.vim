@@ -68,7 +68,7 @@ let g:neomake_python_pep8_maker = { 'args': ['--max-line-length=120'], }
 
 " -----------------------------------------------------------------------------
 " pip install vim-vint
-let g:neomake_vim_enabled_makers = ['vint']
+"let g:neomake_vim_enabled_makers = ['vint']
 
 "set colorcolumn=80
 set colorcolumn=120

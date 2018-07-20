@@ -41,10 +41,10 @@ export HISTFILESIZE=1000
 fi # end of if is bash
 
 #----------------------------------------------------------------------
-for pth in /bin /usr/bin /usr/local/bin $HOME/bin $HOME/.okta/bin /Library/TeX/texbin
+for pth in /bin /usr/bin /usr/local/bin /usr/local/sbin $HOME/bin $HOME/.okta/bin /Library/TeX/texbin
 do
     if ! echo ":$PATH:" | grep -q ":$pth:"; then
-        PATH=$PATH:$pth
+        [ -e $pth ] && PATH=$PATH:$pth || true
     fi
 done
 
