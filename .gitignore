@@ -29,3 +29,8 @@ eclim*
 
 #env
 env.d/5*
+
+# ammonite
+cache
+history
+session
