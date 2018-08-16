@@ -194,9 +194,6 @@ set list listchars=tab:»·,trail:§
 
 autocmd FileType make       setlocal noexpandtab
 autocmd FileType python     setlocal expandtab
-"XXX: to be removed.
-"autocmd FileType flexwiki   setlocal expandtab
-"autocmd FileType mako       :syntax sync minlines=200
 
 "----------------------------------------------------------
 "remove trailing spaces
@@ -211,10 +208,10 @@ function! TrimSpaces()
 :''
 :endfunction
 
-autocmd FileWritePre   *.{py,mako,sh,wiki,txt} :call TrimSpaces()
-autocmd FileAppendPre  *.{py,mako,sh,wiki,txt} :call TrimSpaces()
-autocmd FilterWritePre *.{py,mako,sh,wiki,txt} :call TrimSpaces()
-autocmd BufWritePre    *.{py,mako,sh,wiki,txt} :call TrimSpaces()
+autocmd FileWritePre   *.{py,sh,wiki,txt} :call TrimSpaces()
+autocmd FileAppendPre  *.{py,sh,wiki,txt} :call TrimSpaces()
+autocmd FilterWritePre *.{py,sh,wiki,txt} :call TrimSpaces()
+autocmd BufWritePre    *.{py,sh,wiki,txt} :call TrimSpaces()
 
 "----------------------------------------------------------
 autocmd BufRead,BufNewFile *{vimrc}         set filetype=vim
@@ -234,6 +231,7 @@ autocmd BufRead,BufNewFile /etc/apache2/*   set filetype=apache
 "
 autocmd BufRead,BufNewFile *.gradle         set filetype=groovy
 
+autocmd BufRead,BufNewFile *.sc             set filetype=scala
 
 "----------------------------------------------------------
 ":help DiffOrig

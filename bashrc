@@ -41,7 +41,8 @@ export HISTFILESIZE=1000
 fi # end of if is bash
 
 #----------------------------------------------------------------------
-for pth in /bin /usr/bin /usr/local/bin /usr/local/sbin $HOME/bin $HOME/.okta/bin /Library/TeX/texbin
+for pth in $HOME/bin $HOME/.okta/bin $HOME/.local/bin \
+	   /bin /usr/bin /usr/local/bin /usr/local/sbin
 do
     if ! echo ":$PATH:" | grep -q ":$pth:"; then
         [ -e $pth ] && PATH=$PATH:$pth || true
