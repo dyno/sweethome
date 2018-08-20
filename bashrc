@@ -29,11 +29,11 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 shopt -s histappend
 shopt -s checkwinsize
 
-#Make sure all terminals save history
+# make sure all terminals save history
 shopt -s histappend
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
- 
-#Increase history size
+
+# increase history size
 export HISTSIZE=1000
 export HISTFILESIZE=1000
 
@@ -42,15 +42,17 @@ fi # end of if is bash
 
 #----------------------------------------------------------------------
 for pth in $HOME/bin $HOME/.okta/bin $HOME/.local/bin \
-	   /bin /usr/bin /usr/local/bin /usr/local/sbin
+           /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
 do
     if ! echo ":$PATH:" | grep -q ":$pth:"; then
         [ -e $pth ] && PATH=$PATH:$pth || true
     fi
 done
 
+export PATH
+
 #----------------------------------------------------------------------
-# User specific aliases and functions
+# user specific aliases and functions
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
