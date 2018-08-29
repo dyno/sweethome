@@ -6,6 +6,7 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 " git submodule init
+" :PluginInstall
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
