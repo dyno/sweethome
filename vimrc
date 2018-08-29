@@ -5,9 +5,10 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-"git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" git submodule init
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
@@ -23,6 +24,8 @@ Plugin 'dcharbon/vim-flatbuffers'
 "http://www.vim.org/scripts/script.php?script_id=5057
 Plugin 'ap/vim-buftabline'
 
+Plugin 'derekwyatt/vim-scala'
+
 "---
 "Plugin from http://vim-scripts.org/vim/scripts.html
 
@@ -34,6 +37,8 @@ Plugin 'cmdalias.vim'
 "The NERD tree : A tree explorer plugin for navigating the filesystem
 "http://www.vim.org/scripts/script.php?script_id=1658
 Plugin 'The-NERD-tree'
+
+Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,33 +73,33 @@ let NERDTreeIgnore = ['\~$', '\.swp$', '\.pyc$', '\.pyo$']
 "http://vim.wikia.com/wiki/VimTip165
 ":help :bar
 function! SafeBufferDelete(force)
-    let bufToBeDel = bufnr("%")
-    " If this is an unlisted buffer, simply bd
-    if !buflisted(bufToBeDel) | bd | return | endif
+  let bufToBeDel = bufnr("%")
+  " If this is an unlisted buffer, simply bd
+  if !buflisted(bufToBeDel) | bd | return | endif
 
-    if !a:force && getbufvar(bufToBeDel, "&modified")
-        echohl ErrorMsg | echo "Save buffer first!" | echohl None
-        return
-    endif
+  if !a:force && getbufvar(bufToBeDel, "&modified")
+    echohl ErrorMsg | echo "Save buffer first!" | echohl None
+    return
+  endif
 
-    let bufAlt = bufnr("#")
-    " Try alternative "#" if it is listed, or try next listed
-    if ((bufAlt != -1) && (bufAlt != bufToBeDel) && buflisted(bufAlt))
-        execute "b" . bufAlt
-    else
-        bnext
-    endif
+  let bufAlt = bufnr("#")
+  " Try alternative "#" if it is listed, or try next listed
+  if ((bufAlt != -1) && (bufAlt != bufToBeDel) && buflisted(bufAlt))
+    execute "b" . bufAlt
+  else
+    bnext
+  endif
 
-    " If this is the last listed buffer (bnext stays in current buffer),
-    " create a new buffer first
-    if (bufnr("%") == bufToBeDel) | new | endif
+  " If this is the last listed buffer (bnext stays in current buffer),
+  " create a new buffer first
+  if (bufnr("%") == bufToBeDel) | new | endif
 
-    " Finally do the real bd job
-    if a:force
-        execute "bd! " . bufToBeDel
-    else
-        execute "bd " . bufToBeDel
-    endif
+  " Finally do the real bd job
+  if a:force
+    execute "bd! " . bufToBeDel
+  else
+    execute "bd " . bufToBeDel
+  endif
 endfunction
 
 "TODO: won't it be more elegant if we can skip the buffer/windows manager?
@@ -102,34 +107,34 @@ endfunction
 
 "When restore a session, an empty NERD_Tree window is not desirable.
 function! NERDTree_GetBuffers()
-    let vBufList = []
-    let l:i = 1
-    while(l:i <= bufnr('$'))
-        let vBufName = bufname(l:i)
-        if vBufName =~ "NERD_tree_.*"
-            call add(vBufList, vBufName)
-        endif
-        let l:i = l:i + 1
-    endwhile
-    return vBufList
+  let vBufList = []
+  let l:i = 1
+  while(l:i <= bufnr('$'))
+    let vBufName = bufname(l:i)
+    if vBufName =~ "NERD_tree_.*"
+      call add(vBufList, vBufName)
+    endif
+    let l:i = l:i + 1
+  endwhile
+  return vBufList
 endfunction
 
 function! NERDTree_Reload()
-    let vBufList = NERDTree_GetBuffers()
-    for vBufName in vBufList
-        let vBufNr = bufnr(vBufName)
-        if (vBufNr != -1) && getbufline(vBufNr, 1)[0] == ""
-                execute "bwipeout".vBufNr
-        endif
-    endfor
-
-    if !empty(vBufList) && empty(NERDTree_GetBuffers())
-        "Put debug message in register @e
-        ":help line-continuation, new-line-continuation
-        let @e = "@" . substitute(system('date'),"\n","", "g")
-                 \ . " NERDTree Reloaded!\n"
-        :NERDTree
+  let vBufList = NERDTree_GetBuffers()
+  for vBufName in vBufList
+    let vBufNr = bufnr(vBufName)
+    if (vBufNr != -1) && getbufline(vBufNr, 1)[0] == ""
+      execute "bwipeout".vBufNr
     endif
+  endfor
+
+  if !empty(vBufList) && empty(NERDTree_GetBuffers())
+    "Put debug message in register @e
+    ":help line-continuation, new-line-continuation
+    let @e = "@" . substitute(system('date'),"\n","", "g")
+	  \ . " NERDTree Reloaded!\n"
+    :NERDTree
+  endif
 endfunction
 
 autocmd VimEnter * if exists(':Alias') | call CmdAlias('bd', 'call SafeBufferDelete(0)') | endif
@@ -145,18 +150,18 @@ autocmd SessionLoadPost * call NERDTree_Reload()
 syntax on
 
 if has('gui_running')
-    "set guioptions-=T  " no toolbar
-    "colorscheme desert
-    colorscheme koehler
+  "set guioptions-=T  " no toolbar
+  "colorscheme desert
+  colorscheme koehler
 
-    if has("gui_macvim")
-        set guifont=Monaco:h12
-    endif
+  if has("gui_macvim")
+    set guifont=Monaco:h12
+  endif
 
 else
-    "colorscheme darkblue
-    "colorscheme elflord
-    colorscheme desert
+  "colorscheme darkblue
+  "colorscheme elflord
+  colorscheme desert
 endif
 
 "----------------------------------------------------------
@@ -199,14 +204,14 @@ autocmd FileType python     setlocal expandtab
 "remove trailing spaces
 "http://www.vim.org/tips/tip.php?tip_id=878
 function! TrimSpaces()
-:mark '
-"except:
-"   ISF=<space> in bash scripts
-"   --<space> in mail signature
-:% s/\(^\(--\|ISF=\)\)\@<!\s\+$//e
-"go back to where we were
-:''
-:endfunction
+  :mark '
+  "except:
+  "   ISF=<space> in bash scripts
+  "   --<space> in mail signature
+  :% s/\(^\(--\|ISF=\)\)\@<!\s\+$//e
+  "go back to where we were
+  :''
+endfunction
 
 autocmd FileWritePre   *.{py,sh,wiki,txt} :call TrimSpaces()
 autocmd FileAppendPre  *.{py,sh,wiki,txt} :call TrimSpaces()
@@ -252,3 +257,9 @@ autocmd VimEnter * if exists(':Alias') | call CmdAlias('wq', 'wqa') | endif
 
 "----------------------------------------------------------
 set history=1024
+
+"----------------------------------------------------------
+" scalafmt settings
+" https://github.com/Chiel92/vim-autoformat/issues/184
+let g:formatdef_scalafmt = '"scalafmt --assume-filename=a.sc --stdin 2>/dev/null"'
+let g:formatters_scala = ['scalafmt']

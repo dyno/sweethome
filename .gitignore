@@ -34,3 +34,5 @@ env.d/5*
 cache
 history
 session
+
+vim/bundle/*
