@@ -81,7 +81,8 @@ interp.repositories() ++= Seq(cibotechRepo)
 
 interp.load.ivy("com.cibo" %% "evilplot-repl" % "0.4.1")
 
-repl.prompt.bind(wd.segments.lastOption.getOrElse("") + "@ ")
+// ## REPL Prompt ##
+repl.prompt.bind(wd.segments.lastOption.getOrElse("") + "/ @ ")
 
 // ## From Bash ##
 /*
