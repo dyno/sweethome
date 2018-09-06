@@ -7,7 +7,7 @@ interp.load.ivy(
       ammonite.Constants.version
 )
 
-@  // XXX: what's this?? separate different scripts??
+@  // https://github.com/lihaoyi/Ammonite/issues/744
 
 val shellSession = ammonite.shell.ShellSession()
 import shellSession._
@@ -26,6 +26,8 @@ import com.typesafe.config.ConfigFactory
 // https://github.com/lihaoyi/Ammonite/issues/472
 // Show compiler warnings
 interp.configureCompiler(_.settings.nowarnings.value = false)
+
+import $file.repositoriesLocal
 
 // default imports
 import $ivy.`com.google.guava:guava:26.0-jre`
@@ -57,7 +59,7 @@ Files.walk(pwd.toNIO).iterator().asScala.filter(Files.isRegularFile(_)).foreach(
 import $ivy.`com.jsuereth::scala-arm:2.0`
 // import resource._
 
-// ## Filesystem Format ##
+// ## File Parser ##
 // CSV
 import $ivy.`com.github.tototoshi::scala-csv:1.3.5`
 
@@ -74,10 +76,12 @@ import $ivy.`com.github.julien-truffaut::monocle-macro:1.5.0`
 import $plugin.$ivy.`org.scalamacros:::paradise:2.1.1`
 
 // ## Plot ##
-val cibotechRepo = MavenRepository("https://dl.bintray.com/cibotech/public")
+val cibotechRepo = coursier.MavenRepository("https://dl.bintray.com/cibotech/public")
 interp.repositories() ++= Seq(cibotechRepo)
 
 interp.load.ivy("com.cibo" %% "evilplot-repl" % "0.4.1")
+
+repl.prompt.bind(wd.segments.lastOption.getOrElse("") + "@ ")
 
 // ## From Bash ##
 /*
