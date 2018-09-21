@@ -26,6 +26,7 @@ Plugin 'dcharbon/vim-flatbuffers'
 Plugin 'ap/vim-buftabline'
 
 Plugin 'derekwyatt/vim-scala'
+Plugin 'cespare/vim-toml'
 
 "---
 "Plugin from http://vim-scripts.org/vim/scripts.html
@@ -238,6 +239,7 @@ autocmd BufRead,BufNewFile /etc/apache2/*   set filetype=apache
 autocmd BufRead,BufNewFile *.gradle         set filetype=groovy
 
 autocmd BufRead,BufNewFile *.sc             set filetype=scala
+autocmd BufRead,BufNewFile Pipfile          set filetype=toml
 
 "----------------------------------------------------------
 ":help DiffOrig
@@ -262,5 +264,5 @@ set history=1024
 "----------------------------------------------------------
 " scalafmt settings
 " https://github.com/Chiel92/vim-autoformat/issues/184
-let g:formatdef_scalafmt = '"scalafmt --assume-filename=a.sc --stdin 2>/dev/null"'
+let g:formatdef_scalafmt = '"scalafmt --config ~/.scalafmt.conf --assume-filename=a.sc --stdin 2>/dev/null"'
 let g:formatters_scala = ['scalafmt']
