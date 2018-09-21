@@ -92,7 +92,7 @@ repl.prompt.bind(wd.segments.lastOption.getOrElse("") + "/ @ ")
   val predef = Path.home/ ".ammonite" / "predef.sc"
   %vim predef
 
-  source x.sh -- interp.load.module("x.sc")
+  source x.sh -- interp.load.module("x.sc"), import $exec.x
   history  -- repl.history
  */
 
