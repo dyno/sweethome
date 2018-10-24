@@ -79,21 +79,25 @@ name = "colorscheme"
 name = "cscope"
 
 [[layers]]
-name = "java"
-
-[[layers]]
-name = "python"
-# pip install jedi isort black pylama eradicate
-
-[[layers]]
-name = "scala"
-
-[[layers]]
 name = "shell"
 default_position = "top"
 default_height = 30
 
+
 [[layers]]
-name = "vim"
+name = "lang#java"
+
+[[layers]]
+name = "lang#python"
+# pip install jedi isort black pylama eradicate
+
+[[layers]]
+name = "lang#scala"
+
+[[layers]]
+name = "lang#vim"
 # pip install vint vim-vint
+
+[[layers]]
+name = "lang#sh"
 
