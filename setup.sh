@@ -24,5 +24,5 @@ fi
 # SSH
 [ -d ~/.ssh ] && ln -sf ${BASEDIR}/ssh_config ~/.ssh/config && chmod 600 ~/.ssh/config
 
-# ammonite
+# Ammonite
 [ ! -e ~/.ammonite -o -L ~/.ammonite ] && rm -f ~/.ammonite && ln -sf ${BASEDIR}/ammonite ~/.ammonite

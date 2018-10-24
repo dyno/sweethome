@@ -42,6 +42,11 @@ Plugin 'The-NERD-tree'
 
 Plugin 'Chiel92/vim-autoformat'
 
+"https://github.com/ambv/black
+Plugin 'ambv/black'
+"https://github.com/fisadev/vim-isort
+Plugin 'fisadev/vim-isort'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -266,3 +271,6 @@ set history=1024
 " https://github.com/Chiel92/vim-autoformat/issues/184
 let g:formatdef_scalafmt = '"scalafmt --config ~/.scalafmt.conf --assume-filename=a.sc --stdin 2>/dev/null"'
 let g:formatters_scala = ['scalafmt']
+
+let g:black_linelength = 120
+let g:black_skip_string_normalization = 1

@@ -41,7 +41,7 @@ export HISTFILESIZE=1000
 fi # end of if is bash
 
 #----------------------------------------------------------------------
-for pth in $HOME/bin $HOME/.okta/bin $HOME/.local/bin \
+for pth in $HOME/bin $HOME/.local/bin \
            /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
 do
     if ! echo ":$PATH:" | grep -q ":$pth:"; then
@@ -80,3 +80,4 @@ fi
 
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
