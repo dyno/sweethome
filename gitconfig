@@ -6,4 +6,4 @@
 	name = Dyno Fu
 	email = dyno.fu@gmail.com
 [core]
-	excludesfile = /Users/dyno/.gitignore_global
+	excludesfile = ~/.gitignore_global
