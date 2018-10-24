@@ -25,14 +25,28 @@ background = "dark"
 bootstrap_before = "myspacevim#before"
 bootstrap_after = "myspacevim#after"
 
+
+# ## colorscheme ##
 [[custom_plugins]]
 # https://github.com/napcs/vim-mycontrast
 name = "napcs/vim-mycontrast"
+merged = 0
 
 [[custom_plugins]]
 # https://github.com/mhartington/oceanic-next
 name = "mhartington/oceanic-next"
 merged = 0
+
+[[custom_plugins]]
+# https://github.com/marcopaganini/termschool-vim-theme
+name = "marcopaganini/termschool-vim-theme"
+
+[[custom_plugins]]
+# https://github.com/Chiel92/vim-autoformat
+name = "Chiel92/vim-autoformat"
+# python: pip install black
+# shell: go get -u mvdan.cc/sh/cmd/shfmt
+# sql: pip install sqlparser
 
 [[custom_plugins]]
 # https://github.com/ambv/black#editor-integration
@@ -47,9 +61,11 @@ merged = 0
 on_ft = "python"
 
 [[custom_plugins]]
+# https://github.com/godlygeek/tabular
 name = "godlygeek/tabular.git"
 merged = 0
 on_ft = "markdown"
+
 
 [[layers]]
 name = "autocomplete"
@@ -80,5 +96,4 @@ default_height = 30
 [[layers]]
 name = "vim"
 # pip install vint vim-vint
-
 

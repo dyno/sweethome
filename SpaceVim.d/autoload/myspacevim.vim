@@ -6,6 +6,13 @@ func! myspacevim#before() abort
   let g:black_skip_string_normalization = 1
   let g:black_linelength = 120
 
+  " https://github.com/Chiel92/vim-autoformat
+  let g:formatters_python = ['black']
+  let g:formatdef_black = '"black --line-length=120 --skip-string-normalization --quiet -"'
+  let g:autoformat_retab = 0
+  let g:autoformat_remove_trailing_spaces = 1
+  let g:autoformat_verbosemode = 0
+
   " https://github.com/airblade/vim-rooter
   let g:rooter_change_directory_for_non_project_files = 'current'
   let g:rooter_patterns = ['Pipfile', '.git/']
@@ -23,6 +30,6 @@ func! myspacevim#after() abort
   ":highlight CursorLine guibg=black cterm=NONE
   ":highlight EndOfBuffer guibg=black cterm=NONE
   
-  : set norelativenumber
+  :set norelativenumber
 
 endf
