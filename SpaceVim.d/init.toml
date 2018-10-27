@@ -2,51 +2,48 @@
 # :h SpaceVim-config
 # :h g:spacevim_buffer_index_type
 buffer_index_type = 1
+enable_guicolors = 1
 enable_os_fileformat_icon = 1
 enable_statusline_display_mode = 1
 enable_tabline_filetype_icon = 1
 enable_vimfiler_welcome = 1
+max_column = 120
+relativenumber = 0
 statusline_separator = "bar"
+vimcompatible = 0
 
 # https://github.com/SpaceVim/SpaceVim/blob/master/docs/documentation.md#font
 # "changing this value has no effect if you are running Vim/Neovim in terminal."
 # https://www.iterm2.com/documentation-fonts.html
 # guifont = 'Source Code Pro Medium for Powerline'
-# guifont = 'Hack Regular Nerd Font Complete'
-
-# layers:colorscheme
-# https://spacevim.org/layers/colorscheme/
-colorscheme="mycontrast"
-colorscheme_bg = "dark"
-background = "dark"
+guifont = 'Hack Regular Nerd Font Complete'
 
 # custom_plugins options
 # https://spacevim.org/documentation/#bootstrap-functions
 bootstrap_before = "myspacevim#before"
 bootstrap_after = "myspacevim#after"
 
+# layers:colorscheme
+# https://spacevim.org/layers/colorscheme/
+colorscheme="molokai"
+colorscheme_bg = "dark"
 
-# ## colorscheme ##
+
+# ##^^ colorscheme ^^## -------------------------------------------------------
+
 [[custom_plugins]]
 # https://github.com/napcs/vim-mycontrast
 name = "napcs/vim-mycontrast"
 merged = 0
 
 [[custom_plugins]]
-# https://github.com/mhartington/oceanic-next
-name = "mhartington/oceanic-next"
-merged = 0
-
-[[custom_plugins]]
 # https://github.com/marcopaganini/termschool-vim-theme
 name = "marcopaganini/termschool-vim-theme"
 
-[[custom_plugins]]
-# https://github.com/Chiel92/vim-autoformat
-name = "Chiel92/vim-autoformat"
-# python: pip install black
-# shell: go get -u mvdan.cc/sh/cmd/shfmt
-# sql: pip install sqlparser
+# ##$$ colorscheme $$## -------------------------------------------------------
+
+
+# ##^^ Python ^^## ------------------------------------------------------------
 
 [[custom_plugins]]
 # https://github.com/ambv/black#editor-integration
@@ -60,12 +57,42 @@ name = "fisadev/vim-isort"
 merged = 0
 on_ft = "python"
 
+# ##$$ Python $$## ------------------------------------------------------------
+
+
+[[custom_plugins]]
+# https://github.com/Chiel92/vim-autoformat
+name = "Chiel92/vim-autoformat"
+# python: pip install black
+# shell: go get -u mvdan.cc/sh/cmd/shfmt
+# sql: pip install sqlparser # sqlformat
+
 [[custom_plugins]]
 # https://github.com/godlygeek/tabular
-name = "godlygeek/tabular.git"
+name = "godlygeek/tabular"
 merged = 0
 on_ft = "markdown"
 
+[[custom_plugins]]
+# https://github.com/tpope/vim-fugitive
+name = "tpope/vim-fugitive"
+merged = 0
+
+
+[[layers]]
+name = "colorscheme"
+
+[[layers]]
+name = "tools"
+
+[[layers]]
+name = "denite"
+
+[[layers]]
+name = "git"
+
+[[layers]]
+name = "VersionControl"
 
 [[layers]]
 name = "autocomplete"
@@ -73,10 +100,10 @@ auto-completion-return-key-behavior = "complete"
 auto-completion-tab-key-behavior = "cycle"
 
 [[layers]]
-name = "colorscheme"
+name = "cscope"
 
 [[layers]]
-name = "cscope"
+name = "tags"
 
 [[layers]]
 name = "shell"
@@ -85,11 +112,11 @@ default_height = 30
 
 
 [[layers]]
-name = "lang#java"
-
-[[layers]]
 name = "lang#python"
 # pip install jedi isort black pylama eradicate
+
+[[layers]]
+name = "lang#java"
 
 [[layers]]
 name = "lang#scala"
