@@ -6,8 +6,11 @@ enable_guicolors = 1
 enable_os_fileformat_icon = 1
 enable_statusline_display_mode = 1
 enable_tabline_filetype_icon = 1
-enable_vimfiler_welcome = 1
+enable_vimfiler_filetypeicon = 0
+enable_vimfiler_gitstatus = 1
+enable_vimfiler_welcome = 0  # very slow
 max_column = 120
+project_rooter_patterns = [".git/", "Pipfile", "build.gradle"]
 relativenumber = 0
 statusline_separator = "bar"
 vimcompatible = 0
@@ -16,7 +19,7 @@ vimcompatible = 0
 # "changing this value has no effect if you are running Vim/Neovim in terminal."
 # https://www.iterm2.com/documentation-fonts.html
 # guifont = 'Source Code Pro Medium for Powerline'
-guifont = 'Hack Regular Nerd Font Complete'
+guifont = "Hack Regular Nerd Font Complete"
 
 # custom_plugins options
 # https://spacevim.org/documentation/#bootstrap-functions
@@ -78,12 +81,19 @@ on_ft = "markdown"
 name = "tpope/vim-fugitive"
 merged = 0
 
+#[[custom_plugins]]
+#name = "ryanolsonx/vim-lsp-python"
+#merged = 0
+
+#[[custom_plugins]]
+#name = "vim-scripts/dbext.vim"
+#merged = 0"
 
 [[layers]]
 name = "colorscheme"
 
-[[layers]]
-name = "tools"
+#[[layers]]
+#name = "tools"
 
 [[layers]]
 name = "denite"
@@ -99,11 +109,20 @@ name = "autocomplete"
 auto-completion-return-key-behavior = "complete"
 auto-completion-tab-key-behavior = "cycle"
 
-[[layers]]
-name = "cscope"
+#[[layers]]
+#name = "cscope"
 
 [[layers]]
 name = "tags"
+
+[[layers]]
+name = "github"
+
+#[[layers]]
+#name = "lsp"
+#filetypes = ["python", "sh"]
+# https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python
+# XXX: lsp is not stable enough, renaming support, requires setup etc
 
 [[layers]]
 name = "shell"

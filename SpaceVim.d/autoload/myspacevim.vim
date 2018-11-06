@@ -17,7 +17,6 @@ func! myspacevim#before() abort
 
   " https://github.com/airblade/vim-rooter
   let g:rooter_change_directory_for_non_project_files = 'current'
-  let g:rooter_patterns = ['Pipfile', '.git/']
 
   " https://github.com/ludovicchabant/vim-gutentags
   " used by layer:tags
@@ -27,6 +26,13 @@ func! myspacevim#before() abort
   " produce tags file in project directory
   let g:gutentags_cache_dir = ''
 
+  " https://github.com/prabirshrestha/vim-lsp
+  let g:lsp_log_verbose = 0
+  let g:lsp_log_file = expand('~/vim-lsp.log')
+
+  " https://stackoverflow.com/questions/24931088/disable-omnicomplete-or-ftplugin-or-something-in-vim
+  ":help ft-sql
+  let g:omni_sql_no_default_maps = 1
 
   augroup auto_filetype
     autocmd!
