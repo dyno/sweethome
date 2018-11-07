@@ -77,4 +77,4 @@ if [[ "$TERM" == "linux" ]]; then
   sudo loadkeys -q ~/.keymap
 fi
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+#----------------------------------------------------------------------
