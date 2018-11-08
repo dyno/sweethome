@@ -73,8 +73,9 @@ if [[ -d $HOME/env.d ]]; then
   done
 fi
 
-if [[ "$TERM" == "linux" ]]; then
-  sudo loadkeys -q ~/.keymap
-fi
+# XXX: till i understand it what does it mean.
+#if [[ "$TERM" == "linux" ]]; then
+#  sudo loadkeys -q ~/.keymap
+#fi
 
 #----------------------------------------------------------------------
