@@ -36,16 +36,17 @@ func! myspacevim#before() abort
 
   augroup auto_filetype
     autocmd!
-    autocmd BufRead,BufNewFile *.gradle set filetype=groovy
-    autocmd BufRead,BufNewFile *.sc     set filetype=scala
-    autocmd BufRead,BufNewFile Pipfile  set filetype=conf
-    autocmd BufRead,BufNewFile *.py     set foldmethod=indent foldlevel=1
-    autocmd BufRead,BufNewFile *.vim    set foldmethod=indent foldlevel=1
+    autocmd BufRead,BufNewFile gitconfig  set filetype=gitconfig
+    autocmd BufRead,BufNewFile *.gradle   set filetype=groovy
+    autocmd BufRead,BufNewFile *.sc       set filetype=scala
+    autocmd BufRead,BufNewFile Pipfile    set filetype=conf
+    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1
+    autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1
   augroup end
-  " by default disable fold, zi to toggle foldenable 
+  " by default disable fold, zi to toggle foldenable
   :set nofoldenable
 
-  :set hidden  
+  :set hidden
 endf
 
 
