@@ -1,9 +1,13 @@
-[credential]
-	helper = osxkeychain
-[push]
-	default = tracking
 [user]
-	name = Dyno Fu
 	email = dyno.fu@gmail.com
+	name = Dyno Fu
+
 [core]
 	excludesfile = ~/.gitignore_global
+
+[credential]
+	helper = cache --timeout=3600
+
+[push]
+	default = tracking
+
