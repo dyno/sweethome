@@ -40,8 +40,9 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *.gradle   set filetype=groovy
     autocmd BufRead,BufNewFile *.sc       set filetype=scala
     autocmd BufRead,BufNewFile Pipfile    set filetype=conf
-    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1
-    autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1
+    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
+    autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
+    autocmd BufRead,BufNewFile Makefile   setlocal list tabstop=8
   augroup end
 
   " by default disable fold, zi to toggle foldenable
@@ -53,6 +54,8 @@ func! myspacevim#before() abort
   :set mouse=r
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
   :set clipboard^=unnamedplus
+
+  :set tabstop=8 softtabstop=4 shiftwidth=2
 endf
 
 

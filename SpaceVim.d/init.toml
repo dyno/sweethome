@@ -19,7 +19,7 @@ vimcompatible = 0
 # "changing this value has no effect if you are running Vim/Neovim in terminal."
 # https://www.iterm2.com/documentation-fonts.html
 # guifont = 'Source Code Pro Medium for Powerline'
-guifont = "Hack Regular Nerd Font Complete"
+guifont = "Sauce Code Pro Nerd Font Complete Mono"
 
 # custom_plugins options
 # https://spacevim.org/documentation/#bootstrap-functions
