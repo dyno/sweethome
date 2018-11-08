@@ -1,23 +1,35 @@
 #!/usr/bin/env bash
 
+# tools
+pip3 install --user \
+  black \
+  eradicate \
+  httpie \
+  ipython \
+  isort \
+  jedi \
+  jupyter \
+  pipenv \
+  pycodestyle \
+  pylama \
+  sqlparse \
+  vim-vint \
+  vint
+# END
+
+# libs
 pip3 install --user \
   PyYAML \
   absl-py \
   attrs \
-  black \
   click \
-  eradicate \
-  httpie \
-  isort \
-  jedi \
+  pandas \
   pexpect \
-  pipenv \
   pycodestyle \
-  pylama \
-  requests \
+  seaborn \
   six \
   sqlparse \
-  toml \
-  vim-vint \
-  vint \
+  tabulate \
+  tqdm \
+  toml
 # END
