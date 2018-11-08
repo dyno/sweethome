@@ -28,7 +28,7 @@ func! myspacevim#before() abort
 
   " https://github.com/prabirshrestha/vim-lsp
   let g:lsp_log_verbose = 0
-  let g:lsp_log_file = expand('~/vim-lsp.log')
+  let g:lsp_log_file = expand('~/tmp/vim-lsp.log')
 
   " https://stackoverflow.com/questions/24931088/disable-omnicomplete-or-ftplugin-or-something-in-vim
   ":help ft-sql
