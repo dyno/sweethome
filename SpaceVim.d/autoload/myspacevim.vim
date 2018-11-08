@@ -43,10 +43,16 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1
   augroup end
+
   " by default disable fold, zi to toggle foldenable
   :set nofoldenable
 
   :set hidden
+
+  " https://unix.stackexchange.com/questions/139578/copy-paste-for-vim-is-not-working-when-mouse-set-mouse-a-is-on
+  :set mouse=r
+  " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
+  :set clipboard^=unnamedplus
 endf
 
 
