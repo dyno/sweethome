@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# fix some installation problems, might be temporary
 # sudo apt-get install console-setup plymouth-themes plymouth-label
 
 sudo apt-get install synaptic
@@ -13,3 +14,6 @@ sudo apt-get install cscope global python-pygments exuberant-ctags
 
 sudo apt-get install python3-pip
 sudo apt-get install golang
+
+# pyenv - build python dependencies
+sudo apt-get install libsqlite3-dev libssl-dev libreadline-dev zlib1g-dev libbz2-dev
