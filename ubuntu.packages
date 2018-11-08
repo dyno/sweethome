@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# sudo apt-get install console-setup plymouth-themes plymouth-label
+
+sudo apt-get install synaptic
+sudo apt-get install openssh-server
+sudo apt-get install curl
+
+sudo apt-get install git
+sudo apt-get install docker.io docker-compose
+sudo apt-get install vim-gnome # +python3 +clipboard
+sudo apt-get install cscope global python-pygments

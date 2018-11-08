@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+pip install --user \
+  PyYAML \
+  attrs \
+  absl-py \
+  black \
+  click \
+  requests \
+  isort \
+  httpie \
+  jedi \
+  pexpect \
+  pipenv \
+  six \
+  toml \
+  vim-vint
+# END
