@@ -4,25 +4,36 @@ cd $(dirname $0)
 BASEDIR=$PWD
 cd - &>/dev/null
 
-set -x
+check_and_remove_link() {
+  target=$1
+  [ ! -e $target -o -L $target ] && rm -f $target
+}
+
+# set -x
 
 # Bash
-[ ! -e ~/env.d -o -L ~/env.d ] && ln -sf ${BASEDIR}/env.d ~/
+check_and_remove_link ~/env.d && ln -sf ${BASEDIR}/env.d ~/
 
-if [ $(uname) == "Linux" ]; then
-    ln -sf ${BASEDIR}/bashrc ~/.bashrc
-    [ $TERM == "linux" ] && ln -sf ${BASEDIR}/keymap ~/.keymap
+if [ $(uname) = "Linux" ]; then
+  ln -sf ${BASEDIR}/bashrc ~/.bashrc
+  [ "${TERM}" = "linux" ] && ln -sf ${BASEDIR}/keymap ~/.keymap
 
-elif [ "$(uname)" == "Darwin" ]; then
-    ln -sf ${BASEDIR}/bashrc ~/.bash_profile
+elif [ "$(uname)" = "Darwin" ]; then
+  ln -sf ${BASEDIR}/bashrc ~/.bash_profile
 fi
 
-# Vim
-[ ! -e ~/.vim -o -L ~/.vim ] && rm -f ~/.vim && ln -sf ${BASEDIR}/vim ~/.vim
-[ ! -e ~/.vimrc -o -L ~/.vimrc ] && rm -f ~/.vimrc && ln -sf ${BASEDIR}/vimrc ~/.vimrc
+# Vim/SpaceVim
+[ ! -e ~/.SpaceVim ] && curl -sLf https://spacevim.org/install.sh | bash
+check_and_remove_link ~/.vim
+[ ! -e ~/.vim ] && ln -sf ~/.SpaceVim ~/.vim
+check_and_remove_link ~/.vimrc
+check_and_remove_link ~/.SpaceVim.d && ln -sf ${BASEDIR}/SpaceVim.d ~/.SpaceVim.d
 
 # SSH
 [ -d ~/.ssh ] && ln -sf ${BASEDIR}/ssh_config ~/.ssh/config && chmod 600 ~/.ssh/config
 
 # Ammonite
-[ ! -e ~/.ammonite -o -L ~/.ammonite ] && rm -f ~/.ammonite && ln -sf ${BASEDIR}/ammonite ~/.ammonite
+mkdir -p ~/bin
+# https://github.com/coursier/coursier/blob/master/doc/FORMER-README.md#command-line
+[ ! -e ~/bin/coursier ] && curl -L -o ~/bin/coursier https://git.io/vgvpD && chmod +x ~/bin/coursier
+check_and_remove_link ~/.ammonite && ln -sf ${BASEDIR}/ammonite ~/.ammonite
