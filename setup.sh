@@ -27,6 +27,7 @@ fi
 check_and_remove_link ~/.vim
 [ ! -e ~/.vim ] && ln -sf ~/.SpaceVim ~/.vim
 check_and_remove_link ~/.vimrc
+check_and_remove_link ~/.gvimrc && ln -sf ${BASEDIR}/gvimrc ~/.gvimrc
 check_and_remove_link ~/.SpaceVim.d && ln -sf ${BASEDIR}/SpaceVim.d ~/.SpaceVim.d
 
 # SSH
