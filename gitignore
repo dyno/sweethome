@@ -10,3 +10,9 @@ __pycache__
 x.*
 y.*
 zold
+
+# global
+GPATH
+GRTAGS
+GTAGS
+tags

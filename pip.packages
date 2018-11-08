@@ -1,18 +1,22 @@
 #!/usr/bin/env bash
 
-pip install --user \
+pip3 install --user \
   PyYAML \
-  attrs \
   absl-py \
+  attrs \
   black \
   click \
-  requests \
-  isort \
+  eradicate \
   httpie \
+  isort \
   jedi \
   pexpect \
   pipenv \
+  pylama \
+  requests \
   six \
+  sqlparse \
   toml \
-  vim-vint
+  vim-vint \
+  vint \
 # END
