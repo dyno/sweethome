@@ -9,7 +9,7 @@ sudo apt-get install curl
 
 sudo apt-get install git
 sudo apt-get install docker.io docker-compose
-sudo apt-get install vim-gnome # +python3 +clipboard
+sudo apt-get install vim-gnome neovim # +python3 +clipboard
 sudo apt-get install cscope global python-pygments exuberant-ctags
 
 sudo apt-get install python3-pip
