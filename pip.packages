@@ -12,6 +12,7 @@ pip3 install --user \
   jedi \
   pexpect \
   pipenv \
+  pycodestyle \
   pylama \
   requests \
   six \
