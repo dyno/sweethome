@@ -52,8 +52,16 @@ func! myspacevim#before() abort
 
   " https://unix.stackexchange.com/questions/139578/copy-paste-for-vim-is-not-working-when-mouse-set-mouse-a-is-on
   :set mouse=r
+
+  " yank to clipboard
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
-  :set clipboard^=unnamedplus
+  " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
+  if has("clipboard")
+    set clipboard^=unnamed " copy to the system clipboard
+    if has("unnamedplus") " X11 support
+      set clipboard^=unnamedplus
+    endif
+  endif
 
   :set tabstop=8 softtabstop=4 shiftwidth=2
 endf
