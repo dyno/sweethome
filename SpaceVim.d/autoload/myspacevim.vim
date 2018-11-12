@@ -42,7 +42,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile Pipfile    set filetype=conf
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
-    autocmd BufRead,BufNewFile Makefile   setlocal list tabstop=8
+    autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
   augroup end
 
   " by default disable fold, zi to toggle foldenable
