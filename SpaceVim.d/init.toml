@@ -96,6 +96,9 @@ name = "colorscheme"
 #name = "tools"
 
 [[layers]]
+name = "ctrlp"
+
+[[layers]]
 name = "denite"
 
 [[layers]]
@@ -109,8 +112,8 @@ name = "autocomplete"
 auto-completion-return-key-behavior = "complete"
 auto-completion-tab-key-behavior = "cycle"
 
-#[[layers]]
-#name = "cscope"
+[[layers]]
+name = "cscope"
 
 [[layers]]
 name = "tags"
