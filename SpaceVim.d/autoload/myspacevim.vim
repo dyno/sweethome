@@ -19,7 +19,7 @@ func! myspacevim#before() abort
   let g:rooter_change_directory_for_non_project_files = 'current'
 
   " https://github.com/ludovicchabant/vim-gutentags
-  " used by layer:tags
+  " used by layers.tags
   let g:gutentags_trace = 0
   let g:gutentags_project_root = ['.git', 'Pipfile', '.project']
   let g:gutentags_generate_on_missing = 0
@@ -48,6 +48,7 @@ func! myspacevim#before() abort
   " by default disable fold, zi to toggle foldenable
   :set nofoldenable
 
+  " move away from a buffer does not have to save it first
   :set hidden
 
   " https://unix.stackexchange.com/questions/139578/copy-paste-for-vim-is-not-working-when-mouse-set-mouse-a-is-on
