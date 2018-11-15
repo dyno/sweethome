@@ -1,6 +1,9 @@
 #!/bin/bash
 
-command -v scala &>/dev/null || { echo "cannot execute scala. is it installed?"; exit 1; }
+command -v scala &>/dev/null || {
+  echo "cannot execute scala. is it installed?"
+  exit 1
+}
 scala_version=$(scala -e "println(util.Properties.versionNumberString)")
 # scala_version=$(brew info --json=v1 scala | jq -r '.[].linked_keg')
 # command -v rpm &>/dev/null && spark_version=$(rpm -q --queryformat "%{VERSION}" spark-core)
@@ -8,6 +11,4 @@ scala_version=$(scala -e "println(util.Properties.versionNumberString)")
 amm_version=${AMMONITE_VERSION:-1.4.2+}
 
 java -Xmx2048m -XX:+UseG1GC $JAVA_OPTS \
-	-cp "$(coursier fetch -p com.lihaoyi:ammonite_${scala_version}:${amm_version})" ammonite.Main $@
-
-
+  -cp "$(coursier fetch -p com.lihaoyi:ammonite_${scala_version}:${amm_version})" ammonite.Main $@
