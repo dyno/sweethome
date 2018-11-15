@@ -1,22 +1,24 @@
 #!/bin/bash
 
-# fix some installation problems, might be temporary
-# sudo apt-get install console-setup plymouth-themes plymouth-label
+# fix some installation problems (on Deepin 15.7), might be temporary
+sudo apt-get install --yes console-setup plymouth-themes plymouth-label
 
-sudo apt-get install synaptic
-sudo apt-get install openssh-server
-sudo apt-get install curl
+set -x
 
-sudo apt-get install git
-sudo apt-get install docker.io docker-compose
-sudo apt-get install vim-gnome neovim # +python3 +clipboard
-sudo apt-get install cscope global python-pygments exuberant-ctags
+sudo apt-get install --yes synaptic
+sudo apt-get install --yes openssh-server
+sudo apt-get install --yes curl
 
-sudo apt-get install python3-pip
-sudo apt-get install golang
+sudo apt-get install --yes git
+sudo apt-get install --yes docker.io docker-compose
+sudo apt-get install --yes vim-gnome neovim # +python3 +clipboard
+sudo apt-get install --yes cscope global python-pygments exuberant-ctags
+
+sudo apt-get install --yes python3-pip
+sudo apt-get install --yes golang
 
 # pyenv - build python dependencies
-sudo apt-get install libsqlite3-dev libssl-dev libreadline-dev zlib1g-dev libbz2-dev
+sudo apt-get install --yes libsqlite3-dev libssl-dev libreadline-dev zlib1g-dev libbz2-dev
 
 # arc - code review
-sudo apt-get install php php-curl
+sudo apt-get install --yes php php-curl

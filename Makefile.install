@@ -1,4 +1,4 @@
-.PHONY: all init coursier sdkman pyenv
+.PHONY: all init coursier sdkman pyenv ammonite
 all: init coursier sdkman pyenv
 
 SHELL=/bin/bash
@@ -39,3 +39,10 @@ pyenv:
 	@if ! command -v pyenv &>/dev/null; then \
 	  git clone https://github.com/pyenv/pyenv.git ~/.pyenv; \
 	fi
+
+ammonite:
+	source $${HOME}/.sdkman/bin/sdkman-init.sh \
+	  && sdk install java 8.0.191-oracle \
+	  && sdk install scala 2.12.7 \
+	  && sdk install gradle 4.10.2
+
