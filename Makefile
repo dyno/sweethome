@@ -83,6 +83,7 @@ pip: pyenv
 	    PyYAML \
 	    absl-py \
 	    attrs \
+	    chartify \
 	    click \
 	    pandas \
 	    pexpect \
@@ -91,6 +92,6 @@ pip: pyenv
 	    six \
 	    sqlparse \
 	    tabulate \
-	    tqdm \
 	    toml \
+	    tqdm \
 	  # END
