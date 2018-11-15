@@ -1,6 +1,3 @@
-.PHONY: all boostrap coursier sdkman pyenv ammonite
-all: bootstrap coursier sdkman pyenv
-
 SHELL=/bin/bash
 
 UNAME := $(shell uname -s)
@@ -11,6 +8,8 @@ ifeq ($(UNAME),Darwin)
     os_install = brew install
 endif
 
+.PHONY: all boostrap coursier sdkman pyenv ammonite
+all: bootstrap coursier sdkman pyenv
 
 bootstrap:
 	@for tool in git curl; do \
@@ -21,7 +20,7 @@ bootstrap:
 
 fonts: bootstrap
 	@echo "-- download & install nerd font ..."
-	[ -e ~/.fonts/"Sauce Code Pro Nerd Font Complete Mono.ttf" ] \
+	[[ -e ~/.fonts/"Sauce Code Pro Nerd Font Complete Mono.ttf" ]] \
 	  || ( mkdir -p ~/.fonts && cd ~/.fonts \
 	  && curl --remote-name --location https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip \
 	  && unzip SourceCodePro.zip && rm -f SourceCodePro.zip )
@@ -42,12 +41,14 @@ coursier: bootstrap
 	  mv coursier ~/.local/bin; \
 	fi
 
-ammonite: sdkman
+ammonite: sdkman coursier
 	@echo "-- install ammonite prerequisites ..."
 	source $${HOME}/.sdkman/bin/sdkman-init.sh \
 	  && sdk install java 8.0.191-oracle \
 	  && sdk install scala 2.12.7 \
-	  && sdk install gradle 4.10.2
+	  && sdk install gradle 4.10.2 \
+	  && cp amm ~/bin \
+	  && amm --help
 
 
 # -----------------------------------------------------------------------------

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+brew install git curl readline
+brew install vim global cscope remake
+brew install bash jq moreutils
