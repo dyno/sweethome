@@ -9,7 +9,7 @@ ifeq ($(UNAME),Darwin)
 endif
 
 .PHONY: all boostrap coursier sdkman pyenv ammonite
-all: bootstrap coursier sdkman pyenv
+all: bootstrap fonts coursier sdkman pyenv
 
 bootstrap:
 	@for tool in git curl; do \
@@ -19,22 +19,22 @@ bootstrap:
 	done
 
 fonts: bootstrap
-	@echo "-- download & install nerd font ..."
-	[[ -e ~/.fonts/"Sauce Code Pro Nerd Font Complete Mono.ttf" ]] \
+	@echo "-- download & install [https://nerdfonts.com/](Nerd Fonts)"
+	@[[ -e ~/.fonts/"Sauce Code Pro Nerd Font Complete Mono.ttf" ]] \
 	  || ( mkdir -p ~/.fonts && cd ~/.fonts \
 	  && curl --remote-name --location https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip \
 	  && unzip SourceCodePro.zip && rm -f SourceCodePro.zip )
 
 # -----------------------------------------------------------------------------
 sdkman: bootstrap
-	@echo "-- [https://sdkman.io/install](sdkman)"
+	@echo "-- install [https://sdkman.io/install](sdkman)"
 	@# XXX: sdkman is a shell function, and not initialized in make env.
 	@if [[ ! -d ~/.sdkman ]]; then \
 	  curl -s "https://get.sdkman.io" | bash; \
 	fi
 
 coursier: bootstrap
-	@echo "-- [https://coursier.github.io/coursier/1.1.0-SNAPSHOT/docs/quick-start-cli](coursier)"
+	@echo "-- install [https://coursier.github.io/coursier/1.1.0-SNAPSHOT/docs/quick-start-cli](coursier)"
 	@if ! command -v coursier &>/dev/null; then \
 	  curl -L -o coursier https://git.io/coursier && chmod +x coursier; \
 	  mkdir -p ~/.local/bin; \
@@ -42,8 +42,8 @@ coursier: bootstrap
 	fi
 
 ammonite: sdkman coursier
-	@echo "-- install ammonite prerequisites ..."
-	source $${HOME}/.sdkman/bin/sdkman-init.sh \
+	@echo "-- install [http://ammonite.io/#Ammonite-REPL](ammonite)"
+	@source $${HOME}/.sdkman/bin/sdkman-init.sh \
 	  && sdk install java 8.0.191-oracle \
 	  && sdk install scala 2.12.7 \
 	  && sdk install gradle 4.10.2 \
@@ -53,7 +53,7 @@ ammonite: sdkman coursier
 
 # -----------------------------------------------------------------------------
 pyenv:	bootstrap
-	@# https://github.com/pyenv/pyenv#installation
+	@echo "-- insall [https://github.com/pyenv/pyenv#installation](pyenv)"
 	@if ! command -v pyenv &>/dev/null; then \
 	  git clone https://github.com/pyenv/pyenv.git ~/.pyenv; \
 	fi
