@@ -1,6 +1,7 @@
 #!/bin/bash
 
-command -v scala &>/dev/null && scala_version=$(scala -e "println(util.Properties.versionNumberString)")
+command -v scala &>/dev/null || { echo "cannot execute scala. is it installed?"; exit 1; }
+scala_version=$(scala -e "println(util.Properties.versionNumberString)")
 # scala_version=$(brew info --json=v1 scala | jq -r '.[].linked_keg')
 # command -v rpm &>/dev/null && spark_version=$(rpm -q --queryformat "%{VERSION}" spark-core)
 
