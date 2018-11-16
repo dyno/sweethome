@@ -89,6 +89,14 @@ merged = 0
 #name = "vim-scripts/dbext.vim"
 #merged = 0"
 
+[[custom_plugins]]
+# https://github.com/roxma/nvim-yarp
+name = "roxma/nvim-yarp"
+
+[[custom_plugins]]
+# https://github.com/roxma/vim-hug-neovim-rpc
+name = "roxma/vim-hug-neovim-rpc"
+
 [[layers]]
 name = "colorscheme"
 
