@@ -31,9 +31,9 @@ bootstrap_after = "myspacevim#after"
 colorscheme="molokai"
 colorscheme_bg = "dark"
 
-# =============================================================================
+# ==============================================================================
 
-# ##^^ colorscheme ^^## -------------------------------------------------------
+# ##^^ colorscheme ^^## --------------------------------------------------------
 
 [[custom_plugins]]
 # https://github.com/napcs/vim-mycontrast
@@ -44,10 +44,10 @@ merged = 0
 # https://github.com/marcopaganini/termschool-vim-theme
 name = "marcopaganini/termschool-vim-theme"
 
-# ##$$ colorscheme $$## -------------------------------------------------------
+# ##$$ colorscheme $$## --------------------------------------------------------
 
 
-# ##^^ Python ^^## ------------------------------------------------------------
+# ##^^ Python ^^## -------------------------------------------------------------
 
 [[custom_plugins]]
 # https://github.com/ambv/black#editor-integration
@@ -61,7 +61,7 @@ name = "fisadev/vim-isort"
 merged = 0
 on_ft = "python"
 
-# ##$$ Python $$## ------------------------------------------------------------
+# ##$$ Python $$## -------------------------------------------------------------
 
 
 [[custom_plugins]]
@@ -100,10 +100,18 @@ name = "roxma/nvim-yarp"
 # https://github.com/roxma/vim-hug-neovim-rpc
 name = "roxma/vim-hug-neovim-rpc"
 
-# =============================================================================
+[[custom_plugins]]
+# https://github.com/lepture/vim-jinja
+name = "lepture/vim-jinja"
+merged = 0
+
+# ==============================================================================
 
 [[layers]]
 name = "colorscheme"
+
+[[layers]]
+name = "ctrlp"
 
 #[[layers]]
 #name = "tools"
