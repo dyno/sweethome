@@ -31,6 +31,7 @@ bootstrap_after = "myspacevim#after"
 colorscheme="molokai"
 colorscheme_bg = "dark"
 
+# =============================================================================
 
 # ##^^ colorscheme ^^## -------------------------------------------------------
 
@@ -89,6 +90,8 @@ merged = 0
 #name = "vim-scripts/dbext.vim"
 #merged = 0"
 
+# Explains why the below 2 plugins are needed.
+# https://github.com/Shougo/deoplete.nvim#requirements
 [[custom_plugins]]
 # https://github.com/roxma/nvim-yarp
 name = "roxma/nvim-yarp"
@@ -96,6 +99,8 @@ name = "roxma/nvim-yarp"
 [[custom_plugins]]
 # https://github.com/roxma/vim-hug-neovim-rpc
 name = "roxma/vim-hug-neovim-rpc"
+
+# =============================================================================
 
 [[layers]]
 name = "colorscheme"
