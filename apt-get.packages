@@ -7,12 +7,12 @@ set -x
 
 sudo apt-get install --yes synaptic
 sudo apt-get install --yes openssh-server
-sudo apt-get install --yes curl
-
-sudo apt-get install --yes git
 sudo apt-get install --yes docker.io docker-compose
+
+sudo apt-get install --yes curl
+sudo apt-get install --yes git
 sudo apt-get install --yes vim-gnome neovim # +python3 +clipboard
-sudo apt-get install --yes cscope global python-pygments exuberant-ctags
+sudo apt-get install --yes cscope global python-pygments exuberant-ctags ripgrep
 
 sudo apt-get install --yes python3-pip
 sudo apt-get install --yes golang
@@ -22,3 +22,11 @@ sudo apt-get install --yes libsqlite3-dev libssl-dev libreadline-dev zlib1g-dev 
 
 # arc - code review
 sudo apt-get install --yes php php-curl
+
+# neovim
+# e.g. sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get install python-software-properties
+# https://unix.stackexchange.com/questions/75807/no-public-key-available-on-apt-get-update
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 55F96FCF8231B6DD
+# pip3 install --ignore-installed --user neovim vim-vint
+
