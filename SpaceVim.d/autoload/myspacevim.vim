@@ -34,6 +34,13 @@ func! myspacevim#before() abort
   ":help ft-sql
   let g:omni_sql_no_default_maps = 1
 
+  "
+  if has('macunix')
+    let g:python3_host_prog = '/usr/local/bin/python3'
+  elseif has('unix')
+    let g:python3_host_prog = '/usr/bin/python3'
+  endif
+
   augroup auto_filetype
     autocmd!
     autocmd BufRead,BufNewFile gitconfig  set filetype=gitconfig
@@ -57,9 +64,9 @@ func! myspacevim#before() abort
   " yank to clipboard
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
   " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
-  if has("clipboard")
+  if has('clipboard')
     set clipboard^=unnamed " copy to the system clipboard
-    if has("unnamedplus") " X11 support
+    if has('unnamedplus') " X11 support
       set clipboard^=unnamedplus
     endif
   endif
