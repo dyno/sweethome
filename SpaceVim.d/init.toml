@@ -92,6 +92,7 @@ merged = 0
 
 # Explains why the below 2 plugins are needed.
 # https://github.com/Shougo/deoplete.nvim#requirements
+# for neovim :UpdateRemotePlugins
 [[custom_plugins]]
 # https://github.com/roxma/nvim-yarp
 name = "roxma/nvim-yarp"
@@ -103,6 +104,11 @@ name = "roxma/vim-hug-neovim-rpc"
 [[custom_plugins]]
 # https://github.com/lepture/vim-jinja
 name = "lepture/vim-jinja"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/jremmen/vim-ripgrep
+name = "jremmen/vim-ripgrep"
 merged = 0
 
 # ==============================================================================
