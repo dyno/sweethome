@@ -111,6 +111,17 @@ merged = 0
 name = "jremmen/vim-ripgrep"
 merged = 0
 
+# use customized plugin instead of layer for quickfix/location list window
+[[custom_plugins]]
+# https://github.com/ludovicchabant/vim-gutentags
+name = "ludovicchabant/vim-gutentags"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/skywind3000/gutentags_plus
+name = "skywind3000/gutentags_plus"
+merged = 0
+
 # ==============================================================================
 
 [[layers]]

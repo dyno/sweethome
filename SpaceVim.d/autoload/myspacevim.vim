@@ -18,13 +18,26 @@ func! myspacevim#before() abort
   " https://github.com/airblade/vim-rooter
   let g:rooter_change_directory_for_non_project_files = 'current'
 
-  " https://github.com/ludovicchabant/vim-gutentags
-  " used by layers.tags
-  let g:gutentags_trace = 0
-  let g:gutentags_project_root = ['.git', 'Pipfile', '.project']
-  let g:gutentags_generate_on_missing = 0
-  " produce tags file in project directory
-  let g:gutentags_cache_dir = ''
+  if v:version >= 800
+    " https://github.com/ludovicchabant/vim-gutentags
+    " https://github.com/skywind3000/gutentags_plus
+    " used by layers.tags
+    let g:gutentags_trace = 0
+    let g:gutentags_modules = []
+    "https://www.jianshu.com/p/110b27f8361b
+    if executable('ctags')
+      let g:gutentags_modules += ['ctags']
+    endif
+    if executable('gtags-cscope') && executable('gtags')
+      let g:gutentags_modules += ['gtags_cscope']
+    endif
+    let g:gutentags_project_root = ['Pipfile', '.project', 'build.gradle', '.git']
+    let g:gutentags_generate_on_missing = 0
+    " produce tags file in project directory
+    let g:gutentags_cache_dir = ''
+    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '*.egg-info']
+    let g:gutentags_auto_add_gtags_csope = 0
+  endif
 
   " https://github.com/prabirshrestha/vim-lsp
   let g:lsp_log_verbose = 0
