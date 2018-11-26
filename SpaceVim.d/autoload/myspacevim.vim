@@ -31,11 +31,17 @@ func! myspacevim#before() abort
     if executable('gtags-cscope') && executable('gtags')
       let g:gutentags_modules += ['gtags_cscope']
     endif
-    let g:gutentags_project_root = ['Pipfile', '.project', 'build.gradle', '.git']
+
+    " https://github.com/liuchengxu/space-vim/blob/master/core/autoload/spacevim/autocmd/gutentags.vim
+    let s:tags_cache_dir = expand('~/.cache/tags')
+    if !isdirectory(s:tags_cache_dir)
+      silent! call mkdir(s:tags_cache_dir, 'p')
+    endif
+    let g:gutentags_cache_dir = s:tags_cache_dir
+
+    let g:gutentags_project_root = ['Pipfile', 'build.gradle', '.git', '.project']
     let g:gutentags_generate_on_missing = 0
-    " produce tags file in project directory
-    let g:gutentags_cache_dir = ''
-    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '*.egg-info']
+    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.eggs', '*.egg-info', '*.md']
     let g:gutentags_auto_add_gtags_csope = 0
   endif
 
@@ -74,21 +80,20 @@ func! myspacevim#before() abort
   " https://unix.stackexchange.com/questions/139578/copy-paste-for-vim-is-not-working-when-mouse-set-mouse-a-is-on
   :set mouse=r
 
-  " yank to clipboard
-  " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
-  " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
-  if has('clipboard')
-    set clipboard^=unnamed " copy to the system clipboard
-    if has('unnamedplus') " X11 support
-      set clipboard^=unnamedplus
-    endif
-  endif
-
   :set tabstop=8 softtabstop=4 shiftwidth=2
 endf
 
 
 func! myspacevim#after() abort
+  " yank to clipboard
+  " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
+  " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
+  if has('clipboard') " mac
+    set clipboard^=unnamed " copy to the system clipboard
+    if has('unnamedplus') " X11 support
+      set clipboard^=unnamedplus
+    endif
+  endif
 
   "":set colorcolumn=120
   ":help highlight
@@ -97,5 +102,4 @@ func! myspacevim#after() abort
   ":highlight Normal guibg=black
   ":highlight CursorLine guibg=black cterm=NONE
   ":highlight EndOfBuffer guibg=black cterm=NONE
-
 endf
