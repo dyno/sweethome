@@ -1,6 +1,7 @@
 ## FAQ
 
 * How to fuzzy find a file?
+  - [SPC]pf [SpaceVim]
   - Files [fzf.vim]
   - GFiles [fzf.vim]
   - FZF [fzf]
@@ -14,9 +15,15 @@
   - Tags [fzf.vim]
 
 * How to find all reference of this function?
-  - [SPC]mgr
-  - GscopeFind c withFeatureFilter
+  - [SPC]mgr [SpaceVim]
+  - GscopeFind c withFeatureFilter [gutentags_plus]
+  - Rg
 
+* How to find all the sourced vimscript?
+  - :redir @a
+    :scriptnames
+    :redir END
+    "ap
 
 ## Reference
 
