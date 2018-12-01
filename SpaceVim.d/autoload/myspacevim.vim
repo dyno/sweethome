@@ -41,8 +41,8 @@ func! myspacevim#before() abort
     " endif
     " let g:gutentags_cache_dir = s:tags_cache_dir
 
-    " generate in project directory so that tags layer and GscopeFind can
-    " share the same tags file.
+    " generate in project directory so that tags layer and GscopeFind
+    " (gutentags_plus) can share the same tags file.
     let g:gutentags_cache_dir = ''
 
     " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
@@ -90,6 +90,9 @@ func! myspacevim#before() abort
   :set mouse=r
 
   :set tabstop=8 softtabstop=4 shiftwidth=2
+
+  " Really, just use :Rg
+  :set grepprg=rg\ --vimgrep
 endf
 
 

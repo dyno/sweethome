@@ -10,7 +10,7 @@ enable_vimfiler_filetypeicon = 0
 enable_vimfiler_gitstatus = 1
 enable_vimfiler_welcome = 0  # very slow
 max_column = 120
-project_rooter_patterns = [".git/", "Pipfile", "build.gradle"]
+project_rooter_patterns = [".git"]
 relativenumber = 0
 statusline_separator = "bar"
 vimcompatible = 0
@@ -127,22 +127,35 @@ merged = 0
 name = "cespare/vim-toml"
 merged = 0
 
+[[custom_plugins]]
+name = "junegunn/fzf"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/junegunn/fzf.vim
+name = "junegunn/fzf.vim"
+merged = 0
+
 # ==============================================================================
 
 [[layers]]
 name = "colorscheme"
 
-[[layers]]
-name = "ctrlp"
-
 #[[layers]]
 #name = "tools"
 
-[[layers]]
-name = "ctrlp"
+# fuzzyfinder layers
+#[[layers]]
+#name = "ctrlp"
+
+#[[layers]]
+#name = "denite"
+
+#[[layers]]
+#name = "fzy"
 
 [[layers]]
-name = "denite"
+name = "fzf"
 
 [[layers]]
 name = "git"
@@ -155,8 +168,8 @@ name = "autocomplete"
 auto-completion-return-key-behavior = "complete"
 auto-completion-tab-key-behavior = "cycle"
 
-[[layers]]
-name = "cscope"
+#[[layers]]
+#name = "cscope"
 
 [[layers]]
 name = "tags"
