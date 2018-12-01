@@ -23,8 +23,8 @@ func! myspacevim#before() abort
     " https://github.com/skywind3000/gutentags_plus
     " used by layers.tags
     let g:gutentags_trace = 0
-    let g:gutentags_modules = []
     "https://www.jianshu.com/p/110b27f8361b
+    let g:gutentags_modules = []
     if executable('ctags')
       let g:gutentags_modules += ['ctags']
     endif
@@ -32,17 +32,26 @@ func! myspacevim#before() abort
       let g:gutentags_modules += ['gtags_cscope']
     endif
 
-    " https://github.com/liuchengxu/space-vim/blob/master/core/autoload/spacevim/autocmd/gutentags.vim
-    let s:tags_cache_dir = expand('~/.cache/tags')
-    if !isdirectory(s:tags_cache_dir)
-      silent! call mkdir(s:tags_cache_dir, 'p')
-    endif
-    let g:gutentags_cache_dir = s:tags_cache_dir
+    let g:gutentags_ctags_tagfile = 'tags'
 
-    let g:gutentags_project_root = ['Pipfile', 'build.gradle', '.git', '.project']
+    " https://github.com/liuchengxu/space-vim/blob/master/core/autoload/spacevim/autocmd/gutentags.vim
+    " let s:tags_cache_dir = expand('~/.cache/tags')
+    " if !isdirectory(s:tags_cache_dir)
+    "   silent! call mkdir(s:tags_cache_dir, 'p')
+    " endif
+    " let g:gutentags_cache_dir = s:tags_cache_dir
+
+    " generate in project directory so that tags layer and GscopeFind can
+    " share the same tags file.
+    let g:gutentags_cache_dir = ''
+
+    " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
+    let g:gutentags_add_default_project_roots = 1
     let g:gutentags_generate_on_missing = 0
-    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.eggs', '*.egg-info', '*.md']
-    let g:gutentags_auto_add_gtags_csope = 0
+    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.eggs', '*.egg-info']
+    " GscopeAdd; cs show
+    let g:gutentags_auto_add_gtags_cscope = 0
+
   endif
 
   " https://github.com/prabirshrestha/vim-lsp
