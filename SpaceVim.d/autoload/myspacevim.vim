@@ -54,6 +54,10 @@ func! myspacevim#before() abort
 
   endif
 
+  " https://github.com/srstevenson/vim-picker
+  let g:picker_find_executable = 'rg'
+  let g:picker_find_flags = '--color never --files'
+
   " https://github.com/prabirshrestha/vim-lsp
   let g:lsp_log_verbose = 0
   let g:lsp_log_file = expand('~/tmp/vim-lsp.log')
