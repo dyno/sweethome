@@ -99,7 +99,6 @@ func! myspacevim#before() abort
   :set grepprg=rg\ --vimgrep
 endf
 
-
 func! myspacevim#after() abort
   " yank to clipboard
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
@@ -111,6 +110,10 @@ func! myspacevim#after() abort
     endif
   endif
 
+  nnoremap <leader>e :call FzyCommand("rg --files", ":e")<cr>
+  nnoremap <leader>v :call FzyCommand("rg --files", ":vs")<cr>
+  nnoremap <leader>s :call FzyCommand("rg --files", ":sp")<cr>
+
   "":set colorcolumn=120
   ":help highlight
   ":help highlight-groups
@@ -119,3 +122,18 @@ func! myspacevim#after() abort
   ":highlight CursorLine guibg=black cterm=NONE
   ":highlight EndOfBuffer guibg=black cterm=NONE
 endf
+
+"-------------------------------------------------------------------------------
+" https://github.com/jhawthorn/fzy
+function FzyCommand(choice_command, vim_command)
+  try
+    let output = system(a:choice_command . ' | fzy ')
+  catch /Vim:Interrupt/
+    " Swallow errors from ^C, allow redraw! below
+  endtry
+  redraw!
+  if v:shell_error == 0 && !empty(output)
+    exec a:vim_command . ' ' . output
+  endif
+endfunction
+
