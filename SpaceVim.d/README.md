@@ -10,13 +10,15 @@
 
 * How to find tags?
   - Ctrl+]
-  - :tags/tselect/tjump
   - GscopeFind g TeamIdModule [gutentags_plus]
-  - Tags [fzf.vim]
+  - Gtags TeamIdModule [gtags.vim]
+  - Tags TeamIdModule [fzf.vim]
+  - tag TeamIdModule [tagsrch.txt]
 
 * How to find all reference of this function?
   - [SPC]mgr [SpaceVim]
   - GscopeFind c withFeatureFilter [gutentags_plus]
+  - Gtags -r withFeatureFilter
   - Rg
 
 * How to find all the sourced vimscript?

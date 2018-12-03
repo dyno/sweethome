@@ -47,11 +47,12 @@ func! myspacevim#before() abort
 
     " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
     let g:gutentags_add_default_project_roots = 1
-    let g:gutentags_generate_on_missing = 0
+    let g:gutentags_generate_on_missing = 1
     let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.eggs', '*.egg-info']
     " GscopeAdd; cs show
     let g:gutentags_auto_add_gtags_cscope = 0
 
+    let g:rainbow_active = 1
   endif
 
   " https://github.com/srstevenson/vim-picker
@@ -113,6 +114,9 @@ func! myspacevim#after() abort
   nnoremap <leader>e :call FzyCommand("rg --files", ":e")<cr>
   nnoremap <leader>v :call FzyCommand("rg --files", ":vs")<cr>
   nnoremap <leader>s :call FzyCommand("rg --files", ":sp")<cr>
+
+  " https://vi.stackexchange.com/questions/12426/how-can-i-highlight-only-the-identifier-of-a-function-in-java
+  " syntax region javaFuncDef start=+^\s\+\(\(public\|protected\|private\|static\|abstract\|final\|native\|synchronized\)\s\+\)*\(\(void\|boolean\|char\|byte\|short\|int\|long\|float\|double\|\([A-Za-z_][A-Za-z0-9_$]*\.\)*[A-Z][A-Za-z0-9_$]*\)\(<[^>]*>\)\=\(\[\]\)*\s\+[a-z][A-Za-z0-9_$]*\|[A-Z][A-Za-z0-9_$]*\)\s*\ze(+ end=+\ze(+ contains=javaScopeDecl,javaType,javaStorageClass,javaComment,javaLineComment,@javaClasses
 
   "":set colorcolumn=120
   ":help highlight
