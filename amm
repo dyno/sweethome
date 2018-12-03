@@ -8,7 +8,7 @@ scala_version=$(scala -e "println(util.Properties.versionNumberString)")
 # scala_version=$(brew info --json=v1 scala | jq -r '.[].linked_keg')
 # command -v rpm &>/dev/null && spark_version=$(rpm -q --queryformat "%{VERSION}" spark-core)
 
-amm_version=${AMMONITE_VERSION:-1.4.2+}
+amm_version=${AMMONITE_VERSION:-1.4.4+}
 
 java -Xmx2048m -XX:+UseG1GC $JAVA_OPTS \
   -cp "$(coursier fetch -p com.lihaoyi:ammonite_${scala_version}:${amm_version})" ammonite.Main $@
