@@ -141,6 +141,11 @@ merged = 0
 name = "srstevenson/vim-picker"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/luochen1990/rainbow
+name = "luochen1990/rainbow"
+merged = 0
+
 # ==============================================================================
 
 [[layers]]
