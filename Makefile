@@ -8,8 +8,8 @@ ifeq ($(UNAME),Darwin)
     os_install = brew install
 endif
 
-.PHONY: all boostrap coursier sdkman pyenv ammonite
-all: bootstrap fonts coursier sdkman pyenv
+.PHONY: all boostrap coursier sdkman pyenv ammonite fzf
+all: bootstrap fonts coursier sdkman pyenv ammonite fzf
 
 bootstrap:
 	@for tool in git curl; do \
