@@ -63,13 +63,18 @@ on_ft = "python"
 
 # ##$$ Python $$## -------------------------------------------------------------
 
+# code formatter
+# python: pip install black
+# shell: go get -u mvdan.cc/sh/cmd/shfmt
+# sql: pip install sqlparser # sqlformat
 
 [[custom_plugins]]
 # https://github.com/Chiel92/vim-autoformat
 name = "Chiel92/vim-autoformat"
-# python: pip install black
-# shell: go get -u mvdan.cc/sh/cmd/shfmt
-# sql: pip install sqlparser # sqlformat
+
+[[custom_plugins]]
+# https://vimawesome.com/plugin/neoformat
+name = "sbdchd/neoformat"
 
 [[custom_plugins]]
 # https://github.com/godlygeek/tabular
@@ -174,9 +179,14 @@ name = "git"
 name = "VersionControl"
 
 [[layers]]
+# https://spacevim.org/layers/autocomplete/#configuration
 name = "autocomplete"
-auto-completion-return-key-behavior = "complete"
-auto-completion-tab-key-behavior = "cycle"
+auto-completion-return-key-behavior = "nil"
+auto-completion-tab-key-behavior = "smart"
+auto-completion-delay = 200
+auto-completion-complete-with-key-sequence = "nil"
+auto-completion-complete-with-key-sequence-delay = 0.1
+
 
 #[[layers]]
 #name = "cscope"
