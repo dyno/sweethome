@@ -63,8 +63,11 @@ on_ft = "python"
 
 # ##$$ Python $$## -------------------------------------------------------------
 
-# code formatter
-# python: pip install black
+# code formatters
+# java: brew install astyle uncrustify
+# markdown: npm install remark-cli
+# python: pip install black isort yapf
+# scala: brew install scalariform scalafmt
 # shell: go get -u mvdan.cc/sh/cmd/shfmt
 # sql: pip install sqlparser # sqlformat
 
