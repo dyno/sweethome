@@ -16,5 +16,4 @@ libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.3.3",
   "io.get-coursier" %% "coursier" % "1.0.3",
   "io.get-coursier" %% "coursier-cache" % "1.0.3",
-  "org.scala-sbt" % "sbt" % "1.2.1"
-)
+  "org.scala-sbt" % "sbt" % "1.2.1")

@@ -2,10 +2,9 @@
 // http://ammonite.io/#Ammonite-Shell
 // https://git.io/vHaKQ
 interp.load.ivy(
-    "com.lihaoyi" %
-      s"ammonite-shell_${scala.util.Properties.versionNumberString}" %
-      ammonite.Constants.version
-)
+  "com.lihaoyi" %
+    s"ammonite-shell_${scala.util.Properties.versionNumberString}" %
+    ammonite.Constants.version)
 
 @  // https://github.com/lihaoyi/Ammonite/issues/744
 
@@ -48,7 +47,7 @@ val finder = PathFinder(file(".")) / "build.sbt"
 
 // Files.walk in Java => os.walk in Python
 // https://stackoverflow.com/questions/2637643/how-do-i-list-all-files-in-a-subdirectory-in-scala
-import java.nio.file.{FileSystems, Files}
+import java.nio.file.{ FileSystems, Files }
 /*
 val cwd = FileSystems.getDefault.getPath(".")
 Files.walk(pwd.toNIO).iterator().asScala.filter(Files.isRegularFile(_)).foreach(println)
@@ -97,8 +96,8 @@ repl.prompt.bind(wd.segments.toList.lastOption.getOrElse("") + "/ @ ")
  */
 
 /**
-  * https://github.com/lihaoyi/Ammonite/blob/master/shell/src/main/resources/ammonite/shell/example-predef.sc
-  * https://github.com/lihaoyi/Ammonite/blob/master/internals-docs/predef.md
-  * http://ammonite.io/#Configuration
-  * http://www.lihaoyi.com/post/ScalaScriptingGettingto10.html
-  */
+ * https://github.com/lihaoyi/Ammonite/blob/master/shell/src/main/resources/ammonite/shell/example-predef.sc
+ * https://github.com/lihaoyi/Ammonite/blob/master/internals-docs/predef.md
+ * http://ammonite.io/#Configuration
+ * http://www.lihaoyi.com/post/ScalaScriptingGettingto10.html
+ */

@@ -1,8 +1,8 @@
 /**
-  * ## Local Repositories ##
-  *
-  * https://github.com/lihaoyi/Ammonite/pull/612, Resolution of local Maven artefacts does not work
-  */
+ * ## Local Repositories ##
+ *
+ * https://github.com/lihaoyi/Ammonite/pull/612, Resolution of local Maven artefacts does not work
+ */
 
 import coursier.MavenRepository
 
