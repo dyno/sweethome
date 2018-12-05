@@ -54,7 +54,8 @@ ammonite: sdkman coursier
 # -----------------------------------------------------------------------------
 
 fzf:
-	@git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	@[ ! -e ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
+	@cd ~/.fzf && git pull && make install
 
 
 # -----------------------------------------------------------------------------
