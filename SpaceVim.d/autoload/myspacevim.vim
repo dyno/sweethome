@@ -63,6 +63,12 @@ func! myspacevim#before() abort
   let g:lsp_log_verbose = 0
   let g:lsp_log_file = expand('~/tmp/vim-lsp.log')
 
+  " scala/scalac do not understand ammonite scripts
+  " scalastyle needs a configuration file
+  " https://github.com/w0rp/ale/blob/master/doc/ale-scala.txt
+  " so disable all...
+  let g:neomake_scala_enabled_makers = []
+
   " https://stackoverflow.com/questions/24931088/disable-omnicomplete-or-ftplugin-or-something-in-vim
   ":help ft-sql
   let g:omni_sql_no_default_maps = 1
@@ -79,7 +85,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile gitconfig  set filetype=gitconfig
     autocmd BufRead,BufNewFile *.gradle   set filetype=groovy
     autocmd BufRead,BufNewFile *.sc       set filetype=scala
-    autocmd BufRead,BufNewFile Pipfile    set filetype=conf
+    autocmd BufRead,BufNewFile Pipfile    set filetype=toml
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab

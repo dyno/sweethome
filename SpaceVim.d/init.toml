@@ -31,6 +31,10 @@ bootstrap_after = "myspacevim#after"
 colorscheme="molokai"
 colorscheme_bg = "dark"
 
+# layers:checkers
+enable_neomake = true
+enable_ale = false
+
 # ==============================================================================
 
 # ##^^ colorscheme ^^## --------------------------------------------------------
@@ -67,7 +71,7 @@ on_ft = "python"
 # java: brew install astyle uncrustify
 # markdown: npm install remark-cli
 # python: pip install black isort yapf
-# scala: brew install scalariform scalafmt
+# scala: brew install scalariform scalafmt scalastyle
 # shell: go get -u mvdan.cc/sh/cmd/shfmt
 # sql: pip install sqlparser # sqlformat
 
@@ -190,6 +194,9 @@ auto-completion-delay = 200
 auto-completion-complete-with-key-sequence = "nil"
 auto-completion-complete-with-key-sequence-delay = 0.1
 
+[[layers]]
+name = "checkers"
+show_cursor_error = false
 
 #[[layers]]
 #name = "cscope"
