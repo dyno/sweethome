@@ -52,6 +52,12 @@ ammonite: sdkman coursier
 
 
 # -----------------------------------------------------------------------------
+
+fzf:
+	@git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+
+# -----------------------------------------------------------------------------
 pyenv:	bootstrap
 	@echo "-- insall [https://github.com/pyenv/pyenv#installation](pyenv)"
 	@if ! command -v pyenv &>/dev/null; then \
