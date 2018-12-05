@@ -9,10 +9,10 @@ sudo apt-get install --yes synaptic
 sudo apt-get install --yes openssh-server
 sudo apt-get install --yes docker.io docker-compose
 
-sudo apt-get install --yes curl
-sudo apt-get install --yes git
+sudo apt-get install --yes curl git moreutils
 sudo apt-get install --yes vim-gnome neovim # +python3 +clipboard
 sudo apt-get install --yes cscope global python-pygments universal-ctags ripgrep fzy
+sudo apt-get install --yes astyle uncrustify
 
 sudo apt-get install --yes python3-pip
 sudo apt-get install --yes golang
