@@ -32,8 +32,8 @@ colorscheme="molokai"
 colorscheme_bg = "dark"
 
 # layers:checkers
-enable_neomake = true
-enable_ale = false
+enable_neomake = false
+enable_ale = true
 
 # ==============================================================================
 
@@ -157,6 +157,13 @@ merged = 0
 # https://github.com/luochen1990/rainbow
 name = "luochen1990/rainbow"
 merged = 0
+
+# [[custom_plugins]]
+# # https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
+# name = "neoclide/coc.nvim"
+# # :help dein-options
+# build = "yarn install"
+# # call coc#util#install()
 
 # ==============================================================================
 
