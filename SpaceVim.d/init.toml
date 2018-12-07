@@ -182,8 +182,8 @@ name = "colorscheme"
 #[[layers]]
 #name = "ctrlp"
 
-#[[layers]]
-#name = "denite"
+[[layers]]
+name = "denite"
 
 #[[layers]]
 #name = "fzy"
