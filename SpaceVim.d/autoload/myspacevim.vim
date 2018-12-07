@@ -89,14 +89,12 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
+
     " arc diff buffers
     autocmd BufRead,BufNewFile differential-update-comments,new-commits,differential-edit-revision-info set filetype=gitcommit
-  augroup end
-
   " http://vim.wikia.com/wiki/Dictionary_completions
   " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
-  augroup auto_complete
-    autocmd FileType gitcommit execute 'setlocal complete+=k'.globpath(&runtimepath,'words/'.&filetype.'.txt').' iskeyword+=. complete-=t'
+    autocmd FileType gitcommit execute 'setlocal complete+=k'.globpath(&runtimepath,'words/'.&filetype.'.txt').' iskeyword+=. complete-=t ignorecase'
   augroup end
 
   " by default disable fold, zi to toggle foldenable
