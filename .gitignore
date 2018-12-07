@@ -37,3 +37,6 @@ session
 
 vim/bundle/*
 SpaceVim.d/after
+
+# contains names
+gitcommit.txt

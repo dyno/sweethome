@@ -89,6 +89,14 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
+    " arc diff buffers
+    autocmd BufRead,BufNewFile differential-update-comments,new-commits,differential-edit-revision-info set filetype=gitcommit
+  augroup end
+
+  " http://vim.wikia.com/wiki/Dictionary_completions
+  " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
+  augroup auto_complete
+    autocmd FileType gitcommit execute 'setlocal complete+=k'.globpath(&runtimepath,'words/'.&filetype.'.txt').' iskeyword+=. complete-=t'
   augroup end
 
   " by default disable fold, zi to toggle foldenable
@@ -123,6 +131,17 @@ func! myspacevim#after() abort
   nnoremap <leader>v :call FzyCommand("rg --files", ":vs")<cr>
   nnoremap <leader>s :call FzyCommand("rg --files", ":sp")<cr>
 
+  " https://github.com/w0rp/ale#faq-disable-linters
+  let g:ale_linters = {
+        \   'python': ['black', 'isort', 'mypy', 'pyflakes'],
+        \}
+  let g:ale_linters_explicit = 1
+
+  let g:ale_fixers = {
+        \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+        \}
+  let g:ale_fix_on_save = 1
+
   "":set colorcolumn=120
   ":help highlight
   ":help highlight-groups
@@ -145,4 +164,3 @@ function FzyCommand(choice_command, vim_command)
     exec a:vim_command . ' ' . output
   endif
 endfunction
-
