@@ -165,6 +165,11 @@ merged = 0
 # build = "yarn install"
 # # call coc#util#install()
 
+[[custom_plugins]]
+# https://github.com/tpope/vim-rhubarb
+name = "tpope/vim-rhubarb"
+merged = 0
+
 # ==============================================================================
 
 [[layers]]
