@@ -27,7 +27,25 @@
     :redir END
     "ap
 
+* Interesting fuzzy find commands
+  - BLines
+  - BTags
+  - Commands
+  - Denite change
+  - Denite colorscheme
+  - Denite menu - AddedPlugins, StatusCodeDefinitions, CustomKeyMaps ...
+  - FzfFiles/Files
+  - FzfMessages
+  - FzfOutline
+  - FzfRegisters
+  - GFiles
+  - GFiles?
+  - FzfHelpTags/Helptags
+  - History:
+  - Lines
+  - Tags
+
 ## Reference
 
+* https://github.com/junegunn/fzf.vim#commands
 * http://vim.wikia.com/wiki/Browsing_programs_with_tags
-

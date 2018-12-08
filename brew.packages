@@ -1,5 +1,8 @@
 #!/bin/bash
 
-brew install git curl readline
-brew install vim global cscope remake fzf fzy
-brew install bash coreutils moreutils jq
+brew install openssl readline zlib xz
+brew install bash coreutils moreutils
+brew install git curl
+brew install vim neovim
+brew global cscope remake fzf fzy
+brew install ripgrep the_silver_searcher jq

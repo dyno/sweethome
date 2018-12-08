@@ -102,16 +102,26 @@ merged = 0
 #name = "vim-scripts/dbext.vim"
 #merged = 0"
 
-# Explains why the below 2 plugins are needed.
-# https://github.com/Shougo/deoplete.nvim#requirements
-# for neovim :UpdateRemotePlugins
-[[custom_plugins]]
-# https://github.com/roxma/nvim-yarp
-name = "roxma/nvim-yarp"
+# [[custom_plugins]]
+# # https://github.com/Shougo/deoplete.nvim
+# name = "Shougo/deoplete.nvim"
+# merged = 0
+#
+# # Explains why the below 2 plugins are needed.
+# # https://github.com/Shougo/deoplete.nvim#requirements
+# # for neovim :UpdateRemotePlugins
+# [[custom_plugins]]
+# # https://github.com/roxma/nvim-yarp
+# name = "roxma/nvim-yarp"
+#
+# [[custom_plugins]]
+# # https://github.com/roxma/vim-hug-neovim-rpc
+# name = "roxma/vim-hug-neovim-rpc"
 
 [[custom_plugins]]
-# https://github.com/roxma/vim-hug-neovim-rpc
-name = "roxma/vim-hug-neovim-rpc"
+# https://github.com/editorconfig/editorconfig-vim
+name = "editorconfig/editorconfig-vim"
+merged = 0
 
 [[custom_plugins]]
 # https://github.com/lepture/vim-jinja
@@ -140,6 +150,7 @@ name = "cespare/vim-toml"
 merged = 0
 
 [[custom_plugins]]
+# https://github.com/junegunn/fzf
 name = "junegunn/fzf"
 merged = 0
 
@@ -166,8 +177,14 @@ merged = 0
 # # call coc#util#install()
 
 [[custom_plugins]]
+# for Gbrowse
 # https://github.com/tpope/vim-rhubarb
 name = "tpope/vim-rhubarb"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/SirVer/ultisnips
+name = "SirVer/ultisnips"
 merged = 0
 
 # ==============================================================================
@@ -192,10 +209,10 @@ name = "denite"
 name = "fzf"
 
 [[layers]]
-name = "git"
+name = "VersionControl"
 
 [[layers]]
-name = "VersionControl"
+name = "git"
 
 [[layers]]
 # https://spacevim.org/layers/autocomplete/#configuration
@@ -210,8 +227,8 @@ auto-completion-complete-with-key-sequence-delay = 0.1
 name = "checkers"
 show_cursor_error = false
 
-#[[layers]]
-#name = "cscope"
+[[layers]]
+name = "cscope"
 
 [[layers]]
 name = "tags"
@@ -247,4 +264,3 @@ name = "lang#vim"
 
 [[layers]]
 name = "lang#sh"
-
