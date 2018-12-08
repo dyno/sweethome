@@ -56,6 +56,8 @@
   - Redir scriptnames
   - Redir !ps -ef | grep py
   - BLines
+  - enew | put=execute('scriptnames')
+  - enew | 0read ! ls
 
 * Where is this command come from?
   - :Commands " find the function source
