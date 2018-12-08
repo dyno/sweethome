@@ -187,6 +187,11 @@ merged = 0
 name = "SirVer/ultisnips"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/mtth/scratch.vim
+name = "mtth/scratch.vim"
+merged = 0
+
 # ==============================================================================
 
 [[layers]]

@@ -112,6 +112,10 @@ func! myspacevim#before() abort
   :set grepprg=rg\ --vimgrep
 
   let g:java_highlight_java = 1
+
+  " https://github.com/mtth/scratch.vim
+  let g:scratch_autohide = 0
+  let g:scratch_persistence_file = '~/tmp/vim_scratch.txt'
 endf
 
 func! myspacevim#after() abort

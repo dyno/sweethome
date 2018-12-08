@@ -52,6 +52,11 @@
   - Locate    => !locate
   - Tags
 
+* Fuzzy search any command vim or system
+  - Redir scriptnames
+  - Redir !ps -ef | grep py
+  - BLines
+
 * Where is this command come from?
   - :Commands " find the function source
   - :func fzf#vim#history
