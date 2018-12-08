@@ -140,6 +140,9 @@ func! myspacevim#after() abort
         \}
   let g:ale_fix_on_save = 1
 
+  noreabbrev Outline FzfOutline
+  noreabbrev Messages FzfMessages
+
   "":set colorcolumn=120
   ":help highlight
   ":help highlight-groups

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 brew install openssl readline zlib xz
 brew install bash coreutils moreutils
