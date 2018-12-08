@@ -91,7 +91,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
 
     " arc diff buffers
-    autocmd BufRead,BufNewFile differential-update-comments,new-commits,differential-edit-revision-info set filetype=gitcommit
+    autocmd BufRead,BufNewFile differential-update-comment*,new-commit*,differential-edit-revision-info set filetype=gitcommit
   " http://vim.wikia.com/wiki/Dictionary_completions
   " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
     autocmd FileType gitcommit execute 'setlocal complete+=k'.globpath(&runtimepath,'words/'.&filetype.'.txt').' iskeyword+=. complete-=t ignorecase'
