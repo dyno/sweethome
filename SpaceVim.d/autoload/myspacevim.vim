@@ -122,16 +122,26 @@ func! myspacevim#after() abort
   " yank to clipboard
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
   " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
-  if has('clipboard')       " mac
+  if has('clipboard')
     set clipboard^=unnamed  " copy to the system clipboard
-    if has('unnamedplus')   " X11 support
-      set clipboard^=unnamedplus
-    endif
+    let s:clipboard_register = '*'
   endif
 
-  nnoremap <leader>e :call FzyCommand("rg --files", ":e")<cr>
-  nnoremap <leader>v :call FzyCommand("rg --files", ":vs")<cr>
-  nnoremap <leader>s :call FzyCommand("rg --files", ":sp")<cr>
+  if has('unnamedplus')
+    set clipboard^=unnamedplus
+    let s:clipboard_register = '+'
+  endif
+
+  if has('nvim')
+  endif
+
+  command! Gcp :call setreg(s:clipboard_register,
+        \ 'https://github.com/dyno/sweathome/tree/master/'.(systemlist('git ls-files --full-name '.expand('%'))[0]).'#L'.line('.'))
+  nnoremap <Leader>g :Gcp<CR>
+
+  nnoremap <Leader>e :call FzyCommand("rg --files", ":e")<CR>
+  nnoremap <Leader>v :call FzyCommand("rg --files", ":vs")<CR>
+  nnoremap <Leader>s :call FzyCommand("rg --files", ":sp")<CR>
 
   " https://github.com/w0rp/ale#faq-disable-linters
   let g:ale_linters = {
@@ -146,8 +156,6 @@ func! myspacevim#after() abort
 
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
-
-  command! Gcp :let @*='https://github.com/dyno/sweathome/tree/master/'.(systemlist('git ls-files --full-name '.expand('%'))[0]).'#L'.(line('.')+1)
 
   "":set colorcolumn=120
   ":help highlight

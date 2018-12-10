@@ -10,7 +10,7 @@ sudo apt-get install --yes openssh-server
 sudo apt-get install --yes docker.io docker-compose
 
 sudo apt-get install --yes curl git moreutils
-sudo apt-get install --yes vim-gnome neovim # +python3 +clipboard
+sudo apt-get install --yes vim-gnome neovim xclip # +python3 +clipboard
 sudo apt-get install --yes cscope global python-pygments universal-ctags ripgrep fzy
 sudo apt-get install --yes astyle uncrustify
 
@@ -29,4 +29,3 @@ sudo apt-get install python-software-properties
 # https://unix.stackexchange.com/questions/75807/no-public-key-available-on-apt-get-update
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 55F96FCF8231B6DD
 # pip3 install --ignore-installed --user neovim vim-vint
-
