@@ -90,6 +90,12 @@ merged = 0
 on_ft = "markdown"
 
 [[custom_plugins]]
+# for Gbrowse
+# https://github.com/tpope/vim-rhubarb
+name = "tpope/vim-rhubarb"
+merged = 0
+
+[[custom_plugins]]
 # https://github.com/tpope/vim-fugitive
 name = "tpope/vim-fugitive"
 merged = 0
@@ -175,12 +181,6 @@ merged = 0
 # # :help dein-options
 # build = "yarn install"
 # # call coc#util#install()
-
-[[custom_plugins]]
-# for Gbrowse
-# https://github.com/tpope/vim-rhubarb
-name = "tpope/vim-rhubarb"
-merged = 0
 
 [[custom_plugins]]
 # https://github.com/SirVer/ultisnips
