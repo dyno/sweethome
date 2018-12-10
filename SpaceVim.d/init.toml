@@ -192,6 +192,11 @@ merged = 0
 name = "mtth/scratch.vim"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/tpope/vim-scriptease
+name = 'tpope/vim-scriptease'
+merged = 0
+
 # ==============================================================================
 
 [[layers]]
