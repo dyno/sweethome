@@ -66,39 +66,5 @@ pyenv:	bootstrap
 	fi
 
 pip: pyenv
-	@eval "$(pyenv init -)" \
-	  && echo "-- pip self upgrade" \
-	  && pip install --user --upgrade pip \
-	  && echo "-- pip install tools" \
-	  && pip3 install --user --upgrade \
-	    black \
-	    eradicate \
-	    httpie \
-	    ipython \
-	    isort \
-	    jedi \
-	    jupyter \
-	    neovim \
-	    pipenv \
-	    pycodestyle \
-	    pylama \
-	    sqlparse \
-	    vim-vint \
-	    vint \
-	&& echo "-- pip install libs" \
-	&& pip3 install --user --upgrade \
-	    PyYAML \
-	    absl-py \
-	    attrs \
-	    chartify \
-	    click \
-	    pandas \
-	    pexpect \
-	    pycodestyle \
-	    seaborn \
-	    six \
-	    sqlparse \
-	    tabulate \
-	    toml \
-	    tqdm \
-	  # END
+	@eval "$(pyenv init -)" && ./pip_packages.sh
+	

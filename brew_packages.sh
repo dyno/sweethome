@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o errexit
+
 brew install openssl readline zlib xz
 brew install bash coreutils moreutils
 brew install git curl

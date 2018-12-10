@@ -1,9 +1,9 @@
 #!/bin/bash
 
+set -o errexit
+
 # fix some installation problems (on Deepin 15.7), might be temporary
 sudo apt-get install --yes console-setup plymouth-themes plymouth-label
-
-set -x
 
 sudo apt-get install --yes synaptic
 sudo apt-get install --yes openssh-server
