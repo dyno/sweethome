@@ -92,8 +92,8 @@ func! myspacevim#before() abort
 
     " arc diff buffers
     autocmd BufRead,BufNewFile differential-update-comment*,new-commit*,differential-edit-revision-info set filetype=gitcommit
-  " http://vim.wikia.com/wiki/Dictionary_completions
-  " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
+    " http://vim.wikia.com/wiki/Dictionary_completions
+    " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
     autocmd FileType gitcommit execute 'setlocal complete+=k'.globpath(&runtimepath,'words/'.&filetype.'.txt').' iskeyword+=. complete-=t ignorecase'
   augroup end
 
@@ -122,9 +122,9 @@ func! myspacevim#after() abort
   " yank to clipboard
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
   " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
-  if has('clipboard') " mac
-    set clipboard^=unnamed " copy to the system clipboard
-    if has('unnamedplus') " X11 support
+  if has('clipboard')       " mac
+    set clipboard^=unnamed  " copy to the system clipboard
+    if has('unnamedplus')   " X11 support
       set clipboard^=unnamedplus
     endif
   endif
@@ -146,6 +146,8 @@ func! myspacevim#after() abort
 
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
+
+  command! Gcp :let @*='https://github.com/dyno/sweathome/tree/master/'.(systemlist('git ls-files --full-name '.expand('%'))[0]).'#L'.(line('.')+1)
 
   "":set colorcolumn=120
   ":help highlight
