@@ -1,52 +1,58 @@
 [options]
 # :h SpaceVim-config
 # :h g:spacevim_buffer_index_type
-buffer_index_type = 1
-enable_guicolors = 1
-enable_os_fileformat_icon = 1
+# https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim.vim
+buffer_index_type              = 1
+enable_guicolors               = 1
+enable_os_fileformat_icon      = 1
 enable_statusline_display_mode = 1
-enable_tabline_filetype_icon = 1
-enable_vimfiler_filetypeicon = 0
-enable_vimfiler_gitstatus = 1
-enable_vimfiler_welcome = 0  # very slow
-max_column = 120
-project_rooter_patterns = [".git"]
-relativenumber = 0
-statusline_separator = "bar"
-vimcompatible = 0
+enable_tabline_filetype_icon   = 1
+enable_vimfiler_filetypeicon   = 0
+enable_vimfiler_gitstatus      = 1
+enable_vimfiler_welcome        = 0  # XXX: very slow, source code also confirmed it.
+max_column                     = 120
+plugin_manager                 = "dein"
+project_rooter_automatically   = 0  # XXX: does not work if i edit a file in another project.
+project_rooter_patterns        = [".git"]
+relativenumber                 = 0
+search_tools                   = ["rg", "ag", "grep"]
+#snippet_engine                 = "ultisnips"
+snippet_engine                 = "neosnippet"
+statusline_separator           = "bar"
+vimcompatible                  = 0
 
 # https://github.com/SpaceVim/SpaceVim/blob/master/docs/documentation.md#font
 # "changing this value has no effect if you are running Vim/Neovim in terminal."
 # https://www.iterm2.com/documentation-fonts.html
-# guifont = 'Source Code Pro Medium for Powerline'
+# guifont = "Source Code Pro Medium for Powerline"
 guifont = "Sauce Code Pro Nerd Font Complete Mono"
 
 # custom_plugins options
 # https://spacevim.org/documentation/#bootstrap-functions
 bootstrap_before = "myspacevim#before"
-bootstrap_after = "myspacevim#after"
+bootstrap_after  = "myspacevim#after"
 
 # layers:colorscheme
 # https://spacevim.org/layers/colorscheme/
-colorscheme="molokai"
+colorscheme    = "molokai"
 colorscheme_bg = "dark"
 
 # layers:checkers
 enable_neomake = false
-enable_ale = true
+enable_ale     = true
 
 # ==============================================================================
 
 # ##^^ colorscheme ^^## --------------------------------------------------------
 
-[[custom_plugins]]
-# https://github.com/napcs/vim-mycontrast
-name = "napcs/vim-mycontrast"
-merged = 0
-
-[[custom_plugins]]
-# https://github.com/marcopaganini/termschool-vim-theme
-name = "marcopaganini/termschool-vim-theme"
+# [[custom_plugins]]
+# # https://github.com/napcs/vim-mycontrast
+# name = "napcs/vim-mycontrast"
+# merged = 0
+#
+# [[custom_plugins]]
+# # https://github.com/marcopaganini/termschool-vim-theme
+# name = "marcopaganini/termschool-vim-theme"
 
 # ##$$ colorscheme $$## --------------------------------------------------------
 
@@ -124,10 +130,10 @@ merged = 0
 # # https://github.com/roxma/vim-hug-neovim-rpc
 # name = "roxma/vim-hug-neovim-rpc"
 
-[[custom_plugins]]
-# https://github.com/editorconfig/editorconfig-vim
-name = "editorconfig/editorconfig-vim"
-merged = 0
+# [[custom_plugins]]
+# # https://github.com/editorconfig/editorconfig-vim
+# name = "editorconfig/editorconfig-vim"
+# merged = 0
 
 [[custom_plugins]]
 # https://github.com/lepture/vim-jinja
@@ -171,6 +177,11 @@ name = "srstevenson/vim-picker"
 merged = 0
 
 [[custom_plugins]]
+# https://github.com/airblade/vim-rooter
+name = "airblade/vim-rooter"
+merged = 0
+
+[[custom_plugins]]
 # https://github.com/luochen1990/rainbow
 name = "luochen1990/rainbow"
 merged = 0
@@ -182,10 +193,10 @@ merged = 0
 # build = "yarn install"
 # # call coc#util#install()
 
-[[custom_plugins]]
-# https://github.com/SirVer/ultisnips
-name = "SirVer/ultisnips"
-merged = 0
+# [[custom_plugins]]
+# # https://github.com/SirVer/ultisnips
+# name = "SirVer/ultisnips"
+# merged = 0
 
 [[custom_plugins]]
 # https://github.com/mtth/scratch.vim
@@ -194,12 +205,12 @@ merged = 0
 
 [[custom_plugins]]
 # https://github.com/tpope/vim-scriptease
-name = 'tpope/vim-scriptease'
+name = "tpope/vim-scriptease"
 merged = 0
 
 [[custom_plugins]]
 # https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
-name = 'tpope/vim-unimpaired'
+name = "tpope/vim-unimpaired"
 merged = 0
 
 # ==============================================================================
