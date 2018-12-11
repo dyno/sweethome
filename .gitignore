@@ -40,3 +40,18 @@ SpaceVim.d/after
 
 # contains names
 gitcommit.txt
+
+GPATH
+GRTAGS
+GTAGS
+tags
+
+tmp
+x.*
+y.*
+z.*
+zold
+
+*.orig
+*.bak
+.netrwhist

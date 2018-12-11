@@ -42,6 +42,7 @@ pip3 install ${PIP_OPTS} \
   sqlparse               \
   tabulate               \
   toml                   \
+  toolz                  \
   tqdm                   \
   vega_datasets          \
   # END
