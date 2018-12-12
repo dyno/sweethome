@@ -79,6 +79,9 @@ func! myspacevim#before() abort
   elseif has('unix')
     let g:python3_host_prog = '/usr/bin/python3'
   endif
+  if filereadable(expand('~/venvs/vim/.venv/bin/python3'))
+    let g:python3_host_prog = expand('~/venvs/vim/.venv/bin/python3')
+  endif
 
   augroup auto_filetype
     autocmd!

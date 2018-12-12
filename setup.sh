@@ -30,7 +30,7 @@ check_and_remove_link ~/.vimrc
 check_and_remove_link ~/.gvimrc && ln -sf ${BASEDIR}/gvimrc ~/.gvimrc
 check_and_remove_link ~/.SpaceVim.d && ln -sf ${BASEDIR}/SpaceVim.d ~/.SpaceVim.d
 check_and_remove_link ~/.vim/after && ln -sf ${BASEDIR}/vim/after ~/.vim/
+mkdir -p ~/venvs/vim && ln -sf ${BASEDIR}/vim.Pipfile ~/venvs/vim/Pipfile
 
 # SSH
 [ -d ~/.ssh ] && ln -sf ${BASEDIR}/ssh_config ~/.ssh/config && chmod 600 ~/.ssh/config
-
