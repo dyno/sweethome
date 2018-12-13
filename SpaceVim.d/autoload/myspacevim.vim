@@ -88,7 +88,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile gitconfig  set filetype=gitconfig
     autocmd BufRead,BufNewFile *.gradle   set filetype=groovy
     autocmd BufRead,BufNewFile *.sc       set filetype=scala
-    autocmd BufRead,BufNewFile Pipfile    set filetype=toml
+    autocmd BufRead,BufNewFile *Pipfile   set filetype=toml
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
@@ -160,11 +160,11 @@ func! myspacevim#after() abort
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
 
-	" https://github.com/airblade/vim-rooter#configuration
-	let g:rooter_manual_only = 0
-	let g:rooter_patterns = ['.git/']
-	let g:rooter_silent_chdir = 0
-	let g:rooter_use_lcd = 1
+  " https://github.com/airblade/vim-rooter#configuration
+  let g:rooter_manual_only = 0
+  let g:rooter_patterns = ['.git/']
+  let g:rooter_silent_chdir = 0
+  let g:rooter_use_lcd = 1
   let g:rooter_change_directory_for_non_project_files = 'current'
 
   "":set colorcolumn=120

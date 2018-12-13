@@ -9,6 +9,7 @@ python_version = "3.6"
 [packages]
 jedi = "*"
 neovim = "*"
+pylint = "*"
 pyvim = "*"
 vim-vint = "*"
 vint = "*"
