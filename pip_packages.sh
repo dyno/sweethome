@@ -21,6 +21,7 @@ pip3 install ${PIP_OPTS} \
   pipenv                 \
   poetry                 \
   pre-commit             \
+  pyaml                  \
   pycodestyle            \
   pyflakes               \
   pylama                 \
@@ -35,13 +36,13 @@ pip3 install ${PIP_OPTS} \
   absl-py                \
   altair                 \
   attrs                  \
+  cattrs                 \
   chartify               \
   click                  \
   pandas                 \
   pexpect                \
   PyYAML                 \
   seaborn                \
-  six                    \
   tabulate               \
   toml                   \
   toolz                  \
