@@ -48,7 +48,7 @@ func! myspacevim#before() abort
     " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
     let g:gutentags_add_default_project_roots = 1
     let g:gutentags_generate_on_missing = 1
-    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.eggs', '*.egg-info']
+    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.svn', '.hg', '.eggs', '*.egg-info']
     " GscopeAdd; cs show
     let g:gutentags_auto_add_gtags_cscope = 0
 
@@ -68,6 +68,23 @@ func! myspacevim#before() abort
   " https://github.com/w0rp/ale/blob/master/doc/ale-scala.txt
   " so disable all...
   let g:neomake_scala_enabled_makers = []
+
+  " https://github.com/w0rp/ale#faq-disable-linters
+  let g:ale_linters = {
+        \   'python': ['pycodestyle', 'mypy', 'pyflakes'],
+        \}
+  let g:ale_linters_explicit = 1
+
+  let g:ale_fixers = {
+        \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+        \   'python': ['black', 'isort'],
+        \}
+  let g:ale_fix_on_save = 1
+
+  let g:ale_python_mypy_options = '--ignore-missing-imports'
+  " Don't want to install tools everywhere. if 1, from ALEInfo, it will do something like `pipenv run black ...`
+  let g:ale_python_auto_pipenv = 0
+  let g:ale_python_mypy_ignore_invalid_syntax = 1
 
   " https://stackoverflow.com/questions/24931088/disable-omnicomplete-or-ftplugin-or-something-in-vim
   ":help ft-sql
@@ -138,31 +155,20 @@ func! myspacevim#after() abort
   if has('nvim')
   endif
 
-  command! Gcp :call setreg(s:clipboard_register,
+  command! GithubPath :call setreg(s:clipboard_register,
         \ 'https://github.com/dyno/sweathome/tree/master/'.(systemlist('git ls-files --full-name '.expand('%'))[0]).'#L'.line('.'))
-  nnoremap <Leader>g :Gcp<CR>
+  nnoremap <Leader>g :GithubPath<CR>
 
   nnoremap <Leader>e :call FzyCommand("rg --files", ":e")<CR>
   nnoremap <Leader>v :call FzyCommand("rg --files", ":vs")<CR>
   nnoremap <Leader>s :call FzyCommand("rg --files", ":sp")<CR>
-
-  " https://github.com/w0rp/ale#faq-disable-linters
-  let g:ale_linters = {
-        \   'python': ['black', 'isort', 'mypy', 'pyflakes'],
-        \}
-  let g:ale_linters_explicit = 1
-
-  let g:ale_fixers = {
-        \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-        \}
-  let g:ale_fix_on_save = 1
 
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
 
   " https://github.com/airblade/vim-rooter#configuration
   let g:rooter_manual_only = 0
-  let g:rooter_patterns = ['.git/']
+  let g:rooter_patterns = ['.git/', '.hg/', '.svn/']
   let g:rooter_silent_chdir = 0
   let g:rooter_use_lcd = 1
   let g:rooter_change_directory_for_non_project_files = 'current'

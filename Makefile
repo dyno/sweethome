@@ -67,4 +67,6 @@ pyenv:	bootstrap
 
 pip: pyenv
 	@eval "$(pyenv init -)" && ./pip_packages.sh
-	
+
+pre-commit:
+	pre-commit install

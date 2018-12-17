@@ -19,8 +19,12 @@ pip3 install ${PIP_OPTS} \
   jupyterlab             \
   neovim                 \
   pipenv                 \
+  poetry                 \
+  pre-commit             \
   pycodestyle            \
+  pyflakes               \
   pylama                 \
+  pyvim                  \
   sqlparse               \
   vim-vint               \
   vint                   \
@@ -28,7 +32,6 @@ pip3 install ${PIP_OPTS} \
 
 echo "-- pip install libs"
 pip3 install ${PIP_OPTS} \
-  PyYAML                 \
   absl-py                \
   altair                 \
   attrs                  \
@@ -36,10 +39,9 @@ pip3 install ${PIP_OPTS} \
   click                  \
   pandas                 \
   pexpect                \
-  pycodestyle            \
+  PyYAML                 \
   seaborn                \
   six                    \
-  sqlparse               \
   tabulate               \
   toml                   \
   toolz                  \
