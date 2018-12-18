@@ -15,7 +15,7 @@ set -o errexit
 export HOMEBREW_NO_AUTO_UPDATE=1
 brew update
 
-install_or_upgrade bash coreutils moreutils tree
+install_or_upgrade bash bash-completion coreutils moreutils tree
 # python build dependencies
 install_or_upgrade openssl readline zlib xz
 install_or_upgrade git

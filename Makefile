@@ -13,12 +13,12 @@ UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
     os_install = sudo apt-get install
     user_bashrc = ~/.bashrc
-    install_boostrap_packages = ./apt-get_packages.sh
+    install_boostrap_packages = ./scripts/apt-get_packages.sh
 endif
 ifeq ($(UNAME),Darwin)
     os_install = brew install
     user_bashrc = ~/.bash_profile
-    install_boostrap_packages = ./brew_packages.sh
+    install_boostrap_packages = ./scripts/brew_packages.sh
 endif
 
 # -----------------------------------------------------------------------------
@@ -104,11 +104,9 @@ goofys:
 	go install -v github.com/kahing/goofys
 
 # -----------------------------------------------------------------------------
-pyenv:	bootstrap
+pyenv:
 	@echo "-- install [pyenv](https://github.com/pyenv/pyenv#installation)"
-	@if ! command -v pyenv &>/dev/null; then                 \
-	  git clone https://github.com/pyenv/pyenv.git ~/.pyenv; \
-	fi
+	./scripts/install_or_upgrade_pyenv.sh
 
 pip: pyenv
 	@echo "-- install python packages by calling pip_packages.sh"
