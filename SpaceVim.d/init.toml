@@ -85,9 +85,9 @@ on_ft = "python"
 # https://github.com/Chiel92/vim-autoformat
 name = "Chiel92/vim-autoformat"
 
-[[custom_plugins]]
-# https://vimawesome.com/plugin/neoformat
-name = "sbdchd/neoformat"
+# [[custom_plugins]]
+# # https://vimawesome.com/plugin/neoformat
+# name = "sbdchd/neoformat"
 
 [[custom_plugins]]
 # https://github.com/godlygeek/tabular
