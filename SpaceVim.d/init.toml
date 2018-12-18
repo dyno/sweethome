@@ -16,8 +16,8 @@ project_rooter_automatically   = 0  # XXX: does not work if i edit a file in ano
 project_rooter_patterns        = [".git"]
 relativenumber                 = 0
 search_tools                   = ["rg", "ag", "grep"]
-#snippet_engine                 = "ultisnips"
-snippet_engine                 = "neosnippet"
+snippet_engine                 = "ultisnips"
+# snippet_engine                 = "neosnippet"
 statusline_separator           = "bar"
 vimcompatible                  = 0
 
@@ -106,13 +106,13 @@ merged = 0
 name = "tpope/vim-fugitive"
 merged = 0
 
-#[[custom_plugins]]
-#name = "ryanolsonx/vim-lsp-python"
-#merged = 0
+# [[custom_plugins]]
+# name = "ryanolsonx/vim-lsp-python"
+# merged = 0
 
-#[[custom_plugins]]
-#name = "vim-scripts/dbext.vim"
-#merged = 0"
+# [[custom_plugins]]
+# name = "vim-scripts/dbext.vim"
+# merged = 0"
 
 # [[custom_plugins]]
 # # https://github.com/Shougo/deoplete.nvim
@@ -222,14 +222,14 @@ name = "colorscheme"
 #name = "tools"
 
 # fuzzyfinder layers
-#[[layers]]
-#name = "ctrlp"
+# [[layers]]
+# name = "ctrlp"
 
-[[layers]]
-name = "denite"
+# [[layers]]
+# name = "denite"
 
-#[[layers]]
-#name = "fzy"
+# [[layers]]
+# name = "fzy"
 
 [[layers]]
 name = "fzf"
