@@ -31,3 +31,10 @@ else
   curl --show-error --location \
     https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 fi
+
+PYENV_VIRTUALENV_DIR=${PYENV_ROOT}/plugins/pyenv-virtualenv
+[[ ! -d ${PYENV_VIRTUALENV_DIR} ]] && git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+pushd ${PYENV_VIRTUALENV_DIR}
+git fetch --all
+git reset --hard master
+popd

@@ -110,7 +110,7 @@ pyenv:
 
 pip: pyenv
 	@echo "-- install python packages by calling pip_packages.sh"
-	@eval "$(pyenv init -)" && ./pip_packages.sh
+	@eval "$(pyenv init -)" && ./scripts/pip_packages.sh
 
 pre-commit:
 	@echo "-- install pre-commit for this project."
