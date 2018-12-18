@@ -43,9 +43,9 @@ fi # end of if is bash
 #----------------------------------------------------------------------
 for pth in $HOME/bin $HOME/.local/bin \
   /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin; do
-if ! echo ":$PATH:" | grep -q ":$pth:"; then
-  PATH=$PATH:$pth
-fi
+  if ! echo ":$PATH:" | grep -q ":$pth:"; then
+    PATH=$PATH:$pth
+  fi
 done
 
 export PATH
