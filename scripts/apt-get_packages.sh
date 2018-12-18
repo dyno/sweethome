@@ -26,6 +26,6 @@ sudo apt-get install --yes php php-curl
 
 # neovim, https://github.com/neovim/neovim/wiki/Installing-Neovim
 # e.g. sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt-get install software-properties-common 2>/dev/null || sudo apt-get install python-software-properties
+sudo apt-get install software-properties-common python-software-properties
 # https://unix.stackexchange.com/questions/75807/no-public-key-available-on-apt-get-update
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 55F96FCF8231B6DD
