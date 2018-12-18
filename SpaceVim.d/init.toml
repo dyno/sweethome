@@ -81,9 +81,9 @@ on_ft = "python"
 # shell: go get -u mvdan.cc/sh/cmd/shfmt
 # sql: pip install sqlparser # sqlformat
 
-[[custom_plugins]]
-# https://github.com/Chiel92/vim-autoformat
-name = "Chiel92/vim-autoformat"
+# [[custom_plugins]]
+# # https://github.com/Chiel92/vim-autoformat
+# name = "Chiel92/vim-autoformat"
 
 [[custom_plugins]]
 # https://vimawesome.com/plugin/neoformat
