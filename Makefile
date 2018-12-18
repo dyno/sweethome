@@ -35,7 +35,8 @@ bashrc:
 
 # -----------------------------------------------------------------------------
 SpaceVim:
-	[ ! -e ~/.SpaceVim ] && curl -sLf https://spacevim.org/install.sh | bash || true
+	[[ ! -e ~/.SpaceVim ]] && curl -sLf https://spacevim.org/install.sh | bash || true
+	[[ -d ~/.SpaceVim ]] && git pull
 
 vim: SpaceVim
 	[[ ! -e ~/.vim || -L ~/.vim ]] && rm -f ~/.vim && ln -sf .SpaceVim ~/.vim
@@ -91,7 +92,7 @@ ammonite: sdkman coursier
 
 fzf:
 	@echo "-- install [fzf](https://github.com/junegunn/fzf.vim)"
-	@[ ! -e ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
+	@[[ ! -e ~/.fzf ]] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
 	@cd ~/.fzf && git pull && make install
 
 
@@ -122,3 +123,11 @@ pre-commit:
 ssh:
 	@echo "-- setup ssh config"
 	mkdir -p ~/.ssh && ln -sf $(PWD)/ssh_config ~/.ssh/config && chmod 600 ~/.ssh/config
+
+# -----------------------------------------------------------------------------
+#  Formatters
+# .py, .java, .scala, .sh, .yaml, .yml, .json, .md, .vim ...
+google-java-format:
+	cd $(LOCAL_BIN) \
+	  && curl -L -O https://github.com/google/google-java-format/releases/download/google-java-format-1.6/google-java-format-1.6-all-deps.jar \
+	  && ln -sf google-java-format-1.6-all-deps.jar google-java-format.jar

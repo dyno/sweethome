@@ -10,6 +10,7 @@ pip install ${PIP_OPTS} --upgrade pip
 echo "-- pip install tools"
 pip3 install ${PIP_OPTS} \
   black                  \
+  docformatter           \
   eradicate              \
   httpie                 \
   ipython                \

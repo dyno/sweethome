@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# set -o xtrace
 set -o errexit
 
 # fix some installation problems (on Deepin 15.7), might be temporary
@@ -23,9 +24,8 @@ sudo apt-get install --yes libsqlite3-dev libssl-dev libreadline-dev zlib1g-dev 
 # arc - code review
 sudo apt-get install --yes php php-curl
 
-# neovim
+# neovim, https://github.com/neovim/neovim/wiki/Installing-Neovim
 # e.g. sudo add-apt-repository ppa:neovim-ppa/stable
-sudo apt-get install python-software-properties
+sudo apt-get install software-properties-common 2>/dev/null || sudo apt-get install python-software-properties
 # https://unix.stackexchange.com/questions/75807/no-public-key-available-on-apt-get-update
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 55F96FCF8231B6DD
-# pip3 install --ignore-installed --user neovim vim-vint

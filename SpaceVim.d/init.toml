@@ -81,9 +81,9 @@ on_ft = "python"
 # shell: go get -u mvdan.cc/sh/cmd/shfmt
 # sql: pip install sqlparser # sqlformat
 
-# [[custom_plugins]]
-# # https://github.com/Chiel92/vim-autoformat
-# name = "Chiel92/vim-autoformat"
+[[custom_plugins]]
+# https://github.com/Chiel92/vim-autoformat
+name = "Chiel92/vim-autoformat"
 
 [[custom_plugins]]
 # https://vimawesome.com/plugin/neoformat
@@ -208,10 +208,11 @@ merged = 0
 name = "tpope/vim-scriptease"
 merged = 0
 
-[[custom_plugins]]
-# https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
-name = "tpope/vim-unimpaired"
-merged = 0
+# XXX: https://spacevim.org/documentation/#unimpaired-bindings
+# [[custom_plugins]]
+# # https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
+# name = "tpope/vim-unimpaired"
+# merged = 0
 
 # ==============================================================================
 
@@ -225,8 +226,8 @@ name = "colorscheme"
 # [[layers]]
 # name = "ctrlp"
 
-# [[layers]]
-# name = "denite"
+[[layers]]
+name = "denite"
 
 # [[layers]]
 # name = "fzy"

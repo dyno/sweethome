@@ -3,21 +3,6 @@
 
 func! myspacevim#before() abort
 
-  " https://github.com/ambv/black#editor-integration
-  let g:black_skip_string_normalization = 1
-  let g:black_linelength = 120
-
-  " https://github.com/Chiel92/vim-autoformat
-  let g:formatters_python = ['black']
-  let g:formatdef_black = '"black --line-length=120 --skip-string-normalization --quiet -"'
-
-  let g:autoformat_retab = 0
-  let g:autoformat_remove_trailing_spaces = 1
-  let g:autoformat_verbosemode = 0
-
-  " https://github.com/airblade/vim-rooter
-  let g:rooter_change_directory_for_non_project_files = 'current'
-
   if v:version >= 800
     " https://github.com/ludovicchabant/vim-gutentags
     " https://github.com/skywind3000/gutentags_plus
@@ -172,6 +157,29 @@ func! myspacevim#after() abort
   let g:rooter_silent_chdir = 0
   let g:rooter_use_lcd = 1
   let g:rooter_change_directory_for_non_project_files = 'current'
+
+  " https://github.com/ambv/black#editor-integration
+  let g:black_skip_string_normalization = 1
+  let g:black_linelength = 120
+
+  " https://github.com/Chiel92/vim-autoformat
+  let g:formatters_python = ['black']
+  let g:formatdef_black = '"black --line-length=120 --skip-string-normalization --quiet -"'
+
+  let g:autoformat_retab = 0
+  let g:autoformat_remove_trailing_spaces = 1
+  let g:autoformat_verbosemode = 0
+
+  " https://github.com/sbdchd/neoformat
+  let g:neoformat_enabled_python = ['black', 'isort', 'docformatter']
+  let g:neoformat_java_googlefmt = {
+        \ 'exe': 'java',
+        \ 'args': ['-jar', '~/.local/bin/google-java-format.jar', '-'],
+        \ 'stdin': 1,
+        \ }
+  let g:neoformat_enabled_java = ['googlefmt']
+  let g:neoformat_run_all_formatters = 1
+  let g:neoformat_verbose = 0
 
   "":set colorcolumn=120
   ":help highlight
