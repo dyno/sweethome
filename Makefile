@@ -107,11 +107,20 @@ goofys:
 	go install -v github.com/kahing/goofys
 
 # -----------------------------------------------------------------------------
+#  ## Python ##
+
 pyenv:
 	@echo "-- install [pyenv](https://github.com/pyenv/pyenv#installation)"
 	./scripts/install_or_upgrade_pyenv.sh
 
-pip: pyenv
+jedi:
+	# for whatever reason jedi need to be installed systemwide.
+	# https://jedi.readthedocs.io/en/latest/docs/installation.html
+ifeq ($(UNAME),Darwin)
+	/usr/local/bin/pip3 install --upgrade jedi
+endif
+
+pip: pyenv jedi
 	@echo "-- install python packages by calling pip_packages.sh"
 	@eval "$(pyenv init -)" && ./scripts/pip_packages.sh
 

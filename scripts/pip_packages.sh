@@ -15,7 +15,6 @@ pip3 install ${PIP_OPTS} \
   httpie                 \
   ipython                \
   isort                  \
-  jedi                   \
   jupyter                \
   jupyterlab             \
   neovim                 \
