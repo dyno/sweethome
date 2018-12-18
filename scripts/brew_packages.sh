@@ -25,7 +25,7 @@ install_or_upgrade global cscope remake fzy
 
 # http://docs.ctags.io/en/latest/osx.html
 brew tap universal-ctags/universal-ctags
-brew install --HEAD universal-ctags 2>/dev/null
+brew install --HEAD universal-ctags 2>/dev/null || true
 
 # ripgrep => rg; the_silver_searcher => ag
 install_or_upgrade ripgrep the_silver_searcher jq
