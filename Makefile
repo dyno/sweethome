@@ -93,6 +93,7 @@ fzf:
 	@cd ~/.fzf && git pull && make install
 
 
+# -----------------------------------------------------------------------------
 shfmt:
 	@echo "-- install [shfmt](https://github.com/mvdan/sh)"
 	go get -v mvdan.cc/sh/cmd/shfmt
