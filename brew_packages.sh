@@ -1,10 +1,32 @@
 #!/usr/bin/env bash
 
+function install_or_upgrade() {
+  package=$1
+  for package in $@; do
+    echo "install or upgrade $package"
+    # https://stackoverflow.com/questions/43619480/upgrade-or-install-a-homebrew-formula
+    brew install $package 2>/dev/null || (brew upgrade $package && brew cleanup $package)
+  done
+}
+
+# set -o xtrace
 set -o errexit
 
-brew install openssl readline zlib xz
-brew install bash coreutils moreutils
-brew install git curl
-brew install vim neovim
-brew global cscope remake fzf fzy
-brew install ripgrep the_silver_searcher jq
+export HOMEBREW_NO_AUTO_UPDATE=1
+brew update
+
+install_or_upgrade bash coreutils moreutils tree
+# python build dependencies
+install_or_upgrade openssl readline zlib xz
+install_or_upgrade git
+install_or_upgrade vim neovim
+install_or_upgrade go
+install_or_upgrade global cscope remake fzy
+
+# http://docs.ctags.io/en/latest/osx.html
+brew tap universal-ctags/universal-ctags
+brew install --HEAD universal-ctags 2>/dev/null
+
+# ripgrep => rg; the_silver_searcher => ag
+install_or_upgrade ripgrep the_silver_searcher jq
+install_or_upgrade astyle uncrustify

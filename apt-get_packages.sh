@@ -11,10 +11,10 @@ sudo apt-get install --yes docker.io docker-compose
 
 sudo apt-get install --yes curl git moreutils
 sudo apt-get install --yes vim-gnome neovim xclip # +python3 +clipboard
-sudo apt-get install --yes cscope global python-pygments universal-ctags ripgrep fzy
+sudo apt-get install --yes remake cscope global universal-ctags ripgrep fzy
 sudo apt-get install --yes astyle uncrustify
 
-sudo apt-get install --yes python3-pip
+sudo apt-get install --yes python3 python3-pip
 sudo apt-get install --yes golang
 
 # pyenv - build python dependencies

@@ -13,10 +13,12 @@ UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
     os_install = sudo apt-get install
     user_bashrc = ~/.bashrc
+    install_boostrap_packages = ./apt-get_packages.sh
 endif
 ifeq ($(UNAME),Darwin)
     os_install = brew install
     user_bashrc = ~/.bash_profile
+    install_boostrap_packages = ./brew_packages.sh
 endif
 
 # -----------------------------------------------------------------------------
@@ -24,12 +26,7 @@ endif
 all: bootstrap bashrc fonts vim coursier sdkman pyenv ammonite fzf
 
 bootstrap:
-	@for tool in git curl vim; do                \
-	  if ! command -v $${tool} &>/dev/null; then \
-	  $(os_install) $${tool};                    \
-	fi;                                          \
-	done
-	mkdir -p $(LOCAL_BIN)
+	$(install_boostrap_packages)
 
 bashrc:
 	ln -sf $(PWD)/bashrc $(user_bashrc)
@@ -52,7 +49,7 @@ vim-venv:
 	cd ~/venvs/vim && PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
 
 # -----------------------------------------------------------------------------
-fonts: bootstrap
+fonts:
 	@echo "-- download & install [Nerd Fonts](https://nerdfonts.com/)"
 	@[[ -e ~/.fonts/"Sauce Code Pro Nerd Font Complete Mono.ttf" ]]                                                       \
 	  || ( mkdir -p ~/.fonts && cd ~/.fonts                                                                               \
@@ -98,7 +95,13 @@ fzf:
 
 shfmt:
 	@echo "-- install [shfmt](https://github.com/mvdan/sh)"
-	go get -u mvdan.cc/sh/cmd/shfmt
+	go get -v mvdan.cc/sh/cmd/shfmt
+	go install -v mvdan.cc/sh/cmd/shfmt
+
+goofys:
+	@echo "-- install [goofys](https://github.com/kahing/goofys)"
+	go get -v github.com/kahing/goofys
+	go install -v github.com/kahing/goofys
 
 # -----------------------------------------------------------------------------
 pyenv:	bootstrap

@@ -21,9 +21,11 @@ pip3 install ${PIP_OPTS} \
   pipenv                 \
   poetry                 \
   pre-commit             \
+  pssh                   \
   pyaml                  \
   pycodestyle            \
   pyflakes               \
+  pygments               \
   pylama                 \
   pyvim                  \
   sqlparse               \
