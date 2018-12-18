@@ -38,3 +38,7 @@ pushd ${PYENV_VIRTUALENV_DIR}
 git fetch --all
 git reset --hard master
 popd
+
+# XXX: https://github.com/pypa/pipenv/issues/3224
+# pyenv global 3.6.7
+# ~/.pyenv/version
