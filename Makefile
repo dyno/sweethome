@@ -58,20 +58,20 @@ fonts:
 	# END
 
 # -----------------------------------------------------------------------------
-sdkman: bootstrap
+sdkman:
 	@echo "-- install [sdkman](https://sdkman.io/install)"
-	@# XXX: sdkman is a shell function, and not initialized in make env.
+	@# XXX: sdkman is a shell function, and can not be initialized in make env.
 	@if [[ ! -d ~/.sdkman ]]; then            \
 	  curl -s "https://get.sdkman.io" | bash; \
 	fi
 	source ~/.sdkman/bin/sdkman-init.sh  \
-	  && sdk update                      \
+	  && sdk selfupdate force            \
 	  && sdk install java 8.0.191-oracle \
 	  && sdk install scala 2.12.7        \
-	  && sdk install gradle 4.10.2	     \
+	  && sdk install gradle 4.10.2       \
 	  # END
 
-coursier: bootstrap
+coursier:
 	@echo "-- install [coursier](https://coursier.github.io/coursier/1.1.0-SNAPSHOT/docs/quick-start-cli)"
 	@if ! command -v coursier &>/dev/null; then                         \
 	  curl -L -o coursier https://git.io/coursier && chmod +x coursier; \
@@ -87,13 +87,14 @@ ammonite: sdkman coursier
 	# END
 
 # -----------------------------------------------------------------------------
+#  ## Go ##
+
 fzf:
 	@echo "-- install [fzf](https://github.com/junegunn/fzf.vim)"
 	@[ ! -e ~/.fzf ] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
 	@cd ~/.fzf && git pull && make install
 
 
-# -----------------------------------------------------------------------------
 shfmt:
 	@echo "-- install [shfmt](https://github.com/mvdan/sh)"
 	go get -v mvdan.cc/sh/cmd/shfmt
