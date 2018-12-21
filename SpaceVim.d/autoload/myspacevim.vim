@@ -94,7 +94,6 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
-
     " arc diff buffers
     autocmd BufRead,BufNewFile differential-update-comment*,new-commit*,differential-edit-revision-info set filetype=gitcommit
     " http://vim.wikia.com/wiki/Dictionary_completions
@@ -151,13 +150,6 @@ func! myspacevim#after() abort
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
 
-  " https://github.com/airblade/vim-rooter#configuration
-  let g:rooter_manual_only = 0
-  let g:rooter_patterns = ['.git/', '.hg/', '.svn/']
-  let g:rooter_silent_chdir = 0
-  let g:rooter_use_lcd = 1
-  let g:rooter_change_directory_for_non_project_files = 'current'
-
   " https://github.com/ambv/black#editor-integration
   let g:black_skip_string_normalization = 1
   let g:black_linelength = 120
@@ -178,7 +170,7 @@ func! myspacevim#after() abort
         \ 'stdin': 1,
         \ }
   let g:neoformat_enabled_java = ['googlefmt']
-  let g:neoformat_run_all_formatters = 1
+  let g:neoformat_run_all_formatters = 0
   let g:neoformat_verbose = 0
 
   "":set colorcolumn=120

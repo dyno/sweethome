@@ -12,8 +12,8 @@ enable_vimfiler_gitstatus      = 1
 enable_vimfiler_welcome        = 0  # XXX: very slow, source code also confirmed it.
 max_column                     = 120
 plugin_manager                 = "dein"
-project_rooter_automatically   = 0  # XXX: does not work if i edit a file in another project.
-project_rooter_patterns        = [".git"]
+project_rooter_automatically   = 1
+project_rooter_patterns        = ["Makefile", "setup.cfg", "Pipfile", ".git"]
 relativenumber                 = 0
 search_tools                   = ["rg", "ag", "grep"]
 snippet_engine                 = "ultisnips"
@@ -176,8 +176,9 @@ merged = 0
 name = "srstevenson/vim-picker"
 merged = 0
 
+# https://spacevim.org/documentation/#managing-projects
 [[custom_plugins]]
-# https://github.com/airblade/vim-rooter
+# # https://github.com/airblade/vim-rooter
 name = "airblade/vim-rooter"
 merged = 0
 
