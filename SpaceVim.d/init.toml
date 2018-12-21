@@ -12,6 +12,7 @@ enable_vimfiler_gitstatus      = 1
 enable_vimfiler_welcome        = 0  # XXX: very slow, source code also confirmed it.
 max_column                     = 120
 plugin_manager                 = "dein"
+# https://spacevim.org/documentation/#managing-projects
 project_rooter_automatically   = 1
 project_rooter_patterns        = ["Makefile", "setup.cfg", "Pipfile", ".git"]
 relativenumber                 = 0
@@ -174,12 +175,6 @@ merged = 0
 [[custom_plugins]]
 # https://github.com/srstevenson/vim-picker
 name = "srstevenson/vim-picker"
-merged = 0
-
-# https://spacevim.org/documentation/#managing-projects
-[[custom_plugins]]
-# # https://github.com/airblade/vim-rooter
-name = "airblade/vim-rooter"
 merged = 0
 
 [[custom_plugins]]
