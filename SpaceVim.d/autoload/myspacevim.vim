@@ -48,34 +48,6 @@ func! myspacevim#before() abort
   let g:lsp_log_verbose = 0
   let g:lsp_log_file = expand('~/tmp/vim-lsp.log')
 
-  " scala/scalac do not understand ammonite scripts
-  " scalastyle needs a configuration file
-  " https://github.com/w0rp/ale/blob/master/doc/ale-scala.txt
-  " so disable all...
-  let g:neomake_scala_enabled_makers = []
-
-  " https://github.com/w0rp/ale#faq-disable-linters
-  let g:ale_linters = {
-        \   'python': ['pycodestyle', 'mypy', 'pyflakes'],
-        \}
-  let g:ale_linters_explicit = 1
-
-  let g:ale_fixers = {
-        \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-        \   'python': ['black', 'isort'],
-        \}
-  let g:ale_fix_on_save = 1
-
-  let g:ale_python_mypy_options = '--ignore-missing-imports'
-  " Don't want to install tools everywhere. if 1, from ALEInfo, it will do something like `pipenv run black ...`
-  let g:ale_python_auto_pipenv = 0
-  let g:ale_python_mypy_ignore_invalid_syntax = 1
-
-  " https://stackoverflow.com/questions/24931088/disable-omnicomplete-or-ftplugin-or-something-in-vim
-  ":help ft-sql
-  let g:omni_sql_no_default_maps = 1
-
-  "
   if has('macunix')
     let g:python3_host_prog = '/usr/local/bin/python3'
   elseif has('unix')
@@ -83,6 +55,11 @@ func! myspacevim#before() abort
   endif
   if filereadable(expand('~/venvs/vim/.venv/bin/python3'))
     let g:python3_host_prog = expand('~/venvs/vim/.venv/bin/python3')
+  endif
+
+  " https://github.com/vim/vim/issues/3707, compiled python should not set `sys.executable` to vim
+  if has('python3_compiled') && has('macunix') && v:version >= 800
+    :py3 import os; sys.executable = os.path.join(sys.exec_prefix, 'python3')
   endif
 
   augroup auto_filetype
@@ -136,9 +113,6 @@ func! myspacevim#after() abort
     let s:clipboard_register = '+'
   endif
 
-  if has('nvim')
-  endif
-
   command! GithubPath :call setreg(s:clipboard_register,
         \ 'https://github.com/dyno/sweathome/tree/master/'.(systemlist('git ls-files --full-name '.expand('%'))[0]).'#L'.line('.'))
   nnoremap <Leader>g :GithubPath<CR>
@@ -150,11 +124,40 @@ func! myspacevim#after() abort
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
 
+  " scala/scalac do not understand ammonite scripts
+  " scalastyle needs a configuration file
+  " https://github.com/w0rp/ale/blob/master/doc/ale-scala.txt
+  " so disable all...
+  let g:neomake_scala_enabled_makers = []
+
+  " https://github.com/w0rp/ale#faq-disable-linters
+  let g:ale_linters = {
+        \   'python': ['pycodestyle', 'mypy', 'pyflakes'],
+        \}
+  let g:ale_linters_explicit = 1
+
+  let g:ale_fixers = {
+        \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+        \   'python': ['black', 'isort'],
+        \}
+  let g:ale_fix_on_save = 1
+
+  let g:ale_python_mypy_options = '--ignore-missing-imports'
+  " Don't want to install tools everywhere. if 1, from ALEInfo, it will do something like `pipenv run black ...`
+  let g:ale_python_auto_pipenv = 0
+  let g:ale_python_mypy_ignore_invalid_syntax = 1
+
+  " https://stackoverflow.com/questions/24931088/disable-omnicomplete-or-ftplugin-or-something-in-vim
+  ":help ft-sql
+  let g:omni_sql_no_default_maps = 1
+
   " https://github.com/ambv/black#editor-integration
+  " :Black
   let g:black_skip_string_normalization = 1
   let g:black_linelength = 120
 
   " https://github.com/Chiel92/vim-autoformat
+  " :Autoformat
   let g:formatters_python = ['black']
   let g:formatdef_black = '"black --line-length=120 --skip-string-normalization --quiet -"'
 
@@ -163,6 +166,7 @@ func! myspacevim#after() abort
   let g:autoformat_verbosemode = 0
 
   " https://github.com/sbdchd/neoformat
+  " :Neoformat
   let g:neoformat_enabled_python = ['black', 'isort', 'docformatter']
   let g:neoformat_java_googlefmt = {
         \ 'exe': 'java',
