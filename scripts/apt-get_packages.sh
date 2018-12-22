@@ -3,7 +3,7 @@
 # set -o xtrace
 set -o errexit
 
-# fix some installation problems (on Deepin 15.7), might be temporary
+# XXX: fix some installation problems (on Deepin 15.7), might be temporary
 sudo apt-get install --yes console-setup plymouth-themes plymouth-label
 
 sudo apt-get install --yes synaptic
@@ -19,7 +19,7 @@ sudo apt-get install --yes python3 python3-pip python3-jedi
 sudo apt-get install --yes golang
 
 # pyenv - build python dependencies
-sudo apt-get install --yes libsqlite3-dev libssl-dev libreadline-dev zlib1g-dev libbz2-dev
+sudo apt-get install --yes libbz2-dev libffi-dev libreadline-dev libsqlite3-dev libssl-dev zlib1g-dev
 
 # arc - code review
 sudo apt-get install --yes php php-curl
