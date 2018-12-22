@@ -59,7 +59,7 @@ func! myspacevim#before() abort
 
   " https://github.com/vim/vim/issues/3707, compiled python should not set `sys.executable` to vim
   if has('python3_compiled') && has('macunix') && v:version >= 800
-    :py3 import os; sys.executable = os.path.join(sys.exec_prefix, 'python3')
+    :py3 import os; sys.executable = os.path.join(sys.exec_prefix, 'bin/python3')
   endif
 
   augroup auto_filetype
