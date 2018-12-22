@@ -37,6 +37,8 @@ bootstrap_after  = "myspacevim#after"
 # https://spacevim.org/layers/colorscheme/
 colorscheme    = "molokai"
 colorscheme_bg = "dark"
+# colorscheme    = "dracula"
+# colorscheme_bg = "light"
 
 # layers:checkers
 enable_neomake = false
@@ -46,14 +48,17 @@ enable_ale     = true
 
 # ##^^ colorscheme ^^## --------------------------------------------------------
 
-# [[custom_plugins]]
-# # https://github.com/napcs/vim-mycontrast
-# name = "napcs/vim-mycontrast"
-# merged = 0
-#
-# [[custom_plugins]]
-# # https://github.com/marcopaganini/termschool-vim-theme
-# name = "marcopaganini/termschool-vim-theme"
+[[custom_plugins]]
+# https://github.com/drewtempelmeyer/palenight.vim
+name = 'drewtempelmeyer/palenight.vim'
+
+[[custom_plugins]]
+# https://github.com/ayu-theme/ayu-vim
+name = 'ayu-theme/ayu-vim'
+
+[[custom_plugins]]
+# https://draculatheme.com/vim/
+name = 'dracula/vim'
 
 # ##$$ colorscheme $$## --------------------------------------------------------
 
@@ -86,10 +91,6 @@ on_ft = "python"
 # https://github.com/Chiel92/vim-autoformat
 name = "Chiel92/vim-autoformat"
 
-# [[custom_plugins]]
-# # https://vimawesome.com/plugin/neoformat
-# name = "sbdchd/neoformat"
-
 [[custom_plugins]]
 # https://github.com/godlygeek/tabular
 name = "godlygeek/tabular"
@@ -114,22 +115,6 @@ merged = 0
 # [[custom_plugins]]
 # name = "vim-scripts/dbext.vim"
 # merged = 0"
-
-# [[custom_plugins]]
-# # https://github.com/Shougo/deoplete.nvim
-# name = "Shougo/deoplete.nvim"
-# merged = 0
-#
-# # Explains why the below 2 plugins are needed.
-# # https://github.com/Shougo/deoplete.nvim#requirements
-# # for neovim :UpdateRemotePlugins
-# [[custom_plugins]]
-# # https://github.com/roxma/nvim-yarp
-# name = "roxma/nvim-yarp"
-#
-# [[custom_plugins]]
-# # https://github.com/roxma/vim-hug-neovim-rpc
-# name = "roxma/vim-hug-neovim-rpc"
 
 # [[custom_plugins]]
 # # https://github.com/editorconfig/editorconfig-vim
