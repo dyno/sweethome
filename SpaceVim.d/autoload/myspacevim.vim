@@ -223,13 +223,11 @@ function GitRemotePath()
   let repourl = substitute(repourl, '://.*@', '://', '')
   " bitbucket.org
   let repohost = substitute(repourl, '.*://\(.\{-}\)/.*$', '\1', '')
-  " https://bitbucket.org/dyno/dynohome/src/master
-  let repourl = repourl.'/'.branch[repohost].'/'
 
   " SpaceVim.d/autoload/myspacevim.vim
   let filepath = systemlist('git ls-files --full-name '.expand('%'))[0]
   " https://bitbucket.org/dyno/dynohome/src/master/SpaceVim.d/autoload/myspacevim.vim#lines-231
-  let url = repourl.filepath.linenum[repohost].line('.')
+  let url = repourl.'/'.branch[repohost].'/'.filepath.linenum[repohost].line('.')
 
   call setreg(s:clipboard_register, url)
 endfunction
