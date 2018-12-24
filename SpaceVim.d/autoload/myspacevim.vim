@@ -1,6 +1,8 @@
 " https://spacevim.org/documentation/#bootstrap-functions
 " https://spacevim.org/conventions/
 
+" ------------------------------------------------------------------------------
+
 func! myspacevim#before() abort
 
   if v:version >= 800
@@ -99,6 +101,8 @@ func! myspacevim#before() abort
   let g:scratch_persistence_file = '~/tmp/vim_scratch.txt'
 endf
 
+" ------------------------------------------------------------------------------
+
 func! myspacevim#after() abort
   " yank to clipboard
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
@@ -113,9 +117,8 @@ func! myspacevim#after() abort
     let s:clipboard_register = '+'
   endif
 
-  command! GithubPath :call setreg(s:clipboard_register,
-        \ 'https://github.com/dyno/sweathome/tree/master/'.(systemlist('git ls-files --full-name '.expand('%'))[0]).'#L'.line('.'))
-  nnoremap <Leader>g :GithubPath<CR>
+  command! RemotePath :call GitRemotePath()
+  nnoremap <Leader>l :call GitRemotePath()<CR>
 
   nnoremap <Leader>e :call FzyCommand("rg --files", ":e")<CR>
   nnoremap <Leader>v :call FzyCommand("rg --files", ":vs")<CR>
@@ -187,6 +190,7 @@ func! myspacevim#after() abort
 endf
 
 "-------------------------------------------------------------------------------
+
 " https://github.com/jhawthorn/fzy
 function FzyCommand(choice_command, vim_command)
   try
@@ -198,4 +202,34 @@ function FzyCommand(choice_command, vim_command)
   if v:shell_error == 0 && !empty(output)
     exec a:vim_command . ' ' . output
   endif
+endfunction
+
+"-------------------------------------------------------------------------------
+
+function GitRemotePath()
+  let branch = {
+        \ 'github.com': 'blob/master',
+        \ 'bitbucket.org': 'src/master',
+        \ }
+  let linenum = {
+        \ 'github.com': '#L',
+        \ 'bitbucket.org': '#lines-',
+        \}
+  " https://dyno@bitbucket.org/dyno/dynohome.git
+  let repourl = systemlist('git config --get remote.origin.url')[0]
+  " https://dyno@bitbucket.org/dyno/dynohome
+  let repourl = substitute(repourl, '.git$', '', '')
+  " https://bitbucket.org/dyno/dynohome
+  let repourl = substitute(repourl, '://.*@', '://', '')
+  " bitbucket.org
+  let repohost = substitute(repourl, '.*://\(.\{-}\)/.*$', '\1', '')
+  " https://bitbucket.org/dyno/dynohome/src/master
+  let repourl = repourl.'/'.branch[repohost].'/'
+
+  " SpaceVim.d/autoload/myspacevim.vim
+  let filepath = systemlist('git ls-files --full-name '.expand('%'))[0]
+  " https://bitbucket.org/dyno/dynohome/src/master/SpaceVim.d/autoload/myspacevim.vim#lines-231
+  let url = repourl.filepath.linenum[repohost].line('.')
+
+  call setreg(s:clipboard_register, url)
 endfunction
