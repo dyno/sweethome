@@ -17,8 +17,9 @@ project_rooter_automatically   = 1
 project_rooter_patterns        = ["Makefile", "setup.cfg", "Pipfile", ".git"]
 relativenumber                 = 0
 search_tools                   = ["rg", "ag", "grep"]
-snippet_engine                 = "ultisnips"
-# snippet_engine                 = "neosnippet"
+# https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim.vim#L296
+# snippet_engine                 = "ultisnips"
+snippet_engine                 = "neosnippet"
 statusline_separator           = "bar"
 vimcompatible                  = 0
 
@@ -131,6 +132,7 @@ merged = 0
 name = "jremmen/vim-ripgrep"
 merged = 0
 
+# https://spacevim.org/layers/tags/
 # use customized plugin instead of layer for quickfix/location list window
 [[custom_plugins]]
 # https://github.com/ludovicchabant/vim-gutentags
@@ -167,17 +169,22 @@ merged = 0
 name = "luochen1990/rainbow"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/lilydjwg/colorizer
+name = "lilydjwg/colorizer"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/numirias/semshi
+name = "numirias/semshi"
+merged = 0
+
 # [[custom_plugins]]
 # # https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
 # name = "neoclide/coc.nvim"
 # # :help dein-options
 # build = "yarn install"
 # # call coc#util#install()
-
-# [[custom_plugins]]
-# # https://github.com/SirVer/ultisnips
-# name = "SirVer/ultisnips"
-# merged = 0
 
 [[custom_plugins]]
 # https://github.com/mtth/scratch.vim
@@ -189,11 +196,8 @@ merged = 0
 name = "tpope/vim-scriptease"
 merged = 0
 
-# XXX: https://spacevim.org/documentation/#unimpaired-bindings
-# [[custom_plugins]]
-# # https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt
-# name = "tpope/vim-unimpaired"
-# merged = 0
+# unimpaired
+# https://spacevim.org/documentation/#unimpaired-bindings
 
 # ==============================================================================
 
