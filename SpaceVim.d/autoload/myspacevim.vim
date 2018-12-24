@@ -109,16 +109,17 @@ func! myspacevim#after() abort
   " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
   if has('clipboard')
     set clipboard^=unnamed  " copy to the system clipboard
-    let s:clipboard_register = '*'
+    let g:clipboard_register = '*'
   endif
 
   if has('unnamedplus')
     set clipboard^=unnamedplus
-    let s:clipboard_register = '+'
+    let g:clipboard_register = '+'
   endif
 
-  command! RemotePath :call GitRemotePath()
-  nnoremap <Leader>l :call GitRemotePath()<CR>
+  command! GitRepoUrl :call GitRepoUrl()
+  nnoremap <Leader>l :call GitRepoUrl()<CR>
+  nnoremap <Leader>o :exec ':OpenBrowser '.GitRepoUrl()<CR>
 
   nnoremap <Leader>e :call FzyCommand("rg --files", ":e")<CR>
   nnoremap <Leader>v :call FzyCommand("rg --files", ":vs")<CR>
@@ -206,7 +207,7 @@ endfunction
 
 "-------------------------------------------------------------------------------
 
-function GitRemotePath()
+function GitRepoUrl()
   let branch = {
         \ 'github.com': 'blob/master',
         \ 'bitbucket.org': 'src/master',
@@ -229,5 +230,6 @@ function GitRemotePath()
   " https://bitbucket.org/dyno/dynohome/src/master/SpaceVim.d/autoload/myspacevim.vim#lines-231
   let url = repourl.'/'.branch[repohost].'/'.filepath.linenum[repohost].line('.')
 
-  call setreg(s:clipboard_register, url)
+  call setreg(g:clipboard_register, url)
+  return url
 endfunction
