@@ -114,7 +114,7 @@ pyenv:
 	./scripts/install_or_upgrade_pyenv.sh
 
 jedi:
-	# for whatever reason jedi need to be installed systemwide.
+	# jedi need to be installed to the python that compiled into vim
 	# https://jedi.readthedocs.io/en/latest/docs/installation.html
 ifeq ($(UNAME),Darwin)
 	/usr/local/bin/pip3 install --upgrade jedi
