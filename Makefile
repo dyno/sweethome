@@ -129,14 +129,14 @@ pre-commit:
 	pre-commit install
 
 # -----------------------------------------------------------------------------
-ssh:
-	@echo "-- setup ssh config"
-	mkdir -p ~/.ssh && ln -sf $(PWD)/ssh_config ~/.ssh/config && chmod 600 ~/.ssh/config
-
-# -----------------------------------------------------------------------------
 #  Formatters
 # .py, .java, .scala, .sh, .yaml, .yml, .json, .md, .vim ...
 google-java-format:
 	cd $(LOCAL_BIN) \
 	  && curl -L -O https://github.com/google/google-java-format/releases/download/google-java-format-1.6/google-java-format-1.6-all-deps.jar \
 	  && ln -sf google-java-format-1.6-all-deps.jar google-java-format.jar
+
+# -----------------------------------------------------------------------------
+submodule:
+	git submodule init
+	git submodule update
