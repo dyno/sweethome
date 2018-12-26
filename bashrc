@@ -1,11 +1,10 @@
 # .bashrc
 
 #for interactive shell only
-#[ -z "$PS1" ] && return
+#[ -z "${PS1}" ] && return
 
 #######################################################################
-if [[ "$SHELL" == *bash ]]; then
-  #======================================================================
+if [[ "${SHELL}" =~ bash ]]; then
   # Source global definitions
   if [ -f /etc/bashrc ]; then
     . /etc/bashrc
@@ -17,34 +16,20 @@ if [[ "$SHELL" == *bash ]]; then
   fi
 
   #----------------------------------------------------------------------
-  if [[ "$(whoami)" == "root" ]]; then
+  if [[ "${USER}" == "root" ]]; then
     PS1='[\u@\h: \W]# '
   else
     PS1='[\u@\h: \W]$ '
   fi
-
-  #----------------------------------------------------------------------
-  # history
-  export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-  shopt -s histappend
-  shopt -s checkwinsize
-
-  # make sure all terminals save history
-  shopt -s histappend
-  PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-
-  # increase history size
-  export HISTSIZE=1000
-  export HISTFILESIZE=1000
-
-  #======================================================================
 fi # end of if is bash
 
 #----------------------------------------------------------------------
-for pth in $HOME/bin $HOME/.local/bin \
-  /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin; do
-  if ! echo ":$PATH:" | grep -q ":$pth:"; then
-    PATH=$PATH:$pth
+for pth in ${HOME}/bin ${HOME}/.local/bin \
+  /usr/local/bin /usr/local/sbin \
+  /usr/bin /usr/sbin \
+  /bin /sbin; do
+  if ! echo ":${PATH}:" | grep -q ":${pth}:"; then
+    PATH=${PATH}:${pth}
   fi
 done
 
@@ -58,9 +43,9 @@ alias mv='mv -i'
 alias vi=vim
 alias nvim='nvim -u ~/.SpaceVim/vimrc'
 
-if [[ "$(uname)" == "Darwin" ]]; then
+if [[ "${OSTYPE}" =~ "darwin" ]]; then
   alias ls='ls -G'
-elif [[ "$(uname)" == "Linux" ]]; then
+elif [[ "${OSTYPE}" =~ "linux" ]]; then
   alias ls='ls --color --ignore=*.pyc '
 fi
 
@@ -68,15 +53,10 @@ fi
 export EDITOR=vim
 
 #----------------------------------------------------------------------
-if [[ -d $HOME/env.d ]]; then
-  for _env in $HOME/env.d/*.env; do
-    source $_env
+if [[ -d ${HOME}/env.d ]]; then
+  for _env in ${HOME}/env.d/*.env; do
+    source ${_env}
   done
 fi
-
-# XXX: till i understand it what does it mean.
-#if [[ "$TERM" == "linux" ]]; then
-#  sudo loadkeys -q ~/.keymap
-#fi
 
 #----------------------------------------------------------------------
