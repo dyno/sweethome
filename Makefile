@@ -80,8 +80,10 @@ coursier:
 	fi                                                                  \
 	# END
 
+amm: ammonite
 ammonite: sdkman coursier
 	@echo "-- install [ammonite](http://ammonite.io/#Ammonite-REPL)"
+	[[ ! -e ~/.ammonite || -L ~/.ammonite ]] && rm -f ~/.ammonite && ln -sf $(PWD)/ammonite ~/.ammonite
 	@source $${HOME}/.sdkman/bin/sdkman-init.sh       \
 	  && mkdir -p $(LOCAL_BIN) && cp amm $(LOCAL_BIN) \
 	  && amm <<< 'println("hello from Ammonite!")'    \
