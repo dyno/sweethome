@@ -7,7 +7,7 @@ else
 endif
 
 PWD := $(shell pwd)
-LOCAL_BIN := ~/.local/bin
+HOME_BIN := ~/bin
 
 UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
@@ -76,7 +76,7 @@ coursier:
 	@echo "-- install [coursier](https://coursier.github.io/coursier/1.1.0-SNAPSHOT/docs/quick-start-cli)"
 	@if ! command -v coursier &>/dev/null; then                         \
 	  curl -L -o coursier https://git.io/coursier && chmod +x coursier; \
-	  mkdir -p $(LOCAL_BIN) && mv coursier $(LOCAL_BIN);                \
+	  mkdir -p $(HOME_BIN) && mv coursier $(HOME_BIN);                \
 	fi                                                                  \
 	# END
 
@@ -85,7 +85,7 @@ ammonite: sdkman coursier
 	@echo "-- install [ammonite](http://ammonite.io/#Ammonite-REPL)"
 	[[ ! -e ~/.ammonite || -L ~/.ammonite ]] && rm -f ~/.ammonite && ln -sf $(PWD)/ammonite ~/.ammonite
 	@source $${HOME}/.sdkman/bin/sdkman-init.sh       \
-	  && mkdir -p $(LOCAL_BIN) && cp amm $(LOCAL_BIN) \
+	  && mkdir -p $(HOME_BIN) && cp amm $(HOME_BIN) \
 	  && amm <<< 'println("hello from Ammonite!")'    \
 	# END
 
@@ -134,7 +134,7 @@ pre-commit:
 #  Formatters
 # .py, .java, .scala, .sh, .yaml, .yml, .json, .md, .vim ...
 google-java-format:
-	cd $(LOCAL_BIN) \
+	cd $(HOME_BIN) \
 	  && curl -L -O https://github.com/google/google-java-format/releases/download/google-java-format-1.6/google-java-format-1.6-all-deps.jar \
 	  && ln -sf google-java-format-1.6-all-deps.jar google-java-format.jar
 
@@ -142,3 +142,9 @@ google-java-format:
 submodule:
 	git submodule init
 	git submodule update
+
+bfg:
+	@echo "-- install [bfg](https://rtyley.github.io/bfg-repo-cleaner/)"
+	cd $(HOME_BIN) \
+	  && curl -L -O http://repo1.maven.org/maven2/com/madgag/bfg/1.13.0/bfg-1.13.0.jar \
+	  && ln -sf bfg-1.13.0.jar bfg.jar
