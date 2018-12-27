@@ -65,6 +65,7 @@ sdkman:
 	@if [[ ! -d ~/.sdkman ]]; then            \
 	  curl -s "https://get.sdkman.io" | bash; \
 	fi
+	@echo "-- install java/scala/gradle with sdkman"
 	source ~/.sdkman/bin/sdkman-init.sh  \
 	  && sdk selfupdate force            \
 	  && sdk install java 8.0.191-oracle \
@@ -76,7 +77,7 @@ coursier:
 	@echo "-- install [coursier](https://coursier.github.io/coursier/1.1.0-SNAPSHOT/docs/quick-start-cli)"
 	@if ! command -v coursier &>/dev/null; then                         \
 	  curl -L -o coursier https://git.io/coursier && chmod +x coursier; \
-	  mkdir -p $(HOME_BIN) && mv coursier $(HOME_BIN);                \
+	  mkdir -p $(HOME_BIN) && mv coursier $(HOME_BIN);                  \
 	fi                                                                  \
 	# END
 
@@ -84,9 +85,9 @@ amm: ammonite
 ammonite: sdkman coursier
 	@echo "-- install [ammonite](http://ammonite.io/#Ammonite-REPL)"
 	[[ ! -e ~/.ammonite || -L ~/.ammonite ]] && rm -f ~/.ammonite && ln -sf $(PWD)/ammonite ~/.ammonite
-	@source $${HOME}/.sdkman/bin/sdkman-init.sh       \
+	@source $${HOME}/.sdkman/bin/sdkman-init.sh     \
 	  && mkdir -p $(HOME_BIN) && cp amm $(HOME_BIN) \
-	  && amm <<< 'println("hello from Ammonite!")'    \
+	  && amm <<< 'println("hello from Ammonite!")'  \
 	# END
 
 # -----------------------------------------------------------------------------
