@@ -199,6 +199,11 @@ merged = 0
 # unimpaired
 # https://spacevim.org/documentation/#unimpaired-bindings
 
+[[custom_plugins]]
+# https://github.com/justinmk/vim-dirvish
+name = "justinmk/vim-dirvish"
+merged = 0
+
 # ==============================================================================
 
 [[layers]]
