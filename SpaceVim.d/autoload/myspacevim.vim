@@ -240,7 +240,7 @@ endfunction
 "-------------------------------------------------------------------------------
 
 function FuzzyEdit(fuzzy_query)
-  let cmd = 'rg --files | fzf -f ' . a:fuzzy_query
+  let cmd = 'rg --files | fzf -f "' . a:fuzzy_query . '"'
   let output = systemlist(cmd)
   if v:shell_error == 0 && !empty(output)
     exec ':edit ' . output[0]
