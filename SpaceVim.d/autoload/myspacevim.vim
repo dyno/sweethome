@@ -181,7 +181,7 @@ func! myspacevim#after() abort
         \ 'stdin': 1,
         \ }
   let g:neoformat_enabled_java = ['googlefmt']
-  let g:neoformat_run_all_formatters = 0
+  let g:neoformat_run_all_formatters = 1
   let g:neoformat_verbose = 0
 
   "":set colorcolumn=120
