@@ -125,6 +125,9 @@ func! myspacevim#after() abort
   nnoremap <Leader>v :call FzyCommand("rg --files", ":vs")<CR>
   nnoremap <Leader>s :call FzyCommand("rg --files", ":sp")<CR>
 
+  " :edit with "I'm feeling lucky"
+  command! -nargs=1 E :call FuzzyEdit(<f-args>)
+
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
 
@@ -232,4 +235,16 @@ function GitRepoUrl()
 
   call setreg(g:clipboard_register, url)
   return url
+endfunction
+
+"-------------------------------------------------------------------------------
+
+function FuzzyEdit(fuzzy_query)
+  let cmd = 'rg --files | fzf -f ' . a:fuzzy_query
+  let output = systemlist(cmd)
+  if v:shell_error == 0 && !empty(output)
+    exec ':edit ' . output[0]
+  else
+    echom 'something wrong... please check `'. cmd . '`'
+  endif
 endfunction
