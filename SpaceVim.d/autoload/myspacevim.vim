@@ -185,7 +185,7 @@ func! myspacevim#after() abort
   let g:neoformat_verbose = 0
 
   " http://vimdoc.sourceforge.net/htmldoc/cmdline.html#cmdline-completion
-  set wildmode=longest,list
+  set wildmode=longest,list:full
 
   ":set colorcolumn=120
   ":help highlight
