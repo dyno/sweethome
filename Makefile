@@ -38,12 +38,14 @@ SpaceVim:
 	[[ ! -e ~/.SpaceVim ]] && curl -sLf https://spacevim.org/install.sh | bash || true
 	[[ -d ~/.SpaceVim ]] && git pull
 
-vim: SpaceVim
+spacevim: SpaceVim
 	[[ ! -e ~/.vim || -L ~/.vim ]] && rm -f ~/.vim && ln -sf .SpaceVim ~/.vim
 	[[ -f ~/.vimrc && ! -L ~/.vimrc ]]  && mv ~/.vimrc ~/.vimrc_back || rm -f ~/.vimrc
 	[[ -f ~/.gvimrc && ! -L ~/.gvimrc ]]  && mv ~/.gvimrc ~/.gvimrc_back || rm -f ~/.gvimrc
 	[[ ! -e ~/.SpaceVim.d || -L ~/.SpaceVim.d ]] && rm -f ~/.SpaceVim.d && ln -sf $(PWD)/SpaceVim.d ~/.SpaceVim.d
 	[[ ! -e ~/.vim/after || -L ~/.vim/after ]] && rm -f ~/.vim/after && ln -sf $(PWD)/vim/after ~/.vim/
+
+vim: spacevim
 
 vim-venv:
 	mkdir -p ~/venvs/vim && ln -sf $(PWD)/vim.Pipfile ~/venvs/vim/Pipfile
@@ -96,7 +98,7 @@ ammonite: sdkman coursier
 fzf:
 	@echo "-- install [fzf](https://github.com/junegunn/fzf.vim)"
 	@[[ ! -e ~/.fzf ]] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
-	@cd ~/.fzf && git pull && make install
+	@cd ~/.fzf && git stash && git pull && make install && git stash apply
 
 
 shfmt:
