@@ -55,3 +55,6 @@ zold
 *.orig
 *.bak
 .netrwhist
+
+*ignifyd*
+
