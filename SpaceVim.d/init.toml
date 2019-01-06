@@ -61,6 +61,10 @@ name = 'ayu-theme/ayu-vim'
 # https://draculatheme.com/vim/
 name = 'dracula/vim'
 
+[[custom_plugins]]
+# https://github.com/NLKNguyen/papercolor-theme
+name = "NLKNguyen/papercolor-theme"
+
 # ##$$ colorscheme $$## --------------------------------------------------------
 
 
