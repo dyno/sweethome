@@ -77,7 +77,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile differential-update-comment*,new-commit*,differential-edit-revision-info set filetype=gitcommit
     " http://vim.wikia.com/wiki/Dictionary_completions
     " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
-    autocmd FileType gitcommit execute 'setlocal complete+=k'.globpath(&runtimepath,'words/'.&filetype.'.txt').' iskeyword+=. complete-=t ignorecase'
+    autocmd FileType gitcommit execute 'setlocal complete+=k' . globpath(&runtimepath,'words/' . &filetype . '.txt') . ' iskeyword+=. complete-=t ignorecase'
   augroup end
 
   " by default disable fold, zi to toggle foldenable
@@ -119,7 +119,7 @@ func! myspacevim#after() abort
 
   command! GitRepoUrl :call GitRepoUrl()
   nnoremap <Leader>l :call GitRepoUrl()<CR>
-  nnoremap <Leader>o :exec ':OpenBrowser '.GitRepoUrl()<CR>
+  nnoremap <Leader>o :execute ':OpenBrowser '.GitRepoUrl()<CR>
 
   nnoremap <Leader>e :call FzyCommand("rg --files", ":e")<CR>
   nnoremap <Leader>v :call FzyCommand("rg --files", ":vs")<CR>
@@ -184,29 +184,17 @@ func! myspacevim#after() abort
   let g:neoformat_run_all_formatters = 1
   let g:neoformat_verbose = 0
 
-  "":set colorcolumn=120
+  " http://vimdoc.sourceforge.net/htmldoc/cmdline.html#cmdline-completion
+  set wildmode=longest,list
+
+  ":set colorcolumn=120
   ":help highlight
   ":help highlight-groups
-  "":highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+  ":highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
   ":highlight Normal guibg=black
   ":highlight CursorLine guibg=black cterm=NONE
   ":highlight EndOfBuffer guibg=black cterm=NONE
 endf
-
-"-------------------------------------------------------------------------------
-
-" https://github.com/jhawthorn/fzy
-function FzyCommand(choice_command, vim_command)
-  try
-    let output = system(a:choice_command . ' | fzy ')
-  catch /Vim:Interrupt/
-    " Swallow errors from ^C, allow redraw! below
-  endtry
-  redraw!
-  if v:shell_error == 0 && !empty(output)
-    exec a:vim_command . ' ' . output
-  endif
-endfunction
 
 "-------------------------------------------------------------------------------
 
@@ -231,10 +219,25 @@ function GitRepoUrl()
   " SpaceVim.d/autoload/myspacevim.vim
   let filepath = systemlist('git ls-files --full-name '.expand('%'))[0]
   " https://bitbucket.org/dyno/dynohome/src/master/SpaceVim.d/autoload/myspacevim.vim#lines-231
-  let url = repourl.'/'.branch[repohost].'/'.filepath.linenum[repohost].line('.')
+  let url = repourl . '/' . branch[repohost] . '/' . filepath . linenum[repohost] . line('.')
 
   call setreg(g:clipboard_register, url)
   return url
+endfunction
+
+"-------------------------------------------------------------------------------
+
+" https://github.com/jhawthorn/fzy
+function FzyCommand(choice_command, vim_command)
+  try
+    let output = system(a:choice_command . ' | fzy ')
+  catch /Vim:Interrupt/
+    " Swallow errors from ^C, allow redraw! below
+  endtry
+  redraw!
+  if v:shell_error == 0 && !empty(output)
+    execute a:vim_command . ' ' . output
+  endif
 endfunction
 
 "-------------------------------------------------------------------------------
@@ -243,8 +246,8 @@ function FuzzyEdit(fuzzy_query)
   let cmd = 'rg --files | fzf -f "' . a:fuzzy_query . '"'
   let output = systemlist(cmd)
   if v:shell_error == 0 && !empty(output)
-    exec ':edit ' . output[0]
+    execute ':edit ' . output[0]
   else
-    echom 'something wrong... please check `'. cmd . '`'
+    echom 'something wrong... please check `' . cmd . '`'
   endif
 endfunction
