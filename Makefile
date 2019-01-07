@@ -101,13 +101,15 @@ fzf:
 
 shfmt:
 	@echo "-- install [shfmt](https://github.com/mvdan/sh)"
-	go get -v mvdan.cc/sh/cmd/shfmt
-	go install -v mvdan.cc/sh/cmd/shfmt
+	go get -u mvdan.cc/sh/cmd/shfmt
 
 goofys:
 	@echo "-- install [goofys](https://github.com/kahing/goofys)"
-	go get -v github.com/kahing/goofys
-	go install -v github.com/kahing/goofys
+	go get -u github.com/kahing/goofys
+
+gron:
+	@echo "-- install [gron](https://github.com/tomnomnom/gron)"
+	go get -u github.com/tomnomnom/gron
 
 # -----------------------------------------------------------------------------
 #  ## Python ##
