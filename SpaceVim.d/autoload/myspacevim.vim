@@ -234,7 +234,7 @@ function GitRepoUrl()
   let host = arr[3]  "github.com
   let repo = arr[4]  "dyno/sweathome
 
-  " https://github.com/dyno/sweathome/blob/
+  " https://github.com/dyno/sweathome/blob/master/SpaceVim.d/autoload/myspacevim.vim#L237
   let url = 'https://' . host . '/'. repo . '/' . s:repo_sep[host] . '/' . branch . '/' . filepath . s:repo_linenum[host] . line('.')
 
   call setreg(s:clipboard_register, url)
