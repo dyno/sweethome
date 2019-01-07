@@ -77,7 +77,8 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile differential-*,new-commit*,commit-message* set filetype=gitcommit
     " http://vim.wikia.com/wiki/Dictionary_completions
     " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
-    autocmd FileType gitcommit execute 'setlocal complete+=k' . globpath(&runtimepath,'words/' . &filetype . '.txt') . ' iskeyword+=. complete-=t ignorecase'
+    " :help i_CTRL-X_CTRL-K
+    autocmd FileType gitcommit execute 'setlocal dictionary=' . globpath(&runtimepath,'words/' . &filetype . '.txt')
   augroup end
 
   " by default disable fold, zi to toggle foldenable
