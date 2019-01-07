@@ -41,13 +41,22 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias vi=vim
-alias nvim='nvim -u ~/.SpaceVim/vimrc'
-
 if [[ "${OSTYPE}" =~ "darwin" ]]; then
   alias ls='ls -G'
 elif [[ "${OSTYPE}" =~ "linux" ]]; then
   alias ls='ls --color --ignore=*.pyc '
 fi
+
+# https://stackoverflow.com/questions/7131670/make-a-bash-alias-that-takes-a-parameter
+# vim edit with 'I am feeling lucky' search.
+function lucky_vim() {
+  nvim $(rg --files | fzf -f "$@" | head -n 1)
+}
+
+alias lv=lucky_vim
+alias lvi=lucky_vim
+alias lvim=lucky_vim
+alias fvim=lucky_vim
 
 #----------------------------------------------------------------------
 export EDITOR=vim
