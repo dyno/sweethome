@@ -12,7 +12,7 @@ HOME_BIN := ~/bin
 UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
     user_bashrc = ~/.bashrc
-    install_boostrap_packages = ./scripts/apt-get_packages.sh
+    install_boostrap_packages = ./scripts/apt_packages.sh
 endif
 ifeq ($(UNAME),Darwin)
     user_bashrc = ~/.bash_profile

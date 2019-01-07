@@ -19,7 +19,7 @@ install_or_upgrade bash bash-completion coreutils moreutils tree
 # python build dependencies
 install_or_upgrade openssl readline zlib xz
 install_or_upgrade git
-install_or_upgrade vim neovim
+install_or_upgrade macvim neovim
 install_or_upgrade go
 install_or_upgrade global cscope remake fzy
 
