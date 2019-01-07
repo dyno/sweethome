@@ -69,12 +69,12 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile gitconfig  set filetype=gitconfig
     autocmd BufRead,BufNewFile *.gradle   set filetype=groovy
     autocmd BufRead,BufNewFile *.sc       set filetype=scala
-    autocmd BufRead,BufNewFile *Pipfile   set filetype=toml
+    autocmd BufRead,BufNewFile *Pipfile*  set filetype=toml
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
     " arc diff buffers
-    autocmd BufRead,BufNewFile differential-*,new-commit*,commit-message* set filetype=gitcommit
+    autocmd BufRead,BufNewFile differential-*,*-commit*,*commit-* set filetype=gitcommit
     " http://vim.wikia.com/wiki/Dictionary_completions
     " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
     " :help i_CTRL-X_CTRL-K

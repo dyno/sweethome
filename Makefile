@@ -46,7 +46,7 @@ spacevim: SpaceVim
 vim: spacevim
 
 vim-venv:
-	mkdir -p ~/venvs/vim && ln -sf $(PWD)/vim.Pipfile ~/venvs/vim/Pipfile
+	mkdir -p ~/venvs/vim && ln -sf $(PWD)/Pipfile.venv_vim ~/venvs/vim/Pipfile
 	cd ~/venvs/vim && PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
 
 # -----------------------------------------------------------------------------
