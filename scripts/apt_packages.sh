@@ -10,7 +10,7 @@ sudo apt install --yes synaptic
 sudo apt install --yes openssh-server
 sudo apt install --yes docker.io docker-compose
 
-sudo apt install --yes curl git moreutils
+sudo apt install --yes curl git tig moreutils
 sudo apt install --yes vim-gnome neovim xclip # +python3 +clipboard
 sudo apt install --yes remake cscope global universal-ctags ripgrep fzy silversearcher-ag
 sudo apt install --yes astyle uncrustify
