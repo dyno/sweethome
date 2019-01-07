@@ -11,12 +11,10 @@ HOME_BIN := ~/bin
 
 UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
-    os_install = sudo apt-get install
     user_bashrc = ~/.bashrc
     install_boostrap_packages = ./scripts/apt-get_packages.sh
 endif
 ifeq ($(UNAME),Darwin)
-    os_install = brew install
     user_bashrc = ~/.bash_profile
     install_boostrap_packages = ./scripts/brew_packages.sh
 endif
