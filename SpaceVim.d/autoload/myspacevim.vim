@@ -220,7 +220,7 @@ function GitRepoUrl()
 
   let cmd = 'git ls-files --full-name ' . expand('%')
   let arr = systemlist(cmd)
-  if v:shell_error
+  if v:shell_error || empty(arr)
     echom 'current file not in repo? cmd=`' . cmd . '`'
     return
   endif
