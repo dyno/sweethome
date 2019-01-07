@@ -197,29 +197,47 @@ func! myspacevim#after() abort
 endf
 
 "-------------------------------------------------------------------------------
+let s:repo_sep = {
+      \ 'github.com': 'blob',
+      \ 'bitbucket.org': 'src',
+      \ }
+let s:repo_linenum = {
+      \ 'github.com': '#L',
+      \ 'bitbucket.org': '#lines-',
+      \}
 
 function GitRepoUrl()
-  let branch = {
-        \ 'github.com': 'blob/master',
-        \ 'bitbucket.org': 'src/master',
-        \ }
-  let linenum = {
-        \ 'github.com': '#L',
-        \ 'bitbucket.org': '#lines-',
-        \}
-  " https://dyno@bitbucket.org/dyno/dynohome.git
-  let repourl = systemlist('git config --get remote.origin.url')[0]
-  " https://dyno@bitbucket.org/dyno/dynohome
-  let repourl = substitute(repourl, '.git$', '', '')
-  " https://bitbucket.org/dyno/dynohome
-  let repourl = substitute(repourl, '://.*@', '://', '')
-  " bitbucket.org
-  let repohost = substitute(repourl, '.*://\(.\{-}\)/.*$', '\1', '')
+  let cmd = 'git rev-parse --symbolic-full-name --abbrev-ref @{u}'
+  let arr = systemlist(cmd)
+  if v:shell_error
+    echom 'error find tracking remote branch. cmd=`' . cmd . '`'
+    return
+  endif
+  " origin/master
+  let arr = split(arr[0], '/')
+  let remote = arr[0]
+  let branch = arr[1]
 
+  let cmd = 'git ls-files --full-name ' . expand('%')
+  let arr = systemlist(cmd)
+  if v:shell_error
+    echom 'current file not in repo? cmd=`' . cmd . '`'
+    return
+  endif
   " SpaceVim.d/autoload/myspacevim.vim
-  let filepath = systemlist('git ls-files --full-name '.expand('%'))[0]
-  " https://bitbucket.org/dyno/dynohome/src/master/SpaceVim.d/autoload/myspacevim.vim#lines-231
-  let url = repourl . '/' . branch[repohost] . '/' . filepath . linenum[repohost] . line('.')
+  let filepath = arr[0]
+
+  let cmd = 'git config --get remote.' . remote . '.url'
+  let arr = systemlist(cmd)
+  " https://dyno@bitbucket.org/dyno/sweathome.git
+  " https://github.com/dyno/sweathome.git
+  " git@github.com:dyno/sweathome.git
+  let arr = matchlist(arr[0], '\(.\{-}://\)\?\(.\{-}@\)\?\([^:/]*\)[:/]\(.*\)\.git')
+  let host = arr[3]  "github.com
+  let repo = arr[4]  "dyno/sweathome
+
+  " https://github.com/dyno/sweathome/blob/
+  let url = 'https://' . host . '/'. repo . '/' . s:repo_sep[host] . '/' . branch . '/' . filepath . s:repo_linenum[host] . line('.')
 
   call setreg(g:clipboard_register, url)
   return url
