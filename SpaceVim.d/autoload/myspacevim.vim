@@ -109,12 +109,12 @@ func! myspacevim#after() abort
   " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
   if has('clipboard')
     set clipboard^=unnamed  " copy to the system clipboard
-    let g:clipboard_register = '*'
+    let s:clipboard_register = '*'
   endif
 
   if has('unnamedplus')
     set clipboard^=unnamedplus
-    let g:clipboard_register = '+'
+    let s:clipboard_register = '+'
   endif
 
   command! GitRepoUrl :call GitRepoUrl()
@@ -213,8 +213,7 @@ function GitRepoUrl()
     echom 'error find tracking remote branch. cmd=`' . cmd . '`'
     return
   endif
-  " origin/master
-  let arr = split(arr[0], '/')
+  let arr = split(arr[0], '/')  "origin/master
   let remote = arr[0]
   let branch = arr[1]
 
@@ -224,8 +223,7 @@ function GitRepoUrl()
     echom 'current file not in repo? cmd=`' . cmd . '`'
     return
   endif
-  " SpaceVim.d/autoload/myspacevim.vim
-  let filepath = arr[0]
+  let filepath = arr[0]  "SpaceVim.d/autoload/myspacevim.vim
 
   let cmd = 'git config --get remote.' . remote . '.url'
   let arr = systemlist(cmd)
@@ -239,7 +237,7 @@ function GitRepoUrl()
   " https://github.com/dyno/sweathome/blob/
   let url = 'https://' . host . '/'. repo . '/' . s:repo_sep[host] . '/' . branch . '/' . filepath . s:repo_linenum[host] . line('.')
 
-  call setreg(g:clipboard_register, url)
+  call setreg(s:clipboard_register, url)
   return url
 endfunction
 
