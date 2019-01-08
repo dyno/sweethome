@@ -57,9 +57,12 @@ alias fzvim=fuzzy_vim
 alias fzvi=fuzzy_vim
 
 function fuzzy_run() {
-  cmd=$1
-  shift
-  query="$@"
+  # https://stackoverflow.com/questions/8247433/remove-the-last-element-from-an-array
+  args=( "$@" )
+  query="${args[${#args[@]}-1]}"
+  unset args[${#args[@]}-1]
+  cmd="${args[@]}"
+
   $cmd $(fzf -f "$query" | head -n 1)
 }
 alias fz=fuzzy_run
