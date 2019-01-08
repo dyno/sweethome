@@ -50,11 +50,11 @@ fi
 # https://stackoverflow.com/questions/7131670/make-a-bash-alias-that-takes-a-parameter
 # vim edit with 'I am feeling lucky' search.
 # FZF_DEFAULT_COMMAND, https://github.com/junegunn/fzf
-function lucky_vim() {
+function fuzzy_vim() {
   nvim $(rg --files | fzf -f "$@" | head -n 1)
 }
-alias fzvim=luck_vim
-alias fzvi=luck_vim
+alias fzvim=fuzzy_vim
+alias fzvi=fuzzy_vim
 
 function fuzzy_run() {
   cmd=$1
