@@ -20,6 +20,7 @@ sudo apt install --yes golang
 
 # pyenv - build python dependencies
 sudo apt install --yes libbz2-dev libffi-dev libreadline-dev libsqlite3-dev libssl-dev zlib1g-dev
+sudo apt install --yes libev-dev
 
 # arc - code review
 sudo apt install --yes php php-curl
