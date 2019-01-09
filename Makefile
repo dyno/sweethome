@@ -96,7 +96,7 @@ ammonite: sdkman coursier
 fzf:
 	@echo "-- install [fzf](https://github.com/junegunn/fzf.vim)"
 	@[[ ! -e ~/.fzf ]] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
-	@cd ~/.fzf && git stash && git pull && make install && git stash apply
+	@cd ~/.fzf && git pull --rebase && make install
 
 
 shfmt:
