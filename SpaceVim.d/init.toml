@@ -208,6 +208,14 @@ merged = 0
 name = "justinmk/vim-dirvish"
 merged = 0
 
+# ------------------------------------------------------------------------------
+
+# forks
+[[custom_plugins]]
+# https://github.com/dyno/vim-java
+name = "dyno/vim-java"
+merged = 0
+
 # ==============================================================================
 
 [[layers]]
