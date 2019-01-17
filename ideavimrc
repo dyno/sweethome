@@ -1,0 +1,7 @@
+if has('clipboard')
+  set clipboard^=unnamed
+endif
+
+if has('unnamedplus')
+  set clipboard^=unnamedplus
+endif

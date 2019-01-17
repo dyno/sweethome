@@ -38,6 +38,7 @@ SpaceVim:
 
 spacevim: SpaceVim
 	[[ ! -e ~/.vim || -L ~/.vim ]] && rm -f ~/.vim && ln -sf .SpaceVim ~/.vim
+	[[ ! -e ~/.ideavimrc || -L ~/.ideavimrc ]] && rm -f ~/.ideavimrc && ln -sf $(PWD)/ideavimrc ~/.ideavimrc
 	[[ -f ~/.vimrc && ! -L ~/.vimrc ]]  && mv ~/.vimrc ~/.vimrc_back || rm -f ~/.vimrc
 	[[ -f ~/.gvimrc && ! -L ~/.gvimrc ]]  && mv ~/.gvimrc ~/.gvimrc_back || rm -f ~/.gvimrc
 	[[ ! -e ~/.SpaceVim.d || -L ~/.SpaceVim.d ]] && rm -f ~/.SpaceVim.d && ln -sf $(PWD)/SpaceVim.d ~/.SpaceVim.d
