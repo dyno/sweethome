@@ -208,6 +208,12 @@ merged = 0
 name = "justinmk/vim-dirvish"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/tpope/vim-projectionist
+name = "tpope/vim-projectionist"
+merged = 0
+
+
 # ------------------------------------------------------------------------------
 
 # forks
