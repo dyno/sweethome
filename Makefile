@@ -29,8 +29,8 @@ bootstrap:
 	$(install_boostrap_packages)
 
 liquidprompt:
-	[[ -d ~/gitroot/liquidprompt ]] && cd ~/gitroot/liquidprompt && git pull
-	[[ ! -d ~/gitroot/liquidprompt ]] && mkdir -p ~/gitroot && git clone https://github.com/nojhan/liquidprompt || true
+	[[ -d ~/gitroot/liquidprompt ]] && cd ~/gitroot/liquidprompt && git pull || true
+	[[ ! -d ~/gitroot/liquidprompt ]] && mkdir -p ~/gitroot && git -C ~/gitroot clone https://github.com/nojhan/liquidprompt || true
 	cp liquidpromptrc ~/.config/liquidpromptrc
 
 bashrc: liquidprompt
