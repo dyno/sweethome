@@ -44,6 +44,7 @@ pip3 install ${PIP_OPTS} \
   pylama                 \
   pyvim                  \
   sqlparse               \
+  thefuck                \
   vim-vint               \
   vint                   \
   # END
