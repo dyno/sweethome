@@ -26,7 +26,11 @@ all: bootstrap bashrc fonts vim coursier sdkman pyenv ammonite fzf
 bootstrap:
 	$(install_boostrap_packages)
 
-bashrc:
+liquidprompt:
+	[[ -d ~/gitroot/liquidprompt ]] && cd ~/gitroot/liquidprompt && git pull
+	[[ ! -d ~/gitroot/liquidprompt ]] && mkdir -p ~/gitroot && git clone https://github.com/nojhan/liquidprompt || true
+
+bashrc: liquidprompt
 	ln -sf $(PWD)/bashrc $(user_bashrc)
 	[[ ! -e ~/env.d || -L ~/env.d ]] && rm -f ~/env.d && ln -sf $(PWD)/env.d ~/env.d
 
