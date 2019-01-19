@@ -196,9 +196,12 @@ func! myspacevim#after() abort
   " Hack 11 on Linux looks like the same as 13 on Mac
   if has('gui_gtk3')
     set guifont=Hack\ 11
+    set linespace=0
+  endif
+  if has('gui_macvim')
+    set linespace=1
   endif
   set guioptions=agikmrt
-  set linespace=2
 
 
   ":set colorcolumn=120
