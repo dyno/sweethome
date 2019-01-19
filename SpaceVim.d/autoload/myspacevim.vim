@@ -196,7 +196,7 @@ func! myspacevim#after() abort
   " Hack 11 on Linux looks like the same as 13 on Mac
   if has('gui_gtk3')
     set guifont=Hack\ 11
-    set guioptions=aegimrt
+    set guioptions=agikmrt
     set linespace=2
   endif
 
