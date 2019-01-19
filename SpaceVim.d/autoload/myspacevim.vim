@@ -193,8 +193,9 @@ func! myspacevim#after() abort
   " http://vimdoc.sourceforge.net/htmldoc/cmdline.html#cmdline-completion
   set wildmode=longest,list:full
 
-  " Otherwise on Deepin it looks wide like double character width with nerd font.
+  " Hack 11 on Linux looks like the same as 13 on Mac
   if has('gui_gtk3')
+    set guifont=Hack:h11
     set guioptions=aegimrt
     set linespace=2
   endif
