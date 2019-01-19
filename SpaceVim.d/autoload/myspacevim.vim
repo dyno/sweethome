@@ -145,7 +145,7 @@ func! myspacevim#after() abort
 
   " https://github.com/w0rp/ale#faq-disable-linters
   let g:ale_linters = {
-        \   'python': ['pycodestyle', 'mypy', 'pyflakes'],
+        \   'python': ['flake8'],
         \}
   let g:ale_linters_explicit = 1
 

@@ -8,10 +8,27 @@ echo "-- pip self upgrade"
 pip install ${PIP_OPTS} --upgrade pip
 
 echo "-- pip install tools"
+# flake8 builtin support - pyflakes, pycodestyle, mccabe
+#  flake8-black           \
+#  flake8-isort           \
+#  flake8-commas          \
+#  flake8-spellcheck      \
 pip3 install ${PIP_OPTS} \
-  black                  \
   docformatter           \
-  eradicate              \
+  black                  \
+  flake8                 \
+  flake8-bandit          \
+  flake8-blind-except    \
+  flake8-bugbear         \
+  flake8-builtins        \
+  flake8-chart           \
+  flake8-colors          \
+  flake8-comprehensions  \
+  flake8-docstrings      \
+  flake8-eradicate       \
+  flake8-mutable         \
+  flake8-mypy            \
+  flake8-rst-docstrings  \
   httpie                 \
   ipython                \
   isort                  \
@@ -22,9 +39,7 @@ pip3 install ${PIP_OPTS} \
   poetry                 \
   pre-commit             \
   pssh                   \
-  pyaml                  \
-  pycodestyle            \
-  pyflakes               \
+  PyAML                  \
   pygments               \
   pylama                 \
   pyvim                  \
