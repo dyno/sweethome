@@ -100,6 +100,11 @@ func! myspacevim#before() abort
   " https://github.com/mtth/scratch.vim
   let g:scratch_autohide = 0
   let g:scratch_persistence_file = '~/tmp/vim_scratch.txt'
+
+  ":help jedi-vim
+  " https://github.com/davidhalter/jedi-vim/issues/567, option to disable autocompletion/auto-typing of "import" keyword
+  let g:jedi#smart_auto_mappings = 0
+  let g:jedi#auto_vim_configuration = 0
 endf
 
 " ------------------------------------------------------------------------------
