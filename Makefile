@@ -29,6 +29,7 @@ bootstrap:
 liquidprompt:
 	[[ -d ~/gitroot/liquidprompt ]] && cd ~/gitroot/liquidprompt && git pull
 	[[ ! -d ~/gitroot/liquidprompt ]] && mkdir -p ~/gitroot && git clone https://github.com/nojhan/liquidprompt || true
+	cp liquidpromptrc ~/.config/liquidpromptrc
 
 bashrc: liquidprompt
 	ln -sf $(PWD)/bashrc $(user_bashrc)

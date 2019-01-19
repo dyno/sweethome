@@ -1,0 +1,3 @@
+# https://github.com/nojhan/liquidprompt#feature-configuration
+LP_PATH_LENGTH=10
+LP_PATH_KEEP=1
