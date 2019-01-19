@@ -193,6 +193,13 @@ func! myspacevim#after() abort
   " http://vimdoc.sourceforge.net/htmldoc/cmdline.html#cmdline-completion
   set wildmode=longest,list:full
 
+  " Otherwise on Deepin it looks wide like double character width with nerd font.
+  if has('gui_gtk3')
+    set guifont=
+    set guioptions=aegimrt
+    set linespace=2
+  endif
+
   ":set colorcolumn=120
   ":help highlight
   ":help highlight-groups
