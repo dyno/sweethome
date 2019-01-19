@@ -195,7 +195,6 @@ func! myspacevim#after() abort
 
   " Otherwise on Deepin it looks wide like double character width with nerd font.
   if has('gui_gtk3')
-    set guifont=
     set guioptions=aegimrt
     set linespace=2
   endif

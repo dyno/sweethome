@@ -13,7 +13,7 @@ UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
     user_bashrc = ~/.bashrc
     install_boostrap_packages = ./scripts/apt_packages.sh
-    fonts_dir = ~/.fonts
+    fonts_dir = ~/.local/share/fonts
 endif
 ifeq ($(UNAME),Darwin)
     user_bashrc = ~/.bash_profile
@@ -58,13 +58,18 @@ vim-venv:
 	cd ~/venvs/vim && PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
 
 # -----------------------------------------------------------------------------
+font = Hack
+
 fonts:
 	@echo "-- download & install [Nerd Fonts](https://nerdfonts.com/)"
-	@[[ -e $(fonts_dir)/"Sauce Code Pro Nerd Font Complete Mono.ttf" ]]                                                       \
-	  || ( mkdir -p $(fonts_dir) && cd $(fonts_dir)                                                                               \
-	  && curl --remote-name --location https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip \
-	  && unzip SourceCodePro.zip && rm -f SourceCodePro.zip )                                                             \
+	[[ -e $(fonts_dir)/"Hack Regular Nerd Font Complete Mono.ttf" ]]                                                \
+	  || ( mkdir -p $(fonts_dir) && cd $(fonts_dir)                                                                 \
+	  && curl --remote-name --location https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/$(font).zip \
+	  && unzip $(font).zip && rm -f $(font).zip )                                                                   \
 	# END
+ifeq ($(UNAME),Linux)
+	fc-cache -f -v && fc-list :mono | grep -i $(font)
+endif
 
 # -----------------------------------------------------------------------------
 sdkman:
