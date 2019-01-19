@@ -35,7 +35,7 @@ func! myspacevim#before() abort
     " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
     let g:gutentags_add_default_project_roots = 1
     let g:gutentags_generate_on_missing = 1
-    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.svn', '.hg', '.eggs', '*.egg-info']
+    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.svn', '.hg', '.eggs', '.cache*', '*_cache', '*.egg-info']
     " GscopeAdd; cs show
     let g:gutentags_auto_add_gtags_cscope = 0
 
