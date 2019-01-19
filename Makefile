@@ -13,10 +13,12 @@ UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
     user_bashrc = ~/.bashrc
     install_boostrap_packages = ./scripts/apt_packages.sh
+    fonts_dir = ~/.fonts
 endif
 ifeq ($(UNAME),Darwin)
     user_bashrc = ~/.bash_profile
     install_boostrap_packages = ./scripts/brew_packages.sh
+    fonts_dir = ~/Library/Fonts
 endif
 
 # -----------------------------------------------------------------------------
@@ -58,8 +60,8 @@ vim-venv:
 # -----------------------------------------------------------------------------
 fonts:
 	@echo "-- download & install [Nerd Fonts](https://nerdfonts.com/)"
-	@[[ -e ~/.fonts/"Sauce Code Pro Nerd Font Complete Mono.ttf" ]]                                                       \
-	  || ( mkdir -p ~/.fonts && cd ~/.fonts                                                                               \
+	@[[ -e $(fonts_dir)/"Sauce Code Pro Nerd Font Complete Mono.ttf" ]]                                                       \
+	  || ( mkdir -p $(fonts_dir) && cd $(fonts_dir)                                                                               \
 	  && curl --remote-name --location https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip \
 	  && unzip SourceCodePro.zip && rm -f SourceCodePro.zip )                                                             \
 	# END
