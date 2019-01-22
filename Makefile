@@ -58,6 +58,7 @@ vim-venv:
 	cd ~/venvs/vim && PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
 
 # -----------------------------------------------------------------------------
+#  http://app.programmingfonts.org/#hack
 font = Hack
 
 fonts:
