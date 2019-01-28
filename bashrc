@@ -40,7 +40,8 @@ export PATH
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias vi=vim
+alias vi=nvim
+alias vim=nvim
 if [[ "${OSTYPE}" =~ "darwin" ]]; then
   alias ls='ls -G'
 elif [[ "${OSTYPE}" =~ "linux" ]]; then
