@@ -22,23 +22,28 @@ ifeq ($(UNAME),Darwin)
 endif
 
 # -----------------------------------------------------------------------------
-.PHONY: all boostrap bashrc fonts vim coursier sdkman pyenv ammonite fzf
-all: bootstrap bashrc fonts vim coursier sdkman pyenv ammonite fzf
+all: bootstrap bashrc fonts vim coursier sdkman pyenv fzf
 
 bootstrap:
+ifeq ($(UNAME),Darwin)
+	command -v brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+endif
 	$(install_boostrap_packages)
 
 liquidprompt:
 	[[ -d ~/gitroot/liquidprompt ]] && cd ~/gitroot/liquidprompt && git pull || true
 	[[ ! -d ~/gitroot/liquidprompt ]] && mkdir -p ~/gitroot && git -C ~/gitroot clone https://github.com/nojhan/liquidprompt || true
-	cp liquidpromptrc ~/.config/liquidpromptrc
+	mkdir -p ~/.config && cp liquidpromptrc ~/.config/liquidpromptrc
 
+.PHONY: bashrc
 bashrc: liquidprompt
 	ln -sf $(PWD)/bashrc $(user_bashrc)
 	[[ ! -e ~/env.d || -L ~/env.d ]] && rm -f ~/env.d && ln -sf $(PWD)/env.d ~/env.d
 
 
 # -----------------------------------------------------------------------------
+
+.PHONY: SpaceVim spacevim vim
 SpaceVim:
 	[[ ! -e ~/.SpaceVim ]] && curl -sLf https://spacevim.org/install.sh | bash || true
 	[[ -d ~/.SpaceVim ]] && git pull
