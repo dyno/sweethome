@@ -105,6 +105,25 @@ func! myspacevim#before() abort
   " https://github.com/davidhalter/jedi-vim/issues/567, option to disable autocompletion/auto-typing of "import" keyword
   let g:jedi#smart_auto_mappings = 0
   let g:jedi#auto_vim_configuration = 0
+
+  " https://github.com/w0rp/ale#faq-disable-linters
+  let g:ale_linters = {
+        \   'python': ['flake8'],
+        \}
+  let g:ale_linters_explicit = 1
+
+  let g:ale_fixers = {
+        \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+        \   'python': ['black', 'isort'],
+        \}
+  let g:ale_fix_on_save = 1
+
+  let g:ale_python_mypy_options = '--ignore-missing-imports'
+  " Don't want to install tools everywhere. if 1, from ALEInfo, it will do something like `pipenv run black ...`
+  let g:ale_python_auto_pipenv = 0
+  let g:ale_python_mypy_ignore_invalid_syntax = 1
+  let g:ale_python_pylint_options = '--max-line-length=120'
+
 endf
 
 " ------------------------------------------------------------------------------
@@ -142,23 +161,6 @@ func! myspacevim#after() abort
   " https://github.com/w0rp/ale/blob/master/doc/ale-scala.txt
   " so disable all...
   let g:neomake_scala_enabled_makers = []
-
-  " https://github.com/w0rp/ale#faq-disable-linters
-  let g:ale_linters = {
-        \   'python': ['flake8'],
-        \}
-  let g:ale_linters_explicit = 1
-
-  let g:ale_fixers = {
-        \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-        \   'python': ['black', 'isort'],
-        \}
-  let g:ale_fix_on_save = 1
-
-  let g:ale_python_mypy_options = '--ignore-missing-imports'
-  " Don't want to install tools everywhere. if 1, from ALEInfo, it will do something like `pipenv run black ...`
-  let g:ale_python_auto_pipenv = 0
-  let g:ale_python_mypy_ignore_invalid_syntax = 1
 
   " https://stackoverflow.com/questions/24931088/disable-omnicomplete-or-ftplugin-or-something-in-vim
   ":help ft-sql
