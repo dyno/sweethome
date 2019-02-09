@@ -40,6 +40,7 @@ export PATH
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias nvim='nvim -u ~/.vim/vimrc'
 alias vi=nvim
 alias vim=nvim
 if [[ "${OSTYPE}" =~ "darwin" ]]; then
