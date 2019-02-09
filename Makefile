@@ -7,18 +7,18 @@ else
 endif
 
 PWD := $(shell pwd)
-HOME_BIN := ~/bin
+HOME_BIN := $${HOME}/bin
 
 UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
-    user_bashrc = ~/.bashrc
+    user_bashrc = $${HOME}/.bashrc
     install_boostrap_packages = ./scripts/apt_packages.sh
-    fonts_dir = ~/.local/share/fonts
+    fonts_dir = $${HOME}/.local/share/fonts
 endif
 ifeq ($(UNAME),Darwin)
-    user_bashrc = ~/.bash_profile
+    user_bashrc = $${HOME}/.bash_profile
     install_boostrap_packages = ./scripts/brew_packages.sh
-    fonts_dir = ~/Library/Fonts
+    fonts_dir = $${HOME}/Library/Fonts
 endif
 
 # -----------------------------------------------------------------------------
@@ -63,18 +63,21 @@ vim-venv:
 	cd ~/venvs/vim && PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
 
 # -----------------------------------------------------------------------------
-#  http://app.programmingfonts.org/#hack
-font = Hack
-
+# I like Source Code Pro better, but run into https://github.com/ryanoasis/nerd-fonts/issues/318
+# https://app.programmingfonts.org/#source-code-pro
 fonts:
-	@echo "-- download & install [Nerd Fonts](https://nerdfonts.com/)"
-	[[ -e $(fonts_dir)/"Hack Regular Nerd Font Complete Mono.ttf" ]]                                                \
-	  || ( mkdir -p $(fonts_dir) && cd $(fonts_dir)                                                                 \
-	  && curl --remote-name --location https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/$(font).zip \
-	  && unzip $(font).zip && rm -f $(font).zip )                                                                   \
-	# END
+	for font in                                                                \
+	  "Hack/Hack-Bold.ttf"                                                     \
+	  "Hack/Hack-Italic.ttf"                                                   \
+	  "Hack/Hack-Regular.ttf"                                                  \
+	  "Hack/Hack-BoldItalic.ttf"                                               \
+	  ; do                                                                     \
+	    font_name=$$(basename "$${font}");                                     \
+	    curl --location --output "$(fonts_dir)/$${font_name}"                  \
+	      "https://github.com/powerline/fonts/blob/master/$${font}?raw=true" ; \
+	done
 ifeq ($(UNAME),Linux)
-	fc-cache -f -v && fc-list :mono | grep -i $(font)
+	fc-cache -f -v &>/dev/null && fc-list :mono | grep -i "Hack"
 endif
 
 # -----------------------------------------------------------------------------
