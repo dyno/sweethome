@@ -56,11 +56,23 @@ spacevim: SpaceVim
 	[[ ! -e ~/.SpaceVim.d || -L ~/.SpaceVim.d ]] && rm -f ~/.SpaceVim.d && ln -sf $(PWD)/SpaceVim.d ~/.SpaceVim.d
 	[[ ! -e ~/.vim/after || -L ~/.vim/after ]] && rm -f ~/.vim/after && ln -sf $(PWD)/vim/after ~/.vim/
 
+jedi:
+	# jedi need to be installed to the python that compiled into vim
+	# https://jedi.readthedocs.io/en/latest/docs/installation.html
+ifeq ($(UNAME),Darwin)
+	/usr/local/bin/pip3 install --upgrade jedi
+endif
+
 vim: spacevim
+	pip install pyvim vim-vint
 
 vim-venv:
 	mkdir -p ~/venvs/vim && ln -sf $(PWD)/Pipfile.venv_vim ~/venvs/vim/Pipfile
 	cd ~/venvs/vim && PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
+
+neovim: vim vim-venv
+	pip install neovim
+
 
 # -----------------------------------------------------------------------------
 # I like Source Code Pro better, but run into https://github.com/ryanoasis/nerd-fonts/issues/318
@@ -140,14 +152,7 @@ pyenv:
 	@echo "-- install [pyenv](https://github.com/pyenv/pyenv#installation)"
 	./scripts/install_or_upgrade_pyenv.sh
 
-jedi:
-	# jedi need to be installed to the python that compiled into vim
-	# https://jedi.readthedocs.io/en/latest/docs/installation.html
-ifeq ($(UNAME),Darwin)
-	/usr/local/bin/pip3 install --upgrade jedi
-endif
-
-pip: pyenv jedi
+pip: pyenv
 	@echo "-- install python packages by calling pip_packages.sh"
 	@eval "$(pyenv init -)" && ./scripts/pip_packages.sh
 
