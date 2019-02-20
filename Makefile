@@ -75,9 +75,19 @@ neovim: vim vim-venv
 
 
 # -----------------------------------------------------------------------------
-# I like Source Code Pro better, but run into https://github.com/ryanoasis/nerd-fonts/issues/318
 # https://app.programmingfonts.org/#source-code-pro
+# https://app.programmingfonts.org/#hack
 fonts:
+	# Source Code Pro
+	@echo "-- download & install [Nerd Fonts](https://nerdfonts.com/) Sauce Code Pro"
+	@[[ -e $(fonts_dir)/"Sauce Code Pro Nerd Font Complete Mono.ttf" ]]                                                   \
+	  || ( mkdir -p $(fonts_dir) && cd $(fonts_dir)                                                                       \
+	  && curl --remote-name --location https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/SourceCodePro.zip \
+	  && unzip SourceCodePro.zip && rm -f SourceCodePro.zip )                                                             \
+	# END
+
+	# Workaround nerd gui mono font problem. https://github.com/ryanoasis/nerd-fonts/issues/318
+	# Hack - for gvim on Linux
 	for font in                                                                \
 	  "Hack/Hack-Bold.ttf"                                                     \
 	  "Hack/Hack-Italic.ttf"                                                   \
@@ -85,9 +95,11 @@ fonts:
 	  "Hack/Hack-BoldItalic.ttf"                                               \
 	  ; do                                                                     \
 	    font_name=$$(basename "$${font}");                                     \
+	    [[ -e "$(fonts_dir)/$${font_name}" ]] ||                               \
 	    curl --location --output "$(fonts_dir)/$${font_name}"                  \
 	      "https://github.com/powerline/fonts/blob/master/$${font}?raw=true" ; \
-	done
+	done                                                                       \
+	# END
 ifeq ($(UNAME),Linux)
 	fc-cache -f -v &>/dev/null && fc-list :mono | grep -i "Hack"
 endif
