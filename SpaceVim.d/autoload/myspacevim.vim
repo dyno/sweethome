@@ -257,14 +257,14 @@ function GitRepoUrl()
 
   let cmd = 'git config --get remote.' . remote . '.url'
   let arr = systemlist(cmd)
-  " https://dyno@bitbucket.org/dyno/sweathome.git
-  " https://github.com/dyno/sweathome.git
-  " git@github.com:dyno/sweathome.git
+  " https://dyno@bitbucket.org/dyno/sweethome.git
+  " https://github.com/dyno/sweethome.git
+  " git@github.com:dyno/sweethome.git
   let arr = matchlist(arr[0], '\(.\{-}://\)\?\(.\{-}@\)\?\([^:/]*\)[:/]\(.*\)\.git')
   let host = arr[3]  "github.com
-  let repo = arr[4]  "dyno/sweathome
+  let repo = arr[4]  "dyno/sweethome
 
-  " https://github.com/dyno/sweathome/blob/master/SpaceVim.d/autoload/myspacevim.vim#L237
+  " https://github.com/dyno/sweethome/blob/master/SpaceVim.d/autoload/myspacevim.vim#L237
   let url = 'https://' . host . '/'. repo . '/' . s:repo_sep[host] . '/' . branch . '/' . filepath . s:repo_linenum[host] . line('.')
 
   call setreg(s:clipboard_register, url)
