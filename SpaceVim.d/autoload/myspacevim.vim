@@ -70,6 +70,8 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *.gradle   set filetype=groovy
     autocmd BufRead,BufNewFile *.sc       set filetype=scala
     autocmd BufRead,BufNewFile *Pipfile*  set filetype=toml
+    autocmd BufRead,BufNewFile *.sqlt     set filetype=sql
+    autocmd BufRead,BufNewFile *.hivet    set filetype=sql
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
@@ -182,13 +184,22 @@ func! myspacevim#after() abort
 
   " https://github.com/sbdchd/neoformat
   " :Neoformat
+  let g:neoformat_sql_sqlformat = {
+        \ 'exe': 'sqlformat',
+        \ 'args': ['--keywords', 'upper', '-'],
+        \ 'stdin': 1,
+        \ }
+  let g:neoformat_enabled_sql = ['sqlformat']
+
   let g:neoformat_enabled_python = ['black', 'isort', 'docformatter']
+
   let g:neoformat_java_googlefmt = {
         \ 'exe': 'java',
         \ 'args': ['-jar', '~/.local/bin/google-java-format.jar', '-'],
         \ 'stdin': 1,
         \ }
   let g:neoformat_enabled_java = ['googlefmt']
+
   let g:neoformat_run_all_formatters = 1
   let g:neoformat_verbose = 0
 
