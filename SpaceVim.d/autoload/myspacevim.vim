@@ -6,6 +6,11 @@
 func! myspacevim#before() abort
 
   if v:version >= 800
+    " by default, disable it and only enable it for source files
+    let g:gutentags_enabled = 0
+    augroup auto_gutentags
+      au FileType python,java,scala,sh,groovy,vim let g:gutentags_enabled=1
+    augroup end
     " https://github.com/ludovicchabant/vim-gutentags
     " https://github.com/skywind3000/gutentags_plus
     " used by layers.tags
