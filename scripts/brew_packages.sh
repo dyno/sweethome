@@ -15,13 +15,13 @@ set -o errexit
 export HOMEBREW_NO_AUTO_UPDATE=1
 brew update
 
-install_or_upgrade bash bash-completion coreutils moreutils tree
+install_or_upgrade bash bash-completion shellcheck coreutils moreutils tree
 # python build dependencies
 install_or_upgrade openssl readline zlib xz
 install_or_upgrade git tig
 install_or_upgrade macvim neovim
 install_or_upgrade go
-install_or_upgrade global cscope remake fzy
+install_or_upgrade global cscope remake
 
 # https://dev.to/_darrenburns/10-tools-to-power-up-your-command-line-4id4
 install_or_upgrade z exa fd bat ncdu # cd ls find cat du

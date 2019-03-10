@@ -116,6 +116,7 @@ func! myspacevim#before() abort
   " https://github.com/w0rp/ale#faq-disable-linters
   let g:ale_linters = {
         \   'python': ['flake8'],
+        \   'sh': ['shellcheck'],
         \}
   let g:ale_linters_explicit = 1
 
