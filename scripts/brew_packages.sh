@@ -2,10 +2,10 @@
 
 function install_or_upgrade() {
   package=$1
-  for package in $@; do
+  for package in "$@"; do
     echo "install or upgrade $package"
     # https://stackoverflow.com/questions/43619480/upgrade-or-install-a-homebrew-formula
-    brew install $package 2>/dev/null || (brew upgrade $package && brew cleanup $package)
+    brew install "$package" 2>/dev/null || (brew upgrade "$package" && brew cleanup "$package")
   done
 }
 
