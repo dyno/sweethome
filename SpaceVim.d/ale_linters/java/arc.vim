@@ -2,9 +2,7 @@
 
 function! ale_linters#java#arc#Handle(buffer, lines) abort
     let l:output = []
-
     let l:pattern = '\v(.*):(\d+):(.*)$'
-
 
     for l:match in ale#util#GetMatches(a:lines, l:pattern)
         call add(l:output, {
@@ -28,3 +26,6 @@ call ale#linter#Define('java', {
 \   'callback': 'ale_linters#java#arc#Handle',
 \   'lint_file': 1,
 \})
+
+" some reference in case i need to write oone.
+" https://dmerej.info/blog/post/lets-have-a-pint-of-vim-ale/
