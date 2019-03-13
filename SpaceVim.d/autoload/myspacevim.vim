@@ -6,13 +6,13 @@
 func! myspacevim#before() abort
 
   if v:version >= 800
-    " by default, disable it and only enable it for source files
-    let g:gutentags_enabled = 0
-    augroup auto_gutentags
-      au FileType python,java,scala,sh,groovy,vim let g:gutentags_enabled=1
-    augroup end
     " https://github.com/ludovicchabant/vim-gutentags
     " https://github.com/skywind3000/gutentags_plus
+
+    " https://github.com/ludovicchabant/vim-gutentags/issues/168
+    let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text']
+    "let g:gutentags_generate_on_write = 0
+
     " used by layers.tags
     let g:gutentags_trace = 0
     "https://www.jianshu.com/p/110b27f8361b
@@ -95,7 +95,7 @@ func! myspacevim#before() abort
   :set hidden
 
   " https://unix.stackexchange.com/questions/139578/copy-paste-for-vim-is-not-working-when-mouse-set-mouse-a-is-on
-  :set mouse=r
+  :set mouse=nvi
 
   :set tabstop=8 softtabstop=4 shiftwidth=2
 
