@@ -115,6 +115,7 @@ func! myspacevim#before() abort
 
   " https://github.com/w0rp/ale#faq-disable-linters
   let g:ale_linters = {
+        \   'java': ['arc'],
         \   'python': ['flake8'],
         \   'sh': ['shellcheck'],
         \}
@@ -123,6 +124,7 @@ func! myspacevim#before() abort
   let g:ale_fixers = {
         \   '*': ['remove_trailing_lines', 'trim_whitespace'],
         \   'python': ['black', 'isort'],
+        \   'sh': ['shfmt'],
         \}
   let g:ale_fix_on_save = 1
 
