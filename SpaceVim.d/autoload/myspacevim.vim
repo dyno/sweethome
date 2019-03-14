@@ -11,7 +11,7 @@ func! myspacevim#before() abort
 
     " https://github.com/ludovicchabant/vim-gutentags/issues/168
     let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text']
-    "let g:gutentags_generate_on_write = 0
+    let g:gutentags_generate_on_write = 0
 
     " used by layers.tags
     let g:gutentags_trace = 0
