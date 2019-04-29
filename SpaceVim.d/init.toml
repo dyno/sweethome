@@ -14,7 +14,7 @@ max_column                     = 120
 plugin_manager                 = "dein"
 # https://spacevim.org/documentation/#managing-projects
 project_rooter_automatically   = 1
-project_rooter_patterns        = ["Makefile", "setup.cfg", "Pipfile", ".git"]
+project_rooter_patterns        = ["setup.cfg", "Pipfile", ".git"]
 relativenumber                 = 0
 search_tools                   = ["rg", "ag", "grep"]
 # https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim.vim#L296
@@ -212,6 +212,9 @@ merged = 0
 # https://github.com/tpope/vim-projectionist
 name = "tpope/vim-projectionist"
 merged = 0
+
+[[custom_plugins]]
+name = "google/vim-jsonnet"
 
 
 # ------------------------------------------------------------------------------
