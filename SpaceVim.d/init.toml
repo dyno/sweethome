@@ -216,6 +216,10 @@ merged = 0
 [[custom_plugins]]
 name = "google/vim-jsonnet"
 
+[[custom_plugins]]
+# https://github.com/GhostText/GhostText
+# https://github.com/raghur/vim-ghost
+name = "raghur/vim-ghost"
 
 # ------------------------------------------------------------------------------
 
