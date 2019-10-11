@@ -75,7 +75,8 @@ import $ivy.`com.github.julien-truffaut::monocle-macro:1.5.0`
 import $plugin.$ivy.`org.scalamacros:::paradise:2.1.1`
 
 // ## Plot ##
-val cibotechRepo = coursier.MavenRepository("https://dl.bintray.com/cibotech/public")
+import coursierapi.MavenRepository
+val cibotechRepo = MavenRepository.of("https://dl.bintray.com/cibotech/public")
 interp.repositories() ++= Seq(cibotechRepo)
 
 interp.load.ivy("com.cibo" %% "evilplot-repl" % "0.4.1")

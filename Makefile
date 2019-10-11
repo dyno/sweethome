@@ -112,11 +112,11 @@ sdkman:
 	  curl -s "https://get.sdkman.io" | bash; \
 	fi
 	@echo "-- install java/scala/gradle with sdkman"
-	source ~/.sdkman/bin/sdkman-init.sh  \
-	  && sdk selfupdate force            \
-	  && sdk install java 8.0.191-oracle \
-	  && sdk install scala 2.12.7        \
-	  && sdk install gradle 4.10.2       \
+	source ~/.sdkman/bin/sdkman-init.sh \
+	  && sdk selfupdate force           \
+	  && sdk install java 8.0.222-amzn  \
+	  && sdk install scala 2.12.10      \
+	  && sdk install gradle 5.6.2       \
 	  # END
 
 coursier:
