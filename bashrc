@@ -68,7 +68,7 @@ function fuzzy_run() {
 alias fz=fuzzy_run
 
 #----------------------------------------------------------------------
-export EDITOR=vim
+export EDITOR=nvim
 
 #----------------------------------------------------------------------
 if [[ -d ${HOME}/env.d ]]; then

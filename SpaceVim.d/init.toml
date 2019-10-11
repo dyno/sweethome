@@ -221,6 +221,12 @@ name = "google/vim-jsonnet"
 # https://github.com/raghur/vim-ghost
 name = "raghur/vim-ghost"
 
+[[custom_plugins]]
+name = "previm/previm"
+
+[[custom_plugins]]
+name = "tyru/open-browser.vim"
+
 # ------------------------------------------------------------------------------
 
 # forks
