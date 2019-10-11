@@ -105,6 +105,11 @@ ifeq ($(UNAME),Linux)
 endif
 
 # -----------------------------------------------------------------------------
+
+SCALA_VERSION  := 2.12.10
+ALMOND_VERSION := 0.8.2
+JAVA_VERSION   := 8.0.222-amzn
+GRADLE_VERSION := 5.6.2
 sdkman:
 	@echo "-- install [sdkman](https://sdkman.io/install)"
 	@# XXX: sdkman is a shell function, and can not be initialized in make env.
@@ -112,11 +117,11 @@ sdkman:
 	  curl -s "https://get.sdkman.io" | bash; \
 	fi
 	@echo "-- install java/scala/gradle with sdkman"
-	source ~/.sdkman/bin/sdkman-init.sh \
-	  && sdk selfupdate force           \
-	  && sdk install java 8.0.222-amzn  \
-	  && sdk install scala 2.12.10      \
-	  && sdk install gradle 5.6.2       \
+	source ~/.sdkman/bin/sdkman-init.sh       \
+	  && sdk selfupdate force                 \
+	  && sdk install java $(JAVA_VERSION)     \
+	  && sdk install scala $(SCALA_VERSION)   \
+	  && sdk install gradle $(GRADLE_VERSION) \
 	  # END
 
 coursier:
@@ -135,6 +140,19 @@ ammonite: sdkman coursier
 	  && mkdir -p $(HOME_BIN) && cp amm $(HOME_BIN) \
 	  && amm <<< 'println("hello from Ammonite!")'  \
 	# END
+
+almond-installer: coursier
+	@echo "-- install [almond](https://almond.sh/docs/quick-start-install)"
+	coursier bootstrap \
+	  -r jitpack \
+	  -i user -I user:sh.almond:scala-kernel-api_$(SCALA_VERSION):$(ALMOND_VERSION) \
+	  sh.almond:scala-kernel_$(SCALA_VERSION):$(ALMOND_VERSION) \
+	  -o almond-installer
+	./almond-installer --help
+
+almond-install: almond-installer
+	./almond-installer --install --force=true
+
 
 # -----------------------------------------------------------------------------
 #  ## Go ##
