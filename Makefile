@@ -12,7 +12,7 @@ HOME_BIN := $${HOME}/bin
 UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
     user_bashrc = $${HOME}/.bashrc
-    install_boostrap_packages = ./scripts/apt_packages.sh
+    install_boostrap_packages = sudo apt install make
     fonts_dir = $${HOME}/.local/share/fonts
 endif
 ifeq ($(UNAME),Darwin)
@@ -22,7 +22,7 @@ ifeq ($(UNAME),Darwin)
 endif
 
 # -----------------------------------------------------------------------------
-all: bootstrap bashrc fonts vim coursier sdkman pyenv fzf
+all: bootstrap bashrc fonts coursier sdkman pyenv go fzf
 
 bootstrap:
 ifeq ($(UNAME),Darwin)
@@ -30,25 +30,50 @@ ifeq ($(UNAME),Darwin)
 endif
 	$(install_boostrap_packages)
 
+neovim:
+ifeq ($(UNAME),Linux)
+	[[ -e ~/bin/nvim ]] || (mkdir ~/bin \
+		&& cd ~/bin \
+		&& curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage \
+		&& ln -s nvim.appimage nvim)
+endif
+ifeq ($(UNAME),Darwin)
+	brew install neovim
+endif
+
 liquidprompt:
 	[[ -d ~/gitroot/liquidprompt ]] && cd ~/gitroot/liquidprompt && git pull || true
 	[[ ! -d ~/gitroot/liquidprompt ]] && mkdir -p ~/gitroot && git -C ~/gitroot clone https://github.com/nojhan/liquidprompt || true
 	mkdir -p ~/.config && cp liquidpromptrc ~/.config/liquidpromptrc
 
 .PHONY: bashrc
-bashrc: liquidprompt
+bashrc: liquidprompt neovim
 	ln -sf $(PWD)/bashrc $(user_bashrc)
 	[[ ! -e ~/env.d || -L ~/env.d ]] && rm -f ~/env.d && ln -sf $(PWD)/env.d ~/env.d
 
 
 # -----------------------------------------------------------------------------
+#  ## Python ##
+PYTHON_VERSION := 3.6.9
 
-.PHONY: SpaceVim spacevim vim
-SpaceVim:
+.PHONY: pyenv python
+pyenv:
+	@echo "-- install [pyenv](https://github.com/pyenv/pyenv#installation)"
+	./scripts/install_or_upgrade_pyenv.sh
+
+python: pyenv
+	@eval "$(pyenv init -)" && pyenv install --verbose $(PYTHON_VERSION)
+
+
+# -----------------------------------------------------------------------------
+
+.PHONY: spacevim spacevim-install spacevim-config
+spacevim: neovim spacevim-install spacevim-config
+spacevim-install:
 	[[ ! -e ~/.SpaceVim ]] && curl -sLf https://spacevim.org/install.sh | bash || true
 	[[ -d ~/.SpaceVim ]] && git pull
 
-spacevim: SpaceVim
+spacevim-config:
 	[[ ! -e ~/.vim || -L ~/.vim ]] && rm -f ~/.vim && ln -sf .SpaceVim ~/.vim
 	[[ ! -e ~/.ideavimrc || -L ~/.ideavimrc ]] && rm -f ~/.ideavimrc && ln -sf $(PWD)/ideavimrc ~/.ideavimrc
 	[[ -f ~/.vimrc && ! -L ~/.vimrc ]]  && mv ~/.vimrc ~/.vimrc_back || rm -f ~/.vimrc
@@ -56,23 +81,19 @@ spacevim: SpaceVim
 	[[ ! -e ~/.SpaceVim.d || -L ~/.SpaceVim.d ]] && rm -f ~/.SpaceVim.d && ln -sf $(PWD)/SpaceVim.d ~/.SpaceVim.d
 	[[ ! -e ~/.vim/after || -L ~/.vim/after ]] && rm -f ~/.vim/after && ln -sf $(PWD)/vim/after ~/.vim/
 
-jedi:
+python-vim-jedi:
 	# jedi need to be installed to the python that compiled into vim
 	# https://jedi.readthedocs.io/en/latest/docs/installation.html
 ifeq ($(UNAME),Darwin)
 	/usr/local/bin/pip3 install --upgrade jedi
 endif
 
-vim: spacevim
-	pip install pyvim vim-vint
+python-neovim: neovim python
+	pip install neovim pyvim vim-vint
+	pip install simplewebsocketserver # for vim-ghost/GhostText
 
-vim-venv:
-	mkdir -p ~/venvs/vim && ln -sf $(PWD)/Pipfile.venv_vim ~/venvs/vim/Pipfile
-	cd ~/venvs/vim && PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
-
-neovim: vim vim-venv
-	pip install neovim
-
+python-essentials:
+	cd venv && pipenv install --system
 
 # -----------------------------------------------------------------------------
 # https://app.programmingfonts.org/#source-code-pro
@@ -105,17 +126,19 @@ ifeq ($(UNAME),Linux)
 endif
 
 # -----------------------------------------------------------------------------
-
 SCALA_VERSION  := 2.12.10
 ALMOND_VERSION := 0.8.2
 JAVA_VERSION   := 8.0.222-amzn
 GRADLE_VERSION := 5.6.2
+
 sdkman:
 	@echo "-- install [sdkman](https://sdkman.io/install)"
 	@# XXX: sdkman is a shell function, and can not be initialized in make env.
 	@if [[ ! -d ~/.sdkman ]]; then            \
 	  curl -s "https://get.sdkman.io" | bash; \
 	fi
+
+sdkman-packages: sdkman
 	@echo "-- install java/scala/gradle with sdkman"
 	source ~/.sdkman/bin/sdkman-init.sh       \
 	  && sdk selfupdate force                 \
@@ -156,8 +179,20 @@ almond-install: almond-installer
 
 # -----------------------------------------------------------------------------
 #  ## Go ##
+# as of 2019.10.15
+GO_VERSION := 1.13.1
+.PHONY: go
+go:
+ifeq ($(UNAME),Linux)
+	# sudo apt install --yes golang  # XXX: too old
+	[[ -e $(HOME)/go/bin/go ]] || (cd /tmp && curl -O https://dl.google.com/go/go$(GO_VERSION).linux-amd64.tar.gz \
+	  && cd ~ && tar zxvf /tmp/go$(GO_VERSION).linux-amd64.tar.gz)
+endif
+ifeq ($(UNAME),Darwin)
+	brew install go
+endif
 
-fzf:
+fzf: go
 	@echo "-- install [fzf](https://github.com/junegunn/fzf.vim)"
 	@[[ ! -e ~/.fzf ]] && git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
 	@cd ~/.fzf && git pull --rebase && make install
@@ -174,21 +209,6 @@ goofys:
 gron:
 	@echo "-- install [gron](https://github.com/tomnomnom/gron)"
 	go get -u github.com/tomnomnom/gron
-
-# -----------------------------------------------------------------------------
-#  ## Python ##
-
-pyenv:
-	@echo "-- install [pyenv](https://github.com/pyenv/pyenv#installation)"
-	./scripts/install_or_upgrade_pyenv.sh
-
-pip: pyenv
-	@echo "-- install python packages by calling pip_packages.sh"
-	@eval "$(pyenv init -)" && ./scripts/pip_packages.sh
-
-pre-commit:
-	@echo "-- install pre-commit for this project."
-	pre-commit install
 
 # -----------------------------------------------------------------------------
 #  Formatters

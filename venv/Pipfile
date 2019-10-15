@@ -1,0 +1,23 @@
+[dev-packages]
+
+[packages]
+absl-py = "*"
+aiohttp = "*"
+attrs = "*"
+cattrs = "*"
+# black = "*"
+bs4 = "*"
+httpie = "*"
+ipython = "*"
+mypy = "*"
+numpy = "*"
+pandas = "*"
+pexpect = "*"
+pyyaml = "*"
+requests = "*"
+tabulate = "*"
+tqdm = "*"
+vint = "*"
+
+[requires]
+python_version = "3.6"
