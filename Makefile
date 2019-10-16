@@ -12,7 +12,7 @@ HOME_BIN := $${HOME}/bin
 UNAME := $(shell uname -s)
 ifeq ($(UNAME),Linux)
     user_bashrc = $${HOME}/.bashrc
-    install_boostrap_packages = sudo apt install make
+    install_boostrap_packages = sudo apt install git
     fonts_dir = $${HOME}/.local/share/fonts
 endif
 ifeq ($(UNAME),Darwin)
@@ -30,11 +30,20 @@ ifeq ($(UNAME),Darwin)
 endif
 	$(install_boostrap_packages)
 
+.PHONY: git-config
+git-config:
+	git config --global user.email "dyno.fu@gmail.com"
+	git config --global user.name "Dyno Fu"
+	git config credential.helper 'cache --timeout=600'
+
+.PHONY: vim neovim
+vim: neovim
 neovim:
 ifeq ($(UNAME),Linux)
 	[[ -e ~/bin/nvim ]] || (mkdir ~/bin \
 		&& cd ~/bin \
 		&& curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage \
+		&& chmod +x nvim.appimage \
 		&& ln -s nvim.appimage nvim)
 endif
 ifeq ($(UNAME),Darwin)
@@ -62,7 +71,17 @@ pyenv:
 	./scripts/install_or_upgrade_pyenv.sh
 
 python: pyenv
-	@eval "$(pyenv init -)" && pyenv install --verbose $(PYTHON_VERSION)
+ifeq ($(UNAME),Linux)
+	sudo apt-get install --assume-yes build-essential libsqlite3-dev libssl-dev libreadline-dev zlib1g-dev libbz2-dev
+	~/.pyenv/bin/pyenv install --skip-existing --verbose $(PYTHON_VERSION)
+endif
+ifeq ($(UNAME),Darwin)
+	brew install readline openssl sqlite3 zlib &>/dev/null || true
+	CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
+	~/.pyenv/bin/pyenv install --skip-existing --verbose $(PYTHON_VERSION)
+endif
+	~/.pyenv/bin/pyenv global $(PYTHON_VERSION)
+	python -m pip install --upgrade --ignore-installed pip
 
 
 # -----------------------------------------------------------------------------
