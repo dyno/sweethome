@@ -21,6 +21,8 @@ ifeq ($(UNAME),Darwin)
     fonts_dir = $${HOME}/Library/Fonts
 endif
 
+LOCAL := $(HOME)/local
+
 # -----------------------------------------------------------------------------
 all: bootstrap bashrc fonts coursier sdkman pyenv go fzf
 
@@ -112,7 +114,10 @@ python-neovim: neovim python
 	pip install simplewebsocketserver # for vim-ghost/GhostText
 
 python-essentials:
+	pip install --upgrade pipenv
 	cd venv && pipenv install --system
+	# XXX: black has conflict - 2019.10.15
+	pip install black
 
 # -----------------------------------------------------------------------------
 # https://app.programmingfonts.org/#source-code-pro
@@ -204,8 +209,8 @@ GO_VERSION := 1.13.1
 go:
 ifeq ($(UNAME),Linux)
 	# sudo apt install --yes golang  # XXX: too old
-	[[ -e $(HOME)/go/bin/go ]] || (cd /tmp && curl -O https://dl.google.com/go/go$(GO_VERSION).linux-amd64.tar.gz \
-	  && cd ~ && tar zxvf /tmp/go$(GO_VERSION).linux-amd64.tar.gz)
+	[[ -e $(LOCAL)/go/bin/go ]] || (cd /tmp && curl -O https://dl.google.com/go/go$(GO_VERSION).linux-amd64.tar.gz \
+	  && mkdir -p $(LOCAL) && cd $(LOCAL) && tar zxvf /tmp/go$(GO_VERSION).linux-amd64.tar.gz)
 endif
 ifeq ($(UNAME),Darwin)
 	brew install go
