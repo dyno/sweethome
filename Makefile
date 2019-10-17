@@ -1,6 +1,6 @@
 # https://stackoverflow.com/questions/5553352/how-do-i-check-if-file-exists-in-makefile
 # sometime a later release of bash is desirable e.g. sdkman.
-ifneq ("$(wildcard /usr/local/bin/bash)","")
+ifneq ($(wildcard /usr/local/bin/bash),)
   SHELL=/usr/local/bin/bash
 else
   SHELL=/bin/bash
@@ -20,6 +20,14 @@ ifeq ($(UNAME),Darwin)
     install_boostrap_packages = ./scripts/brew_packages.sh
     fonts_dir = $${HOME}/Library/Fonts
 endif
+
+ifneq ($(wildcard /usr/bin/yum),)
+  PKGMGR := yum
+endif
+ifneq ($(wildcard /usr/bin/apt),)
+  PKGMGR := apt
+endif
+
 
 LOCAL := $(HOME)/local
 
@@ -42,11 +50,16 @@ git-config:
 vim: neovim
 neovim:
 ifeq ($(UNAME),Linux)
+ifeq ($(PKGMGR),yum)
+	sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+	sudo yum install -y neovim
+else
 	[[ -e ~/bin/nvim ]] || (mkdir ~/bin \
 		&& cd ~/bin \
 		&& curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage \
 		&& chmod +x nvim.appimage \
 		&& ln -s nvim.appimage nvim)
+endif
 endif
 ifeq ($(UNAME),Darwin)
 	brew install neovim
@@ -74,7 +87,28 @@ pyenv:
 
 python: pyenv
 ifeq ($(UNAME),Linux)
-	sudo apt-get install --assume-yes build-essential libsqlite3-dev libssl-dev libreadline-dev zlib1g-dev libbz2-dev
+ifeq ($(PKGMGR),apt)
+	sudo apt-get install --assume-yes \
+	  build-essential                 \
+	  libbz2-dev                      \
+	  liblzma-dev                     \
+	  libreadline-dev                 \
+	  libsqlite3-dev                  \
+	  libssl-dev                      \
+	  zlib1g-dev                      \
+	  # END
+endif
+ifeq ($(PKGMGR),yum)
+	sudo yum groupinstall 'Development Tools'
+	sudo yum install  --assumeyes \
+	  bzip2-devel                 \
+	  libsq3-devel                \
+	  openssl-devel               \
+	  readline-devel              \
+	  xz-devel                    \
+	  zlib-devel                  \
+	  # END
+endif
 	~/.pyenv/bin/pyenv install --skip-existing --verbose $(PYTHON_VERSION)
 endif
 ifeq ($(UNAME),Darwin)
@@ -114,7 +148,7 @@ python-neovim: neovim python
 	pip install simplewebsocketserver # for vim-ghost/GhostText
 
 python-essentials:
-	pip install --upgrade pipenv
+	pip install --upgrade pipenv poetry
 	cd venv && pipenv install --system
 	# XXX: black has conflict - 2019.10.15
 	pip install black
