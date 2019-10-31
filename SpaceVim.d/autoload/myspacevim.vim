@@ -61,8 +61,10 @@ func! myspacevim#before() abort
   elseif has('unix')
     let g:python3_host_prog = '/usr/bin/python3'
   endif
-  if filereadable(expand('~/venvs/vim/.venv/bin/python3'))
-    let g:python3_host_prog = expand('~/venvs/vim/.venv/bin/python3')
+
+  let output = systemlist('pyenv which python3')
+  if v:shell_error == 0 && !empty(output)
+    let g:python3_host_prog = output[0]
   endif
 
   " https://github.com/vim/vim/issues/3707, compiled python should not set `sys.executable` to vim

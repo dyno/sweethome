@@ -143,9 +143,12 @@ ifeq ($(UNAME),Darwin)
 	/usr/local/bin/pip3 install --upgrade jedi
 endif
 
+NEOVIM_VENV := neovim3
 python-neovim: neovim python
-	pip install neovim pyvim vim-vint
-	pip install simplewebsocketserver # for vim-ghost/GhostText
+	  pip install --upgrade pip pipenv \
+	  && cd venv-$(NEOVIM_VENV)        \
+	  && pipenv install --system
+
 
 python-essentials:
 	pip install --upgrade pipenv poetry
