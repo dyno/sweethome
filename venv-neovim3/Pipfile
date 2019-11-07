@@ -7,8 +7,9 @@ neovim = "*"
 pylint = "*"
 pynvim = "*"
 pyvim = "*"
-# vim-ghost/GhostText
-simplewebsocketserver = "*"
-slugify = "*"
 vim-vint = "*"
 vint = "*"
+
+# vim-ghost/GhostText
+python-slugify = "*"
+simplewebsocketserver = "*"
