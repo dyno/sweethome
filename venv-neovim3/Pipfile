@@ -12,4 +12,6 @@ vint = "*"
 
 # vim-ghost/GhostText
 python-slugify = "*"
+sexpdata = "*"
 simplewebsocketserver = "*"
+websocket = "*"
