@@ -31,9 +31,20 @@ endif
 
 LOCAL := $(HOME)/local
 
+# used for backup timestamp
+TS := $(shell date +"%Y%m%d_%H%M%S")
+
+.DEFAULT_GOAL := usage
+
 # -----------------------------------------------------------------------------
+.PHONY: usage
+usage:
+	@echo "It's better to read the Makefile first ..."
+
+.PHONY: all
 all: bootstrap bashrc fonts coursier sdkman pyenv go fzf
 
+.PHONY: boostrap
 bootstrap:
 ifeq ($(UNAME),Darwin)
 	command -v brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -72,8 +83,8 @@ liquidprompt:
 
 .PHONY: bashrc
 bashrc: liquidprompt neovim
-	ln -sf $(PWD)/bashrc $(user_bashrc)
-	[[ ! -e ~/env.d || -L ~/env.d ]] && rm -f ~/env.d && ln -sf $(PWD)/env.d ~/env.d
+	ln -sf $${PWD}/bashrc $(user_bashrc)
+	[[ ! -e ~/env.d || -L ~/env.d ]] && rm -f ~/env.d && ln -sf $${PWD}/env.d ~/env.d
 
 
 # -----------------------------------------------------------------------------
@@ -130,11 +141,11 @@ spacevim-install:
 
 spacevim-config:
 	[[ ! -e ~/.vim || -L ~/.vim ]] && rm -f ~/.vim && ln -sf .SpaceVim ~/.vim
-	[[ ! -e ~/.ideavimrc || -L ~/.ideavimrc ]] && rm -f ~/.ideavimrc && ln -sf $(PWD)/ideavimrc ~/.ideavimrc
+	[[ ! -e ~/.ideavimrc || -L ~/.ideavimrc ]] && rm -f ~/.ideavimrc && ln -sf $${PWD}/ideavimrc ~/.ideavimrc
 	[[ -f ~/.vimrc && ! -L ~/.vimrc ]]  && mv ~/.vimrc ~/.vimrc_back || rm -f ~/.vimrc
 	[[ -f ~/.gvimrc && ! -L ~/.gvimrc ]]  && mv ~/.gvimrc ~/.gvimrc_back || rm -f ~/.gvimrc
-	[[ ! -e ~/.SpaceVim.d || -L ~/.SpaceVim.d ]] && rm -f ~/.SpaceVim.d && ln -sf $(PWD)/SpaceVim.d ~/.SpaceVim.d
-	[[ ! -e ~/.vim/after || -L ~/.vim/after ]] && rm -f ~/.vim/after && ln -sf $(PWD)/vim/after ~/.vim/
+	[[ ! -e ~/.SpaceVim.d || -L ~/.SpaceVim.d ]] && rm -f ~/.SpaceVim.d && ln -sf $${PWD}/SpaceVim.d ~/.SpaceVim.d
+	[[ ! -e ~/.vim/after || -L ~/.vim/after ]] && rm -f ~/.vim/after && ln -sf $${PWD}/vim/after ~/.vim/
 
 python-vim-jedi:
 	# jedi need to be installed to the python that compiled into vim
@@ -186,6 +197,11 @@ ifeq ($(UNAME),Linux)
 	fc-cache -f -v &>/dev/null && fc-list :mono | grep -i "Hack"
 endif
 
+.PHONY: tmux
+tmux:
+	[[ -e ~/.tmux.conf ]] && mv ~/.tmux.conf ~/.tmux.conf.$(TS) || true
+	ln -s $${PWD}/tmux.conf ~/.tmux.conf
+
 # -----------------------------------------------------------------------------
 SCALA_VERSION  := 2.12.10
 ALMOND_VERSION := 0.8.2
@@ -219,7 +235,7 @@ coursier:
 amm: ammonite
 ammonite: sdkman coursier
 	@echo "-- install [ammonite](http://ammonite.io/#Ammonite-REPL)"
-	[[ ! -e ~/.ammonite || -L ~/.ammonite ]] && rm -f ~/.ammonite && ln -sf $(PWD)/ammonite ~/.ammonite
+	[[ ! -e ~/.ammonite || -L ~/.ammonite ]] && rm -f ~/.ammonite && ln -sf $${PWD}/ammonite ~/.ammonite
 	@source $${HOME}/.sdkman/bin/sdkman-init.sh     \
 	  && mkdir -p $(HOME_BIN) && cp amm $(HOME_BIN) \
 	  && amm <<< 'println("hello from Ammonite!")'  \

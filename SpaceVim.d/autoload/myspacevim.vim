@@ -169,6 +169,10 @@ func! myspacevim#after() abort
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
 
+  " http://kana.github.io/config/vim/arpeggio.html
+  Arpeggio inoremap jk <ESC>:VimuxPromptCommand<CR>
+  Arpeggio nnoremap jk :VimuxPromptCommand<CR>
+
   " scala/scalac do not understand ammonite scripts
   " scalastyle needs a configuration file
   " https://github.com/w0rp/ale/blob/master/doc/ale-scala.txt

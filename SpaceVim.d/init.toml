@@ -20,7 +20,8 @@ search_tools                   = ["rg", "ag", "grep"]
 # https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim.vim#L296
 # snippet_engine                 = "ultisnips"
 snippet_engine                 = "neosnippet"
-statusline_separator           = "bar"
+statusline_separator           = "arrow"
+statusline_inactive_separator  = "arrow"
 vimcompatible                  = 0
 
 # https://github.com/SpaceVim/SpaceVim/blob/master/docs/documentation.md#font
@@ -136,17 +137,17 @@ merged = 0
 name = "jremmen/vim-ripgrep"
 merged = 0
 
-# https://spacevim.org/layers/tags/
-# use customized plugin instead of layer for quickfix/location list window
-[[custom_plugins]]
-# https://github.com/ludovicchabant/vim-gutentags
-name = "ludovicchabant/vim-gutentags"
-merged = 0
-
-[[custom_plugins]]
-# https://github.com/skywind3000/gutentags_plus
-name = "skywind3000/gutentags_plus"
-merged = 0
+# # https://spacevim.org/layers/tags/
+# # use customized plugin instead of layer for quickfix/location list window
+# [[custom_plugins]]
+# # https://github.com/ludovicchabant/vim-gutentags
+# name = "ludovicchabant/vim-gutentags"
+# merged = 0
+#
+# [[custom_plugins]]
+# # https://github.com/skywind3000/gutentags_plus
+# name = "skywind3000/gutentags_plus"
+# merged = 0
 
 [[custom_plugins]]
 # https://github.com/cespare/vim-toml
@@ -227,6 +228,22 @@ name = "previm/previm"
 [[custom_plugins]]
 name = "tyru/open-browser.vim"
 
+## tmux ##
+
+[[custom_plugins]]
+name = "christoomey/vim-tmux-navigator"
+
+[[custom_plugins]]
+name = "benmills/vimux"
+
+[[custom_plugins]]
+# http://kana.github.io/config/vim/arpeggio.html
+name = "kana/vim-arpeggio"
+
+[[custom_plugins]]
+# https://github.com/edkolev/tmuxline.vim
+name = "edkolev/tmuxline.vim"
+
 # ------------------------------------------------------------------------------
 
 # forks
@@ -280,8 +297,8 @@ show_cursor_error = false
 # [[layers]]
 # name = "cscope"
 
-[[layers]]
-name = "tags"
+# [[layers]]
+# name = "tags"
 
 [[layers]]
 name = "github"
@@ -317,3 +334,8 @@ name = "lang#sh"
 
 [[layers]]
 name = "lang#go"
+
+# [[layers]]
+# name = "tmux"
+# tmux_navigator_modifier = "alt"
+# tmuxline_separators_alt = "arrow"
