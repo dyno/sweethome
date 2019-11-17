@@ -159,19 +159,18 @@ func! myspacevim#after() abort
   nnoremap <Leader>l :call GitRepoUrl()<CR>
   nnoremap <Leader>o :execute ':OpenBrowser '.GitRepoUrl()<CR>
 
-  nnoremap <Leader>e :call FzyCommand("rg --files", ":e")<CR>
-  nnoremap <Leader>v :call FzyCommand("rg --files", ":vs")<CR>
-  nnoremap <Leader>s :call FzyCommand("rg --files", ":sp")<CR>
-
   " :edit with "I'm feeling lucky"
   command! -nargs=1 E :call FuzzyEdit(<f-args>)
 
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
 
+  " https://www.bugsnag.com/blog/tmux-and-vim
   " http://kana.github.io/config/vim/arpeggio.html
   Arpeggio inoremap jk <ESC>:VimuxPromptCommand<CR>
   Arpeggio nnoremap jk :VimuxPromptCommand<CR>
+  map <Leader>vi :VimuxInspectRunner<CR>
+  map <Leader>vz :VimuxZoomRunner<CR>
 
   " scala/scalac do not understand ammonite scripts
   " scalastyle needs a configuration file
@@ -284,21 +283,6 @@ function GitRepoUrl()
 
   call setreg(s:clipboard_register, url)
   return url
-endfunction
-
-"-------------------------------------------------------------------------------
-
-" https://github.com/jhawthorn/fzy
-function FzyCommand(choice_command, vim_command)
-  try
-    let output = system(a:choice_command . ' | fzy ')
-  catch /Vim:Interrupt/
-    " Swallow errors from ^C, allow redraw! below
-  endtry
-  redraw!
-  if v:shell_error == 0 && !empty(output)
-    execute a:vim_command . ' ' . output
-  endif
 endfunction
 
 "-------------------------------------------------------------------------------
