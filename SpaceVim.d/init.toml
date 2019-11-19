@@ -244,6 +244,16 @@ name = "kana/vim-arpeggio"
 # https://github.com/edkolev/tmuxline.vim
 name = "edkolev/tmuxline.vim"
 
+## compatbility ##
+# E117: Unknown function: yarp#py3, https://github.com/Shougo/deoplete.nvim/issues/727
+
+[[custom_plugins]]
+name = "roxma/nvim-yarp"
+
+[[custom_plugins]]
+name = "roxma/vim-hug-neovim-rpc"
+
+
 # ------------------------------------------------------------------------------
 
 # forks
