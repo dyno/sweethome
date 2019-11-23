@@ -206,6 +206,19 @@ endif
 	[[ -e ~/.tmux.conf ]] && mv ~/.tmux.conf ~/.tmux.conf.$(TS) || true
 	ln -s $${PWD}/tmux.conf ~/.tmux.conf
 
+.PHONY: alacritty
+alacritty:
+ifeq ($(UNAME),Darwin)
+	brew cask install alacritty || true
+	[[ -e alacritty ]] && git -C alacritty pull --rebase --autostash || git clone https://github.com/jwilm/alacritty.git
+	cd alacritty                                                               \
+	  && gzip -c extra/alacritty.man >/usr/local/share/man/man1/alacritty.1.gz \
+	  && mkdir -p ~/.bash_completion                                           \
+	  && cp extra/completions/alacritty.bash ~/.bash_completion/alacritty      \
+	# END
+endif
+
+
 # -----------------------------------------------------------------------------
 SCALA_VERSION  := 2.12.10
 ALMOND_VERSION := 0.8.2
