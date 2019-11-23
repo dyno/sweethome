@@ -202,6 +202,7 @@ tmux:
 ifeq ($(UNAME),Darwin)
 	brew install reattach-to-user-namespace
 endif
+	mkdir -p ~/.tmuxp && ln -sf $${PWD}/tmuxp/*.yaml ~/.tmuxp/
 	[[ -e ~/.tmux.conf ]] && mv ~/.tmux.conf ~/.tmux.conf.$(TS) || true
 	ln -s $${PWD}/tmux.conf ~/.tmux.conf
 

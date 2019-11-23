@@ -8,6 +8,7 @@ neovim-remote = "*"
 pylint = "*"
 pynvim = "*"
 pyvim = "*"
+tmuxp = "*"
 vim-vint = "*"
 vint = "*"
 

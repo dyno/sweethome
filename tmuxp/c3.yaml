@@ -1,0 +1,19 @@
+session_name: c3
+start_directory: ~/
+windows:
+
+  - window_name: coding
+    layout: main-vertical
+    focus: true
+    options:
+      main-pane-width: 120
+    panes:
+      - shell_command: vim
+        focus: true
+      - shell_command:
+      - shell_command:
+  - window_name: bg
+    options:
+      automatic-rename: on
+    panes:
+      - shell_command: echo k9s octant htop etc
