@@ -3,6 +3,10 @@
 
 " ------------------------------------------------------------------------------
 
+" https://stackoverflow.com/questions/18321538/vim-error-e474-invalid-argument-listchars-tab-trail
+set encoding=utf-8
+scriptencoding utf-8
+
 func! myspacevim#before() abort
 
   if v:version >= 800
@@ -82,7 +86,9 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *.hivet    set filetype=sql
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
-    autocmd BufRead,BufNewFile Makefile*  setlocal list tabstop=8 noexpandtab
+    autocmd BufRead,BufNewFile Makefile*  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
+    autocmd BufRead,BufNewFile Makefile*  setlocal tabstop=8 noexpandtab list
+
     " arc diff buffers
     autocmd BufRead,BufNewFile differential-*,*-commit*,*commit-* set filetype=gitcommit
     " http://vim.wikia.com/wiki/Dictionary_completions
@@ -229,7 +235,6 @@ func! myspacevim#after() abort
     set linespace=1
   endif
   set guioptions=agikmrt
-
 
   ":set colorcolumn=120
   ":help highlight

@@ -134,7 +134,7 @@ endif
 # -----------------------------------------------------------------------------
 
 .PHONY: spacevim spacevim-install spacevim-config
-spacevim: neovim spacevim-install spacevim-config
+spacevim: neovim python-neovim spacevim-install spacevim-config
 spacevim-install:
 	[[ ! -e ~/.SpaceVim ]] && curl -sLf https://spacevim.org/install.sh | bash || true
 	[[ -d ~/.SpaceVim ]] && git pull
@@ -199,6 +199,9 @@ endif
 
 .PHONY: tmux
 tmux:
+ifeq ($(UNAME),Darwin)
+	brew install reattach-to-user-namespace
+endif
 	[[ -e ~/.tmux.conf ]] && mv ~/.tmux.conf ~/.tmux.conf.$(TS) || true
 	ln -s $${PWD}/tmux.conf ~/.tmux.conf
 
