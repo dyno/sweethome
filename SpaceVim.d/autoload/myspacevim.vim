@@ -236,6 +236,11 @@ func! myspacevim#after() abort
   endif
   set guioptions=agikmrt
 
+  " https://github.com/janko/vim-test#strategies
+  let g:test#strategy = 'dispatch'
+  "let g:test#strategy = 'vimux'
+  let g:test#preserve_screen = 1
+
   ":set colorcolumn=120
   ":help highlight
   ":help highlight-groups

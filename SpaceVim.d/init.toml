@@ -88,6 +88,16 @@ on_ft = "python"
 name = "numirias/semshi"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/janko/vim-test#setup
+name = "janko/vim-test"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/tpope/vim-dispatch#faq
+name = "tpope/vim-dispatch"
+merged = 0
+
 # ------------------------------------------------------------------------------
 ## code formatters ##
 
