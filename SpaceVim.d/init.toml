@@ -225,6 +225,9 @@ name = "previm/previm"
 [[custom_plugins]]
 name = "tyru/open-browser.vim"
 
+[[custom_plugins]]
+# https://github.com/pelodelfuego/vim-swoop
+name = "pelodelfuego/vim-swoop"
 # ------------------------------------------------------------------------------
 ## tmux ##
 
