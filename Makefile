@@ -206,15 +206,24 @@ endif
 	[[ -e ~/.tmux.conf ]] && mv ~/.tmux.conf ~/.tmux.conf.$(TS) || true
 	ln -s $${PWD}/tmux.conf ~/.tmux.conf
 
+.PHONY: alacritty-config
+alacritty-config:
+	mkdir -p ~/.config/alacritty/
+	ln -sf $(PWD)/alacritty.yml ~/.config/alacritty/
+
 .PHONY: alacritty
-alacritty:
+alacritty: alacritty-config
 ifeq ($(UNAME),Darwin)
-	brew cask install alacritty || true
 	[[ -e alacritty ]] && git -C alacritty pull --rebase --autostash || git clone https://github.com/jwilm/alacritty.git
+	# build and install
+	cd alacritty      \
+	  && make install \
+	# END
+	# install manpages
 	cd alacritty                                                               \
 	  && gzip -c extra/alacritty.man >/usr/local/share/man/man1/alacritty.1.gz \
-	  && mkdir -p ~/.bash_completion                                           \
-	  && cp extra/completions/alacritty.bash ~/.bash_completion/alacritty      \
+	  && mkdir -p ~/.bash_completion.d                                         \
+	  && cp extra/completions/alacritty.bash ~/.bash_completion.d/alacritty    \
 	# END
 endif
 

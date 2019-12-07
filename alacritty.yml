@@ -1,0 +1,53 @@
+# https://github.com/jwilm/alacritty/blob/master/alacritty.yml
+
+font:
+  normal:
+    family: "SauceCodePro Nerd Font Mono"
+  size: 13.0
+
+decorations: transparent
+background_opacity: 0.9
+
+dynamic_title: true
+
+# XXX:
+# add /usr/local/bin/bash to /etc/shells
+# chsh -s /usr/local/bin/bash
+shell:
+  program: /usr/local/bin/bash
+  args:
+    - --login
+
+startup_mode: Maximized
+
+env:
+  TERM: xterm-256color
+
+# https://github.com/eendroroy/alacritty-theme
+# https://github.com/jwilm/alacritty/wiki/Color-schemes#molokai
+# Colors (Molokai Dark)
+colors:
+  # Default colors
+  primary:
+    background: '0x1B1D1E'
+    foreground: '0xF8F8F2'
+  # Normal colors
+  normal:
+    black:   '0x333333'
+    red:     '0xC4265E'
+    green:   '0x86B42B'
+    yellow:  '0xB3B42B'
+    blue:    '0x6A7EC8'
+    magenta: '0x8C6BC8'
+    cyan:    '0x56ADBC'
+    white:   '0xE3E3DD'
+  # Bright colors
+  bright:
+    black:   '0x666666'
+    red:     '0xF92672'
+    green:   '0xA6E22E'
+    yellow:  '0xE2E22E'
+    blue:    '0x819AFF'
+    magenta: '0xAE81FF'
+    cyan:    '0x66D9EF'
+    white:   '0xF8F8F2'
