@@ -220,6 +220,13 @@ func! myspacevim#after() abort
         \ }
   let g:neoformat_enabled_java = ['googlefmt']
 
+  let g:neoformat_enabled_xml = ['tidy']
+  let g:neoformat_xml_tidy = {
+        \ 'exe': 'tidy',
+        \ 'args': ['-xml', '-wrap', 120, '--indent', 'auto', '--indent-spaces', 2, '--vertical-space', 'yes'],
+        \ 'stdin': 1,
+        \ }
+
   let g:neoformat_run_all_formatters = 1
   let g:neoformat_verbose = 0
 
