@@ -228,6 +228,14 @@ name = "tyru/open-browser.vim"
 [[custom_plugins]]
 # https://github.com/pelodelfuego/vim-swoop
 name = "pelodelfuego/vim-swoop"
+
+# ------------------------------------------------------------------------------
+## utility ##
+
+[[custom_plugins]]
+# https://github.com/christianrondeau/vim-base64
+name = "christianrondeau/vim-base64"
+
 # ------------------------------------------------------------------------------
 ## tmux ##
 
