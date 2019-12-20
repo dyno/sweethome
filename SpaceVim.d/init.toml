@@ -284,6 +284,16 @@ merged = 0
 name = "cespare/vim-toml"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/plasticboy/vim-markdown
+name = "plasticboy/vim-markdown"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/reedes/vim-colors-pencil
+name = "reedes/vim-colors-pencil"
+merged = 0
+
 # ------------------------------------------------------------------------------
 
 # forks
