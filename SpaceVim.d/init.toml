@@ -67,6 +67,9 @@ name = 'dracula/vim'
 # https://github.com/NLKNguyen/papercolor-theme
 name = "NLKNguyen/papercolor-theme"
 
+[[custom_plugins]]
+# https://github.com/jaredgorski/SpaceCamp
+name = "jaredgorski/SpaceCamp"
 
 # ------------------------------------------------------------------------------
 ## Python ##
