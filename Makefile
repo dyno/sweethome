@@ -269,11 +269,12 @@ ammonite: sdkman coursier
 
 almond-installer: coursier
 	@echo "-- install [almond](https://almond.sh/docs/quick-start-install)"
-	coursier bootstrap \
-	  -r jitpack \
+	coursier bootstrap                                                              \
+	  -r jitpack                                                                    \
 	  -i user -I user:sh.almond:scala-kernel-api_$(SCALA_VERSION):$(ALMOND_VERSION) \
-	  sh.almond:scala-kernel_$(SCALA_VERSION):$(ALMOND_VERSION) \
-	  -o almond-installer
+	  sh.almond:scala-kernel_$(SCALA_VERSION):$(ALMOND_VERSION)                     \
+	  -f -o almond-installer                                                        \
+	# END
 	./almond-installer --help
 
 almond-install: almond-installer
