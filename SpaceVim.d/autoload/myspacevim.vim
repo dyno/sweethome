@@ -9,49 +9,6 @@ scriptencoding utf-8
 
 func! myspacevim#before() abort
 
-  if v:version >= 800
-    " https://github.com/ludovicchabant/vim-gutentags
-    " https://github.com/skywind3000/gutentags_plus
-
-    " https://github.com/ludovicchabant/vim-gutentags/issues/168
-    let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text']
-    "with this flag set, have to run :GutentagsUpdate manually.
-    let g:gutentags_generate_on_write = 0
-
-    " used by layers.tags
-    let g:gutentags_trace = 0
-    "https://www.jianshu.com/p/110b27f8361b
-    let g:gutentags_modules = []
-    if executable('ctags')
-      let g:gutentags_modules += ['ctags']
-    endif
-    if executable('gtags-cscope') && executable('gtags')
-      let g:gutentags_modules += ['gtags_cscope']
-    endif
-
-    let g:gutentags_ctags_tagfile = 'tags'
-
-    " https://github.com/liuchengxu/space-vim/blob/master/core/autoload/spacevim/autocmd/gutentags.vim
-    " let s:tags_cache_dir = expand('~/.cache/tags')
-    " if !isdirectory(s:tags_cache_dir)
-    "   silent! call mkdir(s:tags_cache_dir, 'p')
-    " endif
-    " let g:gutentags_cache_dir = s:tags_cache_dir
-
-    " generate in project directory so that tags layer and GscopeFind
-    " (gutentags_plus) can share the same tags file.
-    let g:gutentags_cache_dir = ''
-
-    " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
-    let g:gutentags_add_default_project_roots = 1
-    let g:gutentags_generate_on_missing = 1
-    let g:gutentags_ctags_exclude = ['build', '.venv', 'zold', 'output', '.git', '.svn', '.hg', '.eggs', '.cache*', '*_cache', '*.egg-info']
-    " GscopeAdd; cs show
-    let g:gutentags_auto_add_gtags_cscope = 0
-
-    let g:rainbow_active = 1
-  endif
-
   " https://github.com/srstevenson/vim-picker
   let g:picker_custom_find_executable = 'rg'
   let g:picker_custom_find_flags = '--color never --files'
@@ -148,6 +105,51 @@ endf
 " ------------------------------------------------------------------------------
 
 func! myspacevim#after() abort
+
+  if v:version >= 800
+    " https://github.com/ludovicchabant/vim-gutentags
+    " https://github.com/skywind3000/gutentags_plus
+    let g:gutentags_define_advanced_commands = 1
+
+    " https://github.com/ludovicchabant/vim-gutentags/issues/168
+    let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text']
+
+    "with these flag set to 0, have to run :GutentagsUpdate manually.
+    let g:gutentags_generate_on_missing = 1
+    let g:gutentags_generate_on_new = 0
+    let g:gutentags_generate_on_write = 1
+
+    " https://github.com/liuchengxu/space-vim/blob/master/core/autoload/spacevim/autocmd/gutentags.vim
+    " generate in project directory so that tags layer and GscopeFind
+    " (gutentags_plus) can share the same tags file.
+    let g:gutentags_cache_dir = ''
+
+    "https://www.jianshu.com/p/110b27f8361b
+    let g:gutentags_modules = []
+    if executable('gtags-cscope') && executable('gtags')
+      let g:gutentags_modules += ['gtags_cscope']
+      " GscopeAdd; cs show
+      let g:gutentags_auto_add_gtags_cscope = 1
+      " https://github.com/skywind3000/gutentags_plus#configuration
+      let g:gutentags_plus_switch = 1
+      " https://stackoverflow.com/questions/28475573/can-gtags-navigate-back
+      set cscopetag
+      " https://stackoverflow.com/questions/42315741/how-gtags-exclude-some-specific-subdirectories
+      " edit ~/.globalrc to exclude files
+
+    elseif executable('ctags')
+      let g:gutentags_modules += ['ctags']
+      let g:gutentags_ctags_tagfile = 'tags'
+      let g:gutentags_ctags_exclude = ['build', '.venv', 'tmp', 'zold', 'output', '.git', '.svn', '.hg', '.eggs', '.cache*', '*_cache', '*.egg-info']
+
+    endif
+
+    " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
+    let g:gutentags_add_default_project_roots = 1
+
+    let g:rainbow_active = 1
+  endif
+
   " yank to clipboard
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings
   " http://www.markcampbell.me/2016/04/12/setting-up-yank-to-clipboard-on-a-mac-with-vim.html
