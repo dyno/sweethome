@@ -71,6 +71,10 @@ name = "NLKNguyen/papercolor-theme"
 # https://github.com/jaredgorski/SpaceCamp
 name = "jaredgorski/SpaceCamp"
 
+[[custom_plugins]]
+# https://github.com/haishanh/night-owl.vim
+name = "haishanh/night-owl.vim"
+
 # ------------------------------------------------------------------------------
 ## Python ##
 
@@ -121,6 +125,28 @@ name = "godlygeek/tabular"
 merged = 0
 on_ft = "markdown"
 
+# ------------------------------------------------------------------------------
+## tags ##
+
+# https://spacevim.org/layers/tags/
+# use customized plugin instead of layer for quickfix/location list window
+[[custom_plugins]]
+# https://github.com/ludovicchabant/vim-gutentags
+name = "ludovicchabant/vim-gutentags"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/skywind3000/gutentags_plus
+name = "skywind3000/gutentags_plus"
+merged = 0
+
+# [[custom_plugins]]
+# # https://github.com/skywind3000/vim-preview
+# name = "skywind3000/vim-preview"
+# merged = 0
+
+# ------------------------------------------------------------------------------
+
 [[custom_plugins]]
 # for Gbrowse
 # https://github.com/tpope/vim-rhubarb
@@ -149,18 +175,6 @@ merged = 0
 # https://github.com/jremmen/vim-ripgrep
 name = "jremmen/vim-ripgrep"
 merged = 0
-
-# # https://spacevim.org/layers/tags/
-# # use customized plugin instead of layer for quickfix/location list window
-# [[custom_plugins]]
-# # https://github.com/ludovicchabant/vim-gutentags
-# name = "ludovicchabant/vim-gutentags"
-# merged = 0
-#
-# [[custom_plugins]]
-# # https://github.com/skywind3000/gutentags_plus
-# name = "skywind3000/gutentags_plus"
-# merged = 0
 
 [[custom_plugins]]
 # https://github.com/junegunn/fzf
