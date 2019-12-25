@@ -140,10 +140,10 @@ merged = 0
 name = "skywind3000/gutentags_plus"
 merged = 0
 
-# [[custom_plugins]]
-# # https://github.com/skywind3000/vim-preview
-# name = "skywind3000/vim-preview"
-# merged = 0
+[[custom_plugins]]
+# https://github.com/skywind3000/vim-preview
+name = "skywind3000/vim-preview"
+merged = 0
 
 # ------------------------------------------------------------------------------
 

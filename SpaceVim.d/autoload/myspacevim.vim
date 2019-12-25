@@ -126,7 +126,25 @@ func! myspacevim#after() abort
 
     "https://www.jianshu.com/p/110b27f8361b
     let g:gutentags_modules = []
-    if executable('gtags-cscope') && executable('gtags')
+
+    " https://stackoverflow.com/questions/12922526/tags-for-emacs-relationship-between-etags-ebrowse-cscope-gnu-global-and-exub
+    " XXX:
+    " enable both modules, gtags-cscope returns 139 (segmentfault).
+    " prefer ctags over gtags for better integration with other plugins, e.g.
+    " vim-preview, etc.
+    if executable('ctags')
+      let g:gutentags_modules += ['ctags']
+      let g:gutentags_ctags_tagfile = 'tags'
+      let g:gutentags_ctags_exclude = [
+            \ 'build', '.venv', 'tmp', 'zold', 'output',
+            \ '.git', '.svn', '.hg',
+            \ '.eggs', '.cache*', '*_cache', '*.egg-info',
+            \ '*.txt', '*.md', '*.markdown', '*.csv',
+            \ '*.tar.*', '*.tgz', '*.zip',
+            \ 'x.*', 'y.*', 'z.*', 'a.*', 'b.*', 'c.*'
+            \]
+
+    elseif executable('gtags-cscope') && executable('gtags')
       let g:gutentags_modules += ['gtags_cscope']
       " GscopeAdd; cs show
       let g:gutentags_auto_add_gtags_cscope = 1
@@ -136,11 +154,6 @@ func! myspacevim#after() abort
       set cscopetag
       " https://stackoverflow.com/questions/42315741/how-gtags-exclude-some-specific-subdirectories
       " edit ~/.globalrc to exclude files
-
-    elseif executable('ctags')
-      let g:gutentags_modules += ['ctags']
-      let g:gutentags_ctags_tagfile = 'tags'
-      let g:gutentags_ctags_exclude = ['build', '.venv', 'tmp', 'zold', 'output', '.git', '.svn', '.hg', '.eggs', '.cache*', '*_cache', '*.egg-info']
 
     endif
 
