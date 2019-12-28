@@ -402,6 +402,14 @@ default_height = 30
 [[layers]]
 name = "lang#python"
 # pip install jedi isort black pylama eradicate
+python-file-head = [
+    '#!/usr/bin/env python3',
+    '',
+    '"""'
+    '<Module Description>'
+    '"""',
+    ''
+]
 
 [[layers]]
 name = "lang#java"
