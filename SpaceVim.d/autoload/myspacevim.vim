@@ -9,6 +9,69 @@ scriptencoding utf-8
 
 func! myspacevim#before() abort
 
+  if v:version >= 800
+    " https://github.com/ludovicchabant/vim-gutentags
+    " https://github.com/skywind3000/gutentags_plus
+    let g:gutentags_define_advanced_commands = 1
+    let g:gutentags_trace = 1
+
+    " https://github.com/ludovicchabant/vim-gutentags/issues/168
+    let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text', 'javascript']
+
+    let g:gutentags_file_list_command = {
+      \   'markers': {
+      \   '.git': 'git ls-files',
+      \   },
+      \ }
+
+    " > Error detected while processing function <SNR>270_nvim_job_exit_wrapper[1]..gutentags#ctags#on_job_exit[1]..gutentags#remove_job_by_data[2]..gutentags#remove_job:
+    " It's like kill ctags takes time... disable auto update.
+    " with these flag set to 0, have to run :GutentagsUpdate manually.
+    let g:gutentags_generate_on_missing = 0
+    let g:gutentags_generate_on_new = 0
+    let g:gutentags_generate_on_write = 0
+
+    " https://github.com/liuchengxu/space-vim/blob/master/core/autoload/spacevim/autocmd/gutentags.vim
+    " generate in project directory so that tags layer and GscopeFind
+    " (gutentags_plus) can share the same tags file.
+    let g:gutentags_cache_dir = ''
+
+    "https://www.jianshu.com/p/110b27f8361b
+    let g:gutentags_modules = []
+
+    " https://stackoverflow.com/questions/12922526/tags-for-emacs-relationship-between-etags-ebrowse-cscope-gnu-global-and-exub
+    " XXX:
+    " only ctags is enbled. enable both modules, gtags-cscope returns 139 (segmentfault).
+    " prefer ctags over gtags for better integration with other plugins, e.g. vim-preview, etc.
+    if executable('ctags')
+      let g:gutentags_modules += ['ctags']
+      let g:gutentags_ctags_tagfile = 'tags'
+      let g:gutentags_ctags_exclude_wildignore = 1
+      let g:gutentags_ctags_exclude = [
+            \ 'build/', '.venv/', 'tmp/', 'zold/', 'output/', 'workspace/', 'target/', 'classes/', 'mecha/',
+            \ '.git', '.svn', '.hg',
+            \ '.eggs', '.cache*', '*_cache', '*.egg-info',
+            \ '*.tar.*', '*.gz', '*.zip',
+            \ '*.txt', '*.md', '*.markdown', '*.csv',
+            \ 'x.*', 'y.*', 'z.*', 'a.*', 'b.*', 'c.*'
+            \]
+    elseif executable('gtags-cscope') && executable('gtags')
+      let g:gutentags_modules += ['gtags_cscope']
+      " GscopeAdd; cs show
+      let g:gutentags_auto_add_gtags_cscope = 1
+      " https://github.com/skywind3000/gutentags_plus#configuration
+      let g:gutentags_plus_switch = 1
+      " https://stackoverflow.com/questions/28475573/can-gtags-navigate-back
+      set cscopetag
+      " https://stackoverflow.com/questions/42315741/how-gtags-exclude-some-specific-subdirectories
+      " edit ~/.globalrc to exclude files
+    endif
+
+    " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
+    let g:gutentags_add_default_project_roots = 1
+
+  endif
+
   " https://github.com/srstevenson/vim-picker
   let g:picker_custom_find_executable = 'rg'
   let g:picker_custom_find_flags = '--color never --files'
@@ -106,62 +169,8 @@ endf
 
 func! myspacevim#after() abort
 
-  if v:version >= 800
-    " https://github.com/ludovicchabant/vim-gutentags
-    " https://github.com/skywind3000/gutentags_plus
-    let g:gutentags_define_advanced_commands = 1
-
-    " https://github.com/ludovicchabant/vim-gutentags/issues/168
-    let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text']
-
-    "with these flag set to 0, have to run :GutentagsUpdate manually.
-    let g:gutentags_generate_on_missing = 1
-    let g:gutentags_generate_on_new = 0
-    let g:gutentags_generate_on_write = 1
-
-    " https://github.com/liuchengxu/space-vim/blob/master/core/autoload/spacevim/autocmd/gutentags.vim
-    " generate in project directory so that tags layer and GscopeFind
-    " (gutentags_plus) can share the same tags file.
-    let g:gutentags_cache_dir = ''
-
-    "https://www.jianshu.com/p/110b27f8361b
-    let g:gutentags_modules = []
-
-    " https://stackoverflow.com/questions/12922526/tags-for-emacs-relationship-between-etags-ebrowse-cscope-gnu-global-and-exub
-    " XXX:
-    " enable both modules, gtags-cscope returns 139 (segmentfault).
-    " prefer ctags over gtags for better integration with other plugins, e.g.
-    " vim-preview, etc.
-    if executable('ctags')
-      let g:gutentags_modules += ['ctags']
-      let g:gutentags_ctags_tagfile = 'tags'
-      let g:gutentags_ctags_exclude = [
-            \ 'build', '.venv', 'tmp', 'zold', 'output',
-            \ '.git', '.svn', '.hg',
-            \ '.eggs', '.cache*', '*_cache', '*.egg-info',
-            \ '*.txt', '*.md', '*.markdown', '*.csv',
-            \ '*.tar.*', '*.tgz', '*.zip',
-            \ 'x.*', 'y.*', 'z.*', 'a.*', 'b.*', 'c.*'
-            \]
-
-    elseif executable('gtags-cscope') && executable('gtags')
-      let g:gutentags_modules += ['gtags_cscope']
-      " GscopeAdd; cs show
-      let g:gutentags_auto_add_gtags_cscope = 1
-      " https://github.com/skywind3000/gutentags_plus#configuration
-      let g:gutentags_plus_switch = 1
-      " https://stackoverflow.com/questions/28475573/can-gtags-navigate-back
-      set cscopetag
-      " https://stackoverflow.com/questions/42315741/how-gtags-exclude-some-specific-subdirectories
-      " edit ~/.globalrc to exclude files
-
-    endif
-
-    " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
-    let g:gutentags_add_default_project_roots = 1
-
-    let g:rainbow_active = 1
-  endif
+  " https://github.com/luochen1990/rainbow
+  let g:rainbow_active = 1
 
   " yank to clipboard
   " https://stackoverflow.com/questions/30691466/what-is-difference-between-vims-clipboard-unnamed-and-unnamedplus-settings

@@ -11,6 +11,7 @@ enable_vimfiler_filetypeicon   = 0
 enable_vimfiler_gitstatus      = 1
 enable_vimfiler_welcome        = 0  # XXX: very slow, source code also confirmed it.
 max_column                     = 120
+# https://github.com/Shougo/dein.vim/blob/master/doc/dein.txt
 plugin_manager                 = "dein"
 # https://spacevim.org/documentation/#managing-projects
 project_rooter_automatically   = 1
@@ -39,16 +40,12 @@ bootstrap_after  = "myspacevim#after"
 # https://spacevim.org/layers/colorscheme/
 colorscheme    = "molokai"
 colorscheme_bg = "dark"
-# colorscheme    = "dracula"
-# colorscheme_bg = "light"
 
 # layers:checkers
 enable_neomake = false
 enable_ale     = true
 
 # ==============================================================================
-
-# ------------------------------------------------------------------------------
 ## colorscheme ##
 
 [[custom_plugins]]
@@ -94,6 +91,8 @@ on_ft = "python"
 # https://github.com/numirias/semshi
 name = "numirias/semshi"
 merged = 0
+if = "has('nvim')"
+on_ft = "python"
 
 [[custom_plugins]]
 # https://github.com/janko/vim-test#setup
@@ -146,16 +145,29 @@ name = "skywind3000/vim-preview"
 merged = 0
 
 # ------------------------------------------------------------------------------
+# ## git ##
+
+# [[custom_plugins]]
+# # https://github.com/jreybert/vimagit
+# name = "jreybert/vimagit"
+# merged = 0
+
+# [[custom_plugins]]
+# # https://github.com/tpope/vim-fugitive
+# name = "tpope/vim-fugitive"
+# merged = 0
+
+[[custom_plugins]]
+# https://github.com/mhinz/vim-signify
+name = "mhinz/vim-signify"
+merged = 0
+
+# ------------------------------------------------------------------------------
 
 [[custom_plugins]]
 # for Gbrowse
 # https://github.com/tpope/vim-rhubarb
 name = "tpope/vim-rhubarb"
-merged = 0
-
-[[custom_plugins]]
-# https://github.com/tpope/vim-fugitive
-name = "tpope/vim-fugitive"
 merged = 0
 
 # [[custom_plugins]]
@@ -170,6 +182,9 @@ merged = 0
 # # https://github.com/editorconfig/editorconfig-vim
 # name = "editorconfig/editorconfig-vim"
 # merged = 0
+
+# ------------------------------------------------------------------------------
+# ## search ##
 
 [[custom_plugins]]
 # https://github.com/jremmen/vim-ripgrep
@@ -191,6 +206,7 @@ merged = 0
 name = "srstevenson/vim-picker"
 merged = 0
 
+# ------------------------------------------------------------------------------
 [[custom_plugins]]
 # https://github.com/luochen1990/rainbow
 name = "luochen1990/rainbow"
@@ -226,21 +242,15 @@ merged = 0
 name = "justinmk/vim-dirvish"
 merged = 0
 
-[[custom_plugins]]
-# https://github.com/tpope/vim-projectionist
-name = "tpope/vim-projectionist"
-merged = 0
+# [[custom_plugins]]
+# # https://github.com/tpope/vim-projectionist
+# name = "tpope/vim-projectionist"
+# merged = 0
 
 [[custom_plugins]]
 # https://github.com/GhostText/GhostText
 # https://github.com/raghur/vim-ghost
 name = "raghur/vim-ghost"
-
-[[custom_plugins]]
-name = "previm/previm"
-
-[[custom_plugins]]
-name = "tyru/open-browser.vim"
 
 [[custom_plugins]]
 # https://github.com/pelodelfuego/vim-swoop
@@ -253,13 +263,20 @@ name = "pelodelfuego/vim-swoop"
 # https://github.com/christianrondeau/vim-base64
 name = "christianrondeau/vim-base64"
 
+[[custom_plugins]]
+# https://github.com/tyru/open-browser.vim
+name = "tyru/open-browser.vim"
+
 # ------------------------------------------------------------------------------
 ## tmux ##
+# https://www.bugsnag.com/blog/tmux-and-vim, Tmux and Vim — even better together
 
 [[custom_plugins]]
+# https://github.com/christoomey/vim-tmux-navigator
 name = "christoomey/vim-tmux-navigator"
 
 [[custom_plugins]]
+# https://github.com/benmills/vimux
 name = "benmills/vimux"
 
 [[custom_plugins]]
@@ -307,6 +324,11 @@ name = "plasticboy/vim-markdown"
 merged = 0
 
 [[custom_plugins]]
+# preview markdown
+# https://github.com/previm/previm
+name = "previm/previm"
+
+[[custom_plugins]]
 # https://github.com/reedes/vim-colors-pencil
 name = "reedes/vim-colors-pencil"
 merged = 0
@@ -338,6 +360,8 @@ name = "VersionControl"
 
 [[layers]]
 name = "git"
+git-plugin = "fugitive"
+
 
 [[layers]]
 # https://spacevim.org/layers/autocomplete/#configuration
@@ -357,11 +381,12 @@ show_cursor_error = false
 # [[layers]]
 # name = "cscope"
 
-# [[layers]]
-# name = "tags"
-
 [[layers]]
-name = "github"
+# https://spacevim.org/layers/gtags/
+name = "gtags"
+
+# [[layers]]
+# name = "github"
 
 #[[layers]]
 #name = "lsp"
@@ -373,7 +398,6 @@ name = "github"
 name = "shell"
 default_position = "top"
 default_height = 30
-
 
 [[layers]]
 name = "lang#python"
