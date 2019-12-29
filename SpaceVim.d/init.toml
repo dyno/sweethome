@@ -272,6 +272,12 @@ merged = 0
 name = "tpope/vim-rhubarb"
 merged = 0
 
+[[custom_plugins]]
+# preview markdown
+# https://github.com/previm/previm
+name = "previm/previm"
+merged = 0
+
 # [[custom_plugins]]
 # name = "ryanolsonx/vim-lsp-python"
 # merged = 0
@@ -427,11 +433,6 @@ merged = 0
 # https://github.com/plasticboy/vim-markdown
 name = "plasticboy/vim-markdown"
 merged = 0
-
-[[custom_plugins]]
-# preview markdown
-# https://github.com/previm/previm
-name = "previm/previm"
 
 [[custom_plugins]]
 # https://github.com/vim-jp/vim-java
