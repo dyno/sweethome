@@ -45,32 +45,134 @@ colorscheme_bg = "dark"
 enable_neomake = false
 enable_ale     = true
 
+
+# ==============================================================================
+[[layers]]
+name = "colorscheme"
+
+#[[layers]]
+#name = "tools"
+
+[[layers]]
+name = "denite"
+
+[[layers]]
+name = "fzf"
+
+[[layers]]
+name = "VersionControl"
+
+[[layers]]
+name = "git"
+git-plugin = "fugitive"
+
+[[layers]]
+# https://spacevim.org/layers/autocomplete/#configuration
+name = "autocomplete"
+auto-completion-return-key-behavior = "nil"
+auto-completion-tab-key-behavior = "smart"
+auto-completion-delay = 200
+auto-completion-complete-with-key-sequence = "nil"
+auto-completion-complete-with-key-sequence-delay = 0.1
+
+[[layers]]
+name = "checkers"
+show_cursor_error = false
+
+# XXX: annoying message "all databases has been cleared!"
+# https://github.com/SpaceVim/cscope.vim/blob/master/autoload/cscope.vim#L87
+# [[layers]]
+# name = "cscope"
+
+[[layers]]
+# https://spacevim.org/layers/gtags/
+name = "gtags"
+
+# [[layers]]
+# name = "github"
+
+#[[layers]]
+#name = "lsp"
+#filetypes = ["python", "sh"]
+# https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python
+# XXX: lsp is not stable enough, renaming support, requires setup etc
+
+[[layers]]
+name = "shell"
+default_position = "top"
+default_height = 30
+
+[[layers]]
+name = "lang#python"
+# pip install jedi isort black pylama eradicate
+python-file-head = [
+  '#!/usr/bin/env python3',
+  '',
+  '"""'
+  '<Module Description>'
+  '"""',
+  ''
+]
+
+[[layers]]
+name = "lang#java"
+
+[[layers]]
+name = "lang#scala"
+
+[[layers]]
+name = "lang#vim"
+# pip install vint vim-vint
+
+[[layers]]
+name = "lang#sh"
+
+[[layers]]
+name = "lang#go"
+
+# [[layers]]
+# name = "tmux"
+# tmux_navigator_modifier = "alt"
+# tmuxline_separators_alt = "arrow"
+
+
 # ==============================================================================
 ## colorscheme ##
 
 [[custom_plugins]]
 # https://github.com/drewtempelmeyer/palenight.vim
 name = 'drewtempelmeyer/palenight.vim'
+merged = 0
 
 [[custom_plugins]]
 # https://github.com/ayu-theme/ayu-vim
 name = 'ayu-theme/ayu-vim'
+merged = 0
 
 [[custom_plugins]]
 # https://draculatheme.com/vim/
 name = 'dracula/vim'
+merged = 0
 
 [[custom_plugins]]
 # https://github.com/NLKNguyen/papercolor-theme
 name = "NLKNguyen/papercolor-theme"
+merged = 0
 
 [[custom_plugins]]
 # https://github.com/jaredgorski/SpaceCamp
 name = "jaredgorski/SpaceCamp"
+merged = 0
 
 [[custom_plugins]]
 # https://github.com/haishanh/night-owl.vim
 name = "haishanh/night-owl.vim"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/reedes/vim-colors-pencil
+name = "reedes/vim-colors-pencil"
+merged = 0
 
 # ------------------------------------------------------------------------------
 ## Python ##
@@ -304,9 +406,12 @@ name = "roxma/vim-hug-neovim-rpc"
 [[custom_plugins]]
 # https://github.com/aklt/plantuml-syntax
 name = "aklt/plantuml-syntax"
+merged = 0
 
 [[custom_plugins]]
+# https://github.com/google/vim-jsonnet
 name = "google/vim-jsonnet"
+merged = 0
 
 [[custom_plugins]]
 # https://github.com/lepture/vim-jinja
@@ -329,105 +434,8 @@ merged = 0
 name = "previm/previm"
 
 [[custom_plugins]]
-# https://github.com/reedes/vim-colors-pencil
-name = "reedes/vim-colors-pencil"
+# https://github.com/vim-jp/vim-java
+name = "vim-jp/vim-java"
 merged = 0
 
 # ------------------------------------------------------------------------------
-
-# forks
-[[custom_plugins]]
-# https://github.com/dyno/vim-java
-name = "dyno/vim-java"
-merged = 0
-
-# ==============================================================================
-
-[[layers]]
-name = "colorscheme"
-
-#[[layers]]
-#name = "tools"
-
-[[layers]]
-name = "denite"
-
-[[layers]]
-name = "fzf"
-
-[[layers]]
-name = "VersionControl"
-
-[[layers]]
-name = "git"
-git-plugin = "fugitive"
-
-
-[[layers]]
-# https://spacevim.org/layers/autocomplete/#configuration
-name = "autocomplete"
-auto-completion-return-key-behavior = "nil"
-auto-completion-tab-key-behavior = "smart"
-auto-completion-delay = 200
-auto-completion-complete-with-key-sequence = "nil"
-auto-completion-complete-with-key-sequence-delay = 0.1
-
-[[layers]]
-name = "checkers"
-show_cursor_error = false
-
-# XXX: annoying message "all databases has been cleared!"
-# https://github.com/SpaceVim/cscope.vim/blob/master/autoload/cscope.vim#L87
-# [[layers]]
-# name = "cscope"
-
-[[layers]]
-# https://spacevim.org/layers/gtags/
-name = "gtags"
-
-# [[layers]]
-# name = "github"
-
-#[[layers]]
-#name = "lsp"
-#filetypes = ["python", "sh"]
-# https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python
-# XXX: lsp is not stable enough, renaming support, requires setup etc
-
-[[layers]]
-name = "shell"
-default_position = "top"
-default_height = 30
-
-[[layers]]
-name = "lang#python"
-# pip install jedi isort black pylama eradicate
-python-file-head = [
-    '#!/usr/bin/env python3',
-    '',
-    '"""'
-    '<Module Description>'
-    '"""',
-    ''
-]
-
-[[layers]]
-name = "lang#java"
-
-[[layers]]
-name = "lang#scala"
-
-[[layers]]
-name = "lang#vim"
-# pip install vint vim-vint
-
-[[layers]]
-name = "lang#sh"
-
-[[layers]]
-name = "lang#go"
-
-# [[layers]]
-# name = "tmux"
-# tmux_navigator_modifier = "alt"
-# tmuxline_separators_alt = "arrow"
