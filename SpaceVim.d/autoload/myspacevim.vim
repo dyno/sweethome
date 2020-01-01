@@ -47,8 +47,9 @@ func! myspacevim#before() abort
       let g:gutentags_modules += ['ctags']
       let g:gutentags_ctags_tagfile = 'tags'
       let g:gutentags_ctags_exclude_wildignore = 1
+      " https://github.com/universal-ctags/ctags/issues/759, How to exclude a directory specified with parent dirs?
       let g:gutentags_ctags_exclude = [
-            \ 'build/', '.venv/', 'tmp/', 'zold/', 'output/', 'workspace/', 'target/', 'classes/', 'mecha/',
+            \ '*build/*', '*.venv/*', '*tmp/*', '*zold/*', '*output/*', '*workspace/*', '*target/*', '*classes/*', '*mecha/*',
             \ '.git', '.svn', '.hg',
             \ '.eggs', '.cache*', '*_cache', '*.egg-info',
             \ '*.tar.*', '*.gz', '*.zip',
