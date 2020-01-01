@@ -15,9 +15,6 @@ func! myspacevim#before() abort
     let g:gutentags_define_advanced_commands = 1
     let g:gutentags_trace = 1
 
-    " https://github.com/ludovicchabant/vim-gutentags/issues/168
-    let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text', 'javascript']
-
     let g:gutentags_file_list_command = {
       \   'markers': {
       \   '.git': 'git ls-files',
@@ -36,27 +33,32 @@ func! myspacevim#before() abort
     " (gutentags_plus) can share the same tags file.
     let g:gutentags_cache_dir = ''
 
+
+    " https://github.com/ludovicchabant/vim-gutentags/issues/168
+    let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text', 'javascript']
+
     "https://www.jianshu.com/p/110b27f8361b
     let g:gutentags_modules = []
 
     " https://stackoverflow.com/questions/12922526/tags-for-emacs-relationship-between-etags-ebrowse-cscope-gnu-global-and-exub
-    " XXX:
-    " only ctags is enbled. enable both modules, gtags-cscope returns 139 (segmentfault).
-    " prefer ctags over gtags for better integration with other plugins, e.g. vim-preview, etc.
+    " XXX: prefer ctags over gtags for better integration with other plugins, e.g. vim-preview, etc.
+    " XXX: there is no exclude option, try g:gutentags_gtags_options_file?
     if executable('ctags')
       let g:gutentags_modules += ['ctags']
       let g:gutentags_ctags_tagfile = 'tags'
       let g:gutentags_ctags_exclude_wildignore = 1
       " https://github.com/universal-ctags/ctags/issues/759, How to exclude a directory specified with parent dirs?
       let g:gutentags_ctags_exclude = [
-            \ '*build/*', '*.venv/*', '*tmp/*', '*zold/*', '*output/*', '*workspace/*', '*target/*', '*classes/*', '*mecha/*',
-            \ '.git', '.svn', '.hg',
-            \ '.eggs', '.cache*', '*_cache', '*.egg-info',
-            \ '*.tar.*', '*.gz', '*.zip',
-            \ '*.txt', '*.md', '*.markdown', '*.csv',
-            \ 'x.*', 'y.*', 'z.*', 'a.*', 'b.*', 'c.*'
-            \]
-    elseif executable('gtags-cscope') && executable('gtags')
+          \ '*build/*', '*.venv/*', '*tmp/*', '*zold/*', '*output/*', '*workspace/*', '*target/*', '*classes/*', '*mecha/*',
+          \ '.git', '.svn', '.hg',
+          \ '.eggs', '.cache*', '*_cache', '*.egg-info',
+          \ '*.tar.*', '*.gz', '*.zip',
+          \ '*.txt', '*.md', '*.markdown', '*.csv', '*.js',
+          \ 'x.*', 'y.*', 'z.*', 'a.*', 'b.*', 'c.*'
+          \]
+    endif
+
+    if executable('gtags-cscope') && executable('gtags')
       let g:gutentags_modules += ['gtags_cscope']
       " GscopeAdd; cs show
       let g:gutentags_auto_add_gtags_cscope = 1

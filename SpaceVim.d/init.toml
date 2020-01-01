@@ -84,9 +84,12 @@ show_cursor_error = false
 # [[layers]]
 # name = "cscope"
 
-[[layers]]
-# https://spacevim.org/layers/gtags/
-name = "gtags"
+# XXX: maybe some conflict with Gutentags? just use Gtags
+# "failed to update gtags, exit data: 1"
+# [[layers]]
+# # https://spacevim.org/layers/gtags/
+# name = "gtags"
+# gtagslabel = "pygments"
 
 # [[layers]]
 # name = "github"
@@ -234,6 +237,10 @@ on_ft = "markdown"
 
 # ------------------------------------------------------------------------------
 ## tags ##
+
+[[custom_plugins]]
+# https://github.com/vim-scripts/gtags.vim/blob/master/plugin/gtags.vim
+name = "vim-scripts/gtags.vim"
 
 # https://spacevim.org/layers/tags/
 # use customized plugin instead of layer for quickfix/location list window
