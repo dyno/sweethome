@@ -196,6 +196,12 @@ merged = 0
 if = "has('nvim')"
 on_ft = "python"
 
+# [[custom_plugins]]
+# # https://github.com/ehamberg/vim-cute-python
+# name = "ehamberg/vim-cute-python"
+# merged = 0
+# on_ft = "python"
+
 [[custom_plugins]]
 # https://github.com/janko/vim-test#setup
 name = "janko/vim-test"
