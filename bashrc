@@ -24,6 +24,12 @@ if [[ "${SHELL}" =~ bash ]]; then
 fi # end of if is bash
 
 #----------------------------------------------------------------------
+if [[ -d ${HOME}/env.d ]]; then
+  for _env in ${HOME}/env.d/*.env; do
+    source ${_env}
+  done
+fi
+
 for pth in ${HOME}/bin ${HOME}/.local/bin \
   /usr/local/bin /usr/local/sbin \
   /usr/bin /usr/sbin \
@@ -60,7 +66,7 @@ alias fzvi=fuzzy_vim
 
 function fuzzy_run() {
   # https://stackoverflow.com/a/11217798/221794, Getting the last argument passed to a shell script
-  cmd="${@: 1:$#-1}"
+  cmd="${@:1:$#-1}"
   query="${@: -1}"
 
   $cmd $(fzf -f "$query" | head -n 1)
@@ -68,13 +74,6 @@ function fuzzy_run() {
 alias fz=fuzzy_run
 
 #----------------------------------------------------------------------
+
 export EDITOR=nvim
-
-#----------------------------------------------------------------------
-if [[ -d ${HOME}/env.d ]]; then
-  for _env in ${HOME}/env.d/*.env; do
-    source ${_env}
-  done
-fi
-
 #----------------------------------------------------------------------
