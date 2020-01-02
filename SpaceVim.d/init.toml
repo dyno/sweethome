@@ -15,7 +15,8 @@ max_column                     = 120
 plugin_manager                 = "dein"
 # https://spacevim.org/documentation/#managing-projects
 project_rooter_automatically   = 1
-project_rooter_patterns        = ["setup.cfg", "Pipfile", ".git"]
+# XXX: directory pattern must use '/', see projectmanager.vim
+project_rooter_patterns        = ["setup.cfg", "Pipfile", ".git/"]
 relativenumber                 = 0
 search_tools                   = ["rg", "ag", "grep"]
 # https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim.vim#L296
