@@ -107,7 +107,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *Pipfile*  set filetype=toml
     autocmd BufRead,BufNewFile *.sqlt     set filetype=sql
     autocmd BufRead,BufNewFile *.hivet    set filetype=sql
-    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
+    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab | IndentLinesDisable
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
     autocmd BufRead,BufNewFile Makefile*  setlocal tabstop=8 noexpandtab list
@@ -275,6 +275,7 @@ func! myspacevim#after() abort
   "let g:test#strategy = 'vimux'
   let g:test#preserve_screen = 1
 
+  set cursorcolumn
   ":set colorcolumn=120
   ":help highlight
   ":help highlight-groups
