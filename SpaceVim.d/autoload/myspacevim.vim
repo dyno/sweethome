@@ -8,6 +8,8 @@ set encoding=utf-8
 scriptencoding utf-8
 
 func! myspacevim#before() abort
+  " > The bootstrap_before will be called after custom configuration file is loaded.
+  " https://spacevim.org/documentation/#bootstrap-functions
 
   if v:version >= 800
     " https://github.com/ludovicchabant/vim-gutentags
@@ -107,7 +109,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *Pipfile*  set filetype=toml
     autocmd BufRead,BufNewFile *.sqlt     set filetype=sql
     autocmd BufRead,BufNewFile *.hivet    set filetype=sql
-    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab | IndentLinesDisable
+    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab conceallevel=0 | IndentLinesDisable
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
     autocmd BufRead,BufNewFile Makefile*  setlocal tabstop=8 noexpandtab list
@@ -166,11 +168,21 @@ func! myspacevim#before() abort
   let g:ale_python_mypy_ignore_invalid_syntax = 1
   let g:ale_python_pylint_options = '--max-line-length=120'
 
+  " https://github.com/tomasr/molokai/issues/74, MatchParen highlighting makes it look like cursor jumped to matching parenthesis
+  " : help DoMatchParen
+  augroup matchup_matchparen_highlight
+    autocmd!
+    autocmd ColorScheme * hi MatchParen cterm=NONE,bold gui=NONE,bold guibg=bg guifg=lightblue ctermbg=bg ctermfg=lightblue
+    autocmd BufReadPost,BufNewFile * hi MatchParen cterm=NONE,bold gui=NONE,bold guibg=bg guifg=lightblue ctermbg=bg ctermfg=lightblue
+  augroup END
+
 endf
 
 " ------------------------------------------------------------------------------
 
 func! myspacevim#after() abort
+  " > And the bootstrap_after will be called after Vim Enter autocmd.
+  " https://spacevim.org/documentation/#bootstrap-functions
 
   " https://github.com/luochen1990/rainbow
   let g:rainbow_active = 1
@@ -275,7 +287,7 @@ func! myspacevim#after() abort
   "let g:test#strategy = 'vimux'
   let g:test#preserve_screen = 1
 
-  set cursorcolumn
+  ":set cursorcolumn
   ":set colorcolumn=120
   ":help highlight
   ":help highlight-groups
