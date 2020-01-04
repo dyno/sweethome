@@ -229,10 +229,21 @@ endif
 
 
 # -----------------------------------------------------------------------------
+# https://spark.apache.org/docs/latest/#downloading
+# https://www.scala-lang.org/download/all.html
 SCALA_VERSION  := 2.12.10
-ALMOND_VERSION := 0.8.2
-JAVA_VERSION   := 8.0.222-amzn
-GRADLE_VERSION := 5.6.2
+
+# https://github.com/almond-sh/almond/releases
+ALMOND_VERSION := 0.9.1
+
+# https://api.sdkman.io/2/candidates/java/Darwin/versions/list?installed=
+JAVA_VERSION   := 8.0.232-amzn
+
+# https://api.sdkman.io/2/candidates/gradle/Darwin/versions/list?installed=
+GRADLE_VERSION := 5.6.4
+
+# https://github.com/lihaoyi/Ammonite/releases
+AMMONITE_VERSION := 2.0.1
 
 sdkman:
 	@echo "-- install [sdkman](https://sdkman.io/install)"
@@ -243,11 +254,11 @@ sdkman:
 
 sdkman-packages: sdkman
 	@echo "-- install java/scala/gradle with sdkman"
-	source ~/.sdkman/bin/sdkman-init.sh       \
-	  && sdk selfupdate force                 \
-	  && sdk install java $(JAVA_VERSION)     \
-	  && sdk install scala $(SCALA_VERSION)   \
-	  && sdk install gradle $(GRADLE_VERSION) \
+	source ~/.sdkman/bin/sdkman-init.sh                 \
+	  && sdk selfupdate force                           \
+	  && (sdk install java $(JAVA_VERSION) || true)     \
+	  && (sdk install scala $(SCALA_VERSION) || true)   \
+	  && (sdk install gradle $(GRADLE_VERSION) || true) \
 	  # END
 
 coursier:
