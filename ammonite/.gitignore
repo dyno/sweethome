@@ -6,3 +6,4 @@ repoRealNexus.sc
 predefScript.sc
 bin
 spark-workspace
+spark-warehouse
