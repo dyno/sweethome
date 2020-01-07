@@ -216,6 +216,9 @@ func! myspacevim#after() abort
   Arpeggio nnoremap jk :VimuxPromptCommand<CR>
   map <Leader>vi :VimuxInspectRunner<CR>
   map <Leader>vz :VimuxZoomRunner<CR>
+  " https://github.com/benmills/vimux/blob/master/plugin/vimux.vim#L35
+  " Always run vimux in pane 2 - the REPL pane.
+  let g:VimuxRunnerIndex = 2
 
   " scala/scalac do not understand ammonite scripts
   " scalastyle needs a configuration file
