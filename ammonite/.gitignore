@@ -2,3 +2,7 @@ session
 cache
 .idea
 target
+repoRealNexus.sc
+predefScript.sc
+bin
+spark-workspace
