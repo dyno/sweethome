@@ -23,3 +23,6 @@ val sparkJarToPath = jars ++ sparkHomeJars filter jarFilter map { case p => (toP
 // XXX: if jar exists in both, use spark one.
 val allJars = (hadoopJarToPath ++ sparkJarToPath).values
 (paths ++ allJars) foreach { interp.load.cp }
+
+// what is currently in the classpath?
+//  repl.sess.frames(0).classpath
