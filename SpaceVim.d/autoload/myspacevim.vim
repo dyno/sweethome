@@ -109,7 +109,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *Pipfile*  set filetype=toml
     autocmd BufRead,BufNewFile *.sqlt     set filetype=sql
     autocmd BufRead,BufNewFile *.hivet    set filetype=sql
-    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab conceallevel=0 | IndentLinesDisable
+    autocmd BufRead,BufNewFile,BufWinEnter *.py set foldmethod=indent foldlevel=1 expandtab conceallevel=0 | let b:indentLine_enabled = 0 | highlight Conceal gui=bold guifg=white
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
     autocmd BufRead,BufNewFile Makefile*  setlocal tabstop=8 noexpandtab list
@@ -203,6 +203,7 @@ func! myspacevim#after() abort
   command! GitRepoUrl :call GitRepoUrl()
   nnoremap <Leader>l :call GitRepoUrl()<CR>
   nnoremap <Leader>o :execute ':OpenBrowser '.GitRepoUrl()<CR>
+  nmap <leader>h :call <SID>SynStack()<CR>
 
   " :edit with "I'm feeling lucky"
   command! -nargs=1 E :call FuzzyEdit(<f-args>)
@@ -299,6 +300,16 @@ func! myspacevim#after() abort
   ":highlight CursorLine guibg=black cterm=NONE
   ":highlight EndOfBuffer guibg=black cterm=NONE
 endf
+
+
+"-------------------------------------------------------------------------------
+" copied from https://jordanelver.co.uk/blog/2015/05/27/working-with-vim-colorschemes/
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 "-------------------------------------------------------------------------------
 let s:repo_sep = {
