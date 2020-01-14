@@ -263,6 +263,14 @@ func! myspacevim#after() abort
         \ }
   let g:neoformat_enabled_java = ['googlefmt']
 
+  let g:neoformat_scala_scalafmt = {
+        \ 'exe': 'scalafmt',
+        \ 'args': ['--stdin', '--assume-filename=scala.sc'],
+        \ 'stdin': 1,
+        \ }
+  let g:formatters_scala = ['scalafmt']
+  let g:neoformat_enabled_scala = ['scalafmt']
+
   let g:neoformat_enabled_xml = ['tidy']
   let g:neoformat_xml_tidy = {
         \ 'exe': 'tidy',
