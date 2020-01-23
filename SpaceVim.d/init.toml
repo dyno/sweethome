@@ -454,4 +454,9 @@ merged = 0
 name = "vim-jp/vim-java"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/chr4/nginx.vim
+name = "chr4/nginx.vim"
+merged = 0
+
 # ------------------------------------------------------------------------------
