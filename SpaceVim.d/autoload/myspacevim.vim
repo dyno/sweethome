@@ -236,15 +236,6 @@ func! myspacevim#after() abort
   let g:black_skip_string_normalization = 1
   let g:black_linelength = 120
 
-  " https://github.com/Chiel92/vim-autoformat
-  " :Autoformat
-  let g:formatters_python = ['black']
-  let g:formatdef_black = '"black --line-length=120 --skip-string-normalization --quiet -"'
-
-  let g:autoformat_retab = 0
-  let g:autoformat_remove_trailing_spaces = 1
-  let g:autoformat_verbosemode = 0
-
   " https://github.com/sbdchd/neoformat
   " :Neoformat
   let g:neoformat_sql_sqlformat = {
@@ -265,7 +256,7 @@ func! myspacevim#after() abort
 
   let g:neoformat_scala_scalafmt = {
         \ 'exe': 'scalafmt',
-        \ 'args': ['--stdin', '--assume-filename=scala.sc'],
+        \ 'args': ['--stdin', '--assume-filename=scala.sc', '--config=${HOME}/.scalafmt.conf'],
         \ 'stdin': 1,
         \ }
   let g:formatters_scala = ['scalafmt']

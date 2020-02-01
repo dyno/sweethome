@@ -228,10 +228,6 @@ merged = 0
 # sql: pip install sqlparser # sqlformat
 
 [[custom_plugins]]
-# https://github.com/Chiel92/vim-autoformat
-name = "Chiel92/vim-autoformat"
-
-[[custom_plugins]]
 # https://github.com/godlygeek/tabular
 name = "godlygeek/tabular"
 merged = 0
