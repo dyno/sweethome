@@ -320,6 +320,16 @@ merged = 0
 name = "junegunn/fzf.vim"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/liuchengxu/vim-clap
+name = "liuchengxu/vim-clap"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/liuchengxu/vista.vim
+name = "liuchengxu/vista.vim"
+merged = 0
+
 # ------------------------------------------------------------------------------
 [[custom_plugins]]
 # https://github.com/luochen1990/rainbow
