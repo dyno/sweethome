@@ -47,7 +47,7 @@ enable_neomake = false
 enable_ale     = true
 
 # indentLine is too intrusive, cannot find an easy way to overwrite its setting
-disabled_plugins = ['indentLine']
+# disabled_plugins = ['indentLine']
 
 # ==============================================================================
 [[layers]]
@@ -318,11 +318,6 @@ merged = 0
 [[custom_plugins]]
 # https://github.com/junegunn/fzf.vim
 name = "junegunn/fzf.vim"
-merged = 0
-
-[[custom_plugins]]
-# https://github.com/srstevenson/vim-picker
-name = "srstevenson/vim-picker"
 merged = 0
 
 # ------------------------------------------------------------------------------
