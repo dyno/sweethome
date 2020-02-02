@@ -197,12 +197,13 @@ func! myspacevim#after() abort
   endif
 
   command! GitRepoUrl :call GitRepoUrl()
+  " :edit with "I'm feeling lucky"
+  command! -nargs=1 E :call FuzzyEdit(<f-args>)
+
+  nnoremap <Leader>s :Clap files<CR>
   nnoremap <Leader>l :call GitRepoUrl()<CR>
   nnoremap <Leader>o :execute ':OpenBrowser '.GitRepoUrl()<CR>
   nmap <leader>h :call <SID>SynStack()<CR>
-
-  " :edit with "I'm feeling lucky"
-  command! -nargs=1 E :call FuzzyEdit(<f-args>)
 
   noreabbrev Outline FzfOutline
   noreabbrev Messages FzfMessages
