@@ -65,11 +65,12 @@ ifeq ($(PKGMGR),yum)
 	sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 	sudo yum install -y neovim
 else
-	[[ -e ~/bin/nvim ]] || (mkdir ~/bin \
-		&& cd ~/bin \
+	[[ -e ~/bin/nvim ]] || (mkdir ~/bin                                                          \
+		&& cd ~/bin                                                                          \
 		&& curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage \
-		&& chmod +x nvim.appimage \
-		&& ln -s nvim.appimage nvim)
+		&& chmod +x nvim.appimage                                                            \
+		&& ln -s nvim.appimage nvim)                                                         \
+	# END
 endif
 endif
 ifeq ($(UNAME),Darwin)
@@ -125,7 +126,8 @@ endif
 ifeq ($(UNAME),Darwin)
 	brew install readline openssl sqlite3 zlib &>/dev/null || true
 	CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/sqlite/include" \
-	~/.pyenv/bin/pyenv install --skip-existing --verbose $(PYTHON_VERSION)
+	  ~/.pyenv/bin/pyenv install --skip-existing --verbose $(PYTHON_VERSION) \
+	# END
 endif
 	~/.pyenv/bin/pyenv global $(PYTHON_VERSION)
 	python -m pip install --upgrade --ignore-installed pip
@@ -301,7 +303,8 @@ go:
 ifeq ($(UNAME),Linux)
 	# sudo apt install --yes golang  # XXX: too old
 	[[ -e $(LOCAL)/go/bin/go ]] || (cd /tmp && curl -O https://dl.google.com/go/go$(GO_VERSION).linux-amd64.tar.gz \
-	  && mkdir -p $(LOCAL) && cd $(LOCAL) && tar zxvf /tmp/go$(GO_VERSION).linux-amd64.tar.gz)
+	  && mkdir -p $(LOCAL) && cd $(LOCAL) && tar zxvf /tmp/go$(GO_VERSION).linux-amd64.tar.gz)                     \
+	# END
 endif
 ifeq ($(UNAME),Darwin)
 	brew install go
@@ -329,9 +332,10 @@ gron:
 #  Formatters
 # .py, .java, .scala, .sh, .yaml, .yml, .json, .md, .vim ...
 google-java-format:
-	cd $(HOME_BIN) \
+	cd $(HOME_BIN)                                                                                                                            \
 	  && curl -L -O https://github.com/google/google-java-format/releases/download/google-java-format-1.6/google-java-format-1.6-all-deps.jar \
-	  && ln -sf google-java-format-1.6-all-deps.jar google-java-format.jar
+	  && ln -sf google-java-format-1.6-all-deps.jar google-java-format.jar                                                                    \
+	# END
 
 # -----------------------------------------------------------------------------
 submodule:
@@ -340,6 +344,7 @@ submodule:
 
 bfg:
 	@echo "-- install [bfg](https://rtyley.github.io/bfg-repo-cleaner/)"
-	cd $(HOME_BIN) \
+	cd $(HOME_BIN)                                                                     \
 	  && curl -L -O http://repo1.maven.org/maven2/com/madgag/bfg/1.13.0/bfg-1.13.0.jar \
-	  && ln -sf bfg-1.13.0.jar bfg.jar
+	  && ln -sf bfg-1.13.0.jar bfg.jar                                                 \
+	# END
