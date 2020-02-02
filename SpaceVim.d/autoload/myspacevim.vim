@@ -286,6 +286,18 @@ func! myspacevim#after() abort
   "let g:test#strategy = 'vimux'
   let g:test#preserve_screen = 1
 
+  if exists(':Tabularize')
+    "  Roman 1:16-2:30
+    "  John  8:32,9:32
+    "  Luke  10:10
+    AddTabularPipeline! align_chapter /\d:/ tabular#TabularizeStrings(a:lines, ' \(\d\+:\)\@=', 'l0')
+
+    " echo what ever       \
+    "   | xargs -i echo {} \
+    " # END
+    AddTabularPipeline! align_continuation /\\$/ tabular#TabularizeStrings(a:lines, '\\$', 'l1')
+  endif
+
   ":set cursorcolumn
   ":set colorcolumn=120
   ":help highlight
