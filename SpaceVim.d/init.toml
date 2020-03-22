@@ -411,6 +411,10 @@ name = "kana/vim-arpeggio"
 # https://github.com/edkolev/tmuxline.vim
 name = "edkolev/tmuxline.vim"
 
+[[custom_plugins]]
+# https://github.com/jpalardy/vim-slime
+name = "jpalardy/vim-slime"
+
 # ------------------------------------------------------------------------------
 ## compatbility ##
 
@@ -458,6 +462,16 @@ merged = 0
 [[custom_plugins]]
 # https://github.com/chr4/nginx.vim
 name = "chr4/nginx.vim"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/GEverding/vim-hocon
+name = "GEverding/vim-hocon"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/mustache/vim-mustache-handlebars
+name = "mustache/vim-mustache-handlebars"
 merged = 0
 
 # ------------------------------------------------------------------------------

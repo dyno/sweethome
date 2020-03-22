@@ -108,7 +108,7 @@ func! myspacevim#before() abort
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile Makefile*  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
-    autocmd BufRead,BufNewFile Makefile*  setlocal tabstop=8 noexpandtab list
+    autocmd BufRead,BufNewFile Makefile*  setlocal filetype=make tabstop=8 noexpandtab list
 
     " arc diff buffers
     autocmd BufRead,BufNewFile differential-*,*-commit*,*commit-* set filetype=gitcommit
@@ -259,12 +259,12 @@ func! myspacevim#after() abort
   let g:formatters_scala = ['scalafmt']
   let g:neoformat_enabled_scala = ['scalafmt']
 
-  let g:neoformat_enabled_xml = ['tidy']
   let g:neoformat_xml_tidy = {
         \ 'exe': 'tidy',
         \ 'args': ['-xml', '-wrap', 120, '--indent', 'auto', '--indent-spaces', 2, '--vertical-space', 'yes'],
         \ 'stdin': 1,
         \ }
+  let g:neoformat_enabled_xml = ['tidy']
 
   let g:neoformat_run_all_formatters = 1
   let g:neoformat_verbose = 0
@@ -298,6 +298,11 @@ func! myspacevim#after() abort
     " # END
     AddTabularPipeline! align_continuation /\\$/ tabular#TabularizeStrings(a:lines, '\\$', 'l1')
   endif
+
+  " https://github.com/jpalardy/vim-slime
+  let g:slime_target = "tmux"
+  let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
+  g:slime_python_ipython = 1
 
   ":set cursorcolumn
   ":set colorcolumn=120
@@ -367,7 +372,7 @@ endfunction
 "-------------------------------------------------------------------------------
 
 function FuzzyEdit(fuzzy_query)
-  let cmd = 'rg --files | fzf -f "' . a:fuzzy_query . '"'
+  let cmd = 'rg --files 2>/dev/null | fzf -f "' . a:fuzzy_query . '"'
   let output = systemlist(cmd)
   if v:shell_error == 0 && !empty(output)
     execute ':edit ' . output[0]
