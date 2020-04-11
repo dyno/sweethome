@@ -35,7 +35,6 @@ func! myspacevim#before() abort
     " (gutentags_plus) can share the same tags file.
     let g:gutentags_cache_dir = ''
 
-
     " https://github.com/ludovicchabant/vim-gutentags/issues/168
     let g:gutentags_exclude_filetypes = ['yaml', 'markdown', 'toml', 'text', 'javascript']
 
@@ -71,10 +70,6 @@ func! myspacevim#before() abort
       " https://stackoverflow.com/questions/42315741/how-gtags-exclude-some-specific-subdirectories
       " edit ~/.globalrc to exclude files
     endif
-
-    " let g:gutentags_project_root = ['.git', 'settings.gradle', 'Pipfile', 'pyproject.toml']
-    let g:gutentags_add_default_project_roots = 1
-
   endif
 
   " https://github.com/prabirshrestha/vim-lsp
@@ -303,6 +298,9 @@ func! myspacevim#after() abort
   let g:slime_target = "tmux"
   let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
   g:slime_python_ipython = 1
+
+  "let g:gutentags_add_default_project_roots = 1
+  let g:gutentags_project_root += ['pyproject.toml']
 
   ":set cursorcolumn
   ":set colorcolumn=120
