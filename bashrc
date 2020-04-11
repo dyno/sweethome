@@ -31,6 +31,7 @@ if [[ -d ${HOME}/env.d ]]; then
 fi
 
 for pth in ${HOME}/bin ${HOME}/.local/bin \
+  ${HOME}/.cargo/bin \
   /usr/local/bin /usr/local/sbin \
   /usr/bin /usr/sbin \
   /bin /sbin; do
