@@ -92,27 +92,6 @@ func! myspacevim#before() abort
     :py3 import os; sys.executable = os.path.join(sys.exec_prefix, 'bin/python3')
   endif
 
-  augroup auto_filetype
-    autocmd!
-    autocmd BufRead,BufNewFile gitconfig  set filetype=gitconfig
-    autocmd BufRead,BufNewFile *.gradle   set filetype=groovy
-    autocmd BufRead,BufNewFile *.sc       set filetype=scala
-    autocmd BufRead,BufNewFile *Pipfile*  set filetype=toml
-    autocmd BufRead,BufNewFile *.sqlt     set filetype=sql
-    autocmd BufRead,BufNewFile *.hivet    set filetype=sql
-    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
-    autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
-    autocmd BufRead,BufNewFile Makefile*  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
-    autocmd BufRead,BufNewFile Makefile*  setlocal filetype=make tabstop=8 noexpandtab list
-
-    " arc diff buffers
-    autocmd BufRead,BufNewFile differential-*,*-commit*,*commit-* set filetype=gitcommit
-    " http://vim.wikia.com/wiki/Dictionary_completions
-    " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
-    " :help i_CTRL-X_CTRL-K
-    autocmd FileType gitcommit execute 'setlocal dictionary=' . globpath(&runtimepath,'words/' . &filetype . '.txt')
-  augroup end
-
   " by default disable fold, zi to toggle foldenable
   :set nofoldenable
 
@@ -294,10 +273,34 @@ func! myspacevim#after() abort
     AddTabularPipeline! align_continuation /\\$/ tabular#TabularizeStrings(a:lines, '\\$', 'l1')
   endif
 
+  augroup auto_filetype
+    autocmd!
+    autocmd BufRead,BufNewFile gitconfig  set filetype=gitconfig
+    autocmd BufRead,BufNewFile *.gradle   set filetype=groovy
+    autocmd BufRead,BufNewFile *.sc       set filetype=scala
+    autocmd BufRead,BufNewFile *Pipfile*  set filetype=toml
+    autocmd BufRead,BufNewFile *.sqlt     set filetype=sql
+    autocmd BufRead,BufNewFile *.hivet    set filetype=sql
+    autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
+    autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
+    autocmd BufRead,BufNewFile Makefile*  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
+    autocmd BufRead,BufNewFile Makefile*  setlocal filetype=make tabstop=8 noexpandtab list
+
+    " arc diff buffers
+    autocmd BufRead,BufNewFile differential-*,*-commit*,*commit-* set filetype=gitcommit
+    " http://vim.wikia.com/wiki/Dictionary_completions
+    " https://unix.stackexchange.com/questions/88976/vim-autocomplete-to-include-punctuation-between-words
+    " :help i_CTRL-X_CTRL-K
+    autocmd FileType gitcommit execute 'setlocal dictionary=' . globpath(&runtimepath,'words/' . &filetype . '.txt')
+  augroup end
+
   " https://github.com/jpalardy/vim-slime
   let g:slime_target = "tmux"
-  let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
-  g:slime_python_ipython = 1
+  let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.4"}
+  let g:slime_python_ipython = 1
+  " https://github.com/plasticboy/vim-markdown#options
+  let g:vim_markdown_conceal = 0
+  let g:vim_markdown_conceal_code_blocks = 0
 
   "let g:gutentags_add_default_project_roots = 1
   let g:gutentags_project_root += ['pyproject.toml']
