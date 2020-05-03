@@ -415,6 +415,10 @@ name = "edkolev/tmuxline.vim"
 # https://github.com/jpalardy/vim-slime
 name = "jpalardy/vim-slime"
 
+[[custom_plugins]]
+# https://github.com/hanschen/vim-ipython-cell#usage
+name = "hanschen/vim-ipython-cell"
+
 # ------------------------------------------------------------------------------
 ## compatbility ##
 
