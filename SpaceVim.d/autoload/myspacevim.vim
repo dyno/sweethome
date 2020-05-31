@@ -305,8 +305,9 @@ func! myspacevim#after() abort
   "let g:gutentags_add_default_project_roots = 1
   let g:gutentags_project_root += ['pyproject.toml']
 
-  ":set cursorcolumn
+  set textwidth = 120
   ":set colorcolumn=120
+  ":set cursorcolumn
   ":help highlight
   ":help highlight-groups
   ":highlight ColorColumn ctermbg=lightgrey guibg=lightgrey

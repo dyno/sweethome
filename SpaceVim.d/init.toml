@@ -22,6 +22,7 @@ search_tools                   = ["rg", "ag", "grep"]
 # https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim.vim#L296
 # snippet_engine                 = "ultisnips"
 snippet_engine                 = "neosnippet"
+autocomplete_method            = "coc"
 statusline_separator           = "arrow"
 statusline_inactive_separator  = "arrow"
 vimcompatible                  = 0
@@ -72,6 +73,8 @@ git-plugin = "fugitive"
 [[layers]]
 # https://spacevim.org/layers/autocomplete/#configuration
 name = "autocomplete"
+# autocomplete_method = "deoplete"
+autocomplete_method = "coc"
 auto-completion-return-key-behavior = "nil"
 auto-completion-tab-key-behavior = "smart"
 auto-completion-delay = 200
@@ -97,11 +100,12 @@ show_cursor_error = false
 # [[layers]]
 # name = "github"
 
-#[[layers]]
-#name = "lsp"
-#filetypes = ["python", "sh"]
+[[layers]]
 # https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python
 # XXX: lsp is not stable enough, renaming support, requires setup etc
+name = 'lsp'
+filetypes = ['python', 'scala', 'sh']
+
 
 [[layers]]
 name = "shell"
@@ -140,6 +144,16 @@ name = "lang#sh"
 # name = "tmux"
 # tmux_navigator_modifier = "alt"
 # tmuxline_separators_alt = "arrow"
+
+# ==============================================================================
+# [[custom_plugins]]
+# # https://github.com/neoclide/coc.nvim
+# # https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
+# # :help dein-options
+# name = 'neoclide/coc.nvim'
+# merged = 0
+# # rev = 'release'
+# build = 'yarn install --frozen-lockfile'
 
 # ==============================================================================
 ## colorscheme ##
@@ -340,13 +354,6 @@ merged = 0
 # https://github.com/lilydjwg/colorizer
 name = "lilydjwg/colorizer"
 merged = 0
-
-# [[custom_plugins]]
-# # https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
-# name = "neoclide/coc.nvim"
-# # :help dein-options
-# build = "yarn install"
-# # call coc#util#install()
 
 [[custom_plugins]]
 # https://github.com/mtth/scratch.vim

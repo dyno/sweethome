@@ -348,3 +348,15 @@ bfg:
 	  && curl -L -O http://repo1.maven.org/maven2/com/madgag/bfg/1.13.0/bfg-1.13.0.jar \
 	  && ln -sf bfg-1.13.0.jar bfg.jar                                                 \
 	# END
+
+#
+metals-vim:
+	coursier bootstrap                   \
+		--java-opt -Xss4m                  \
+		--java-opt -Xms100m                \
+		--java-opt -Dmetals.client=vim-lsc \
+		org.scalameta:metals_2.12:0.9.0    \
+		-r bintray:scalacenter/releases    \
+		-r sonatype:snapshots              \
+		-o ~/bin/metals-vim -f             \
+	# END
