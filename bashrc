@@ -78,3 +78,5 @@ alias fz=fuzzy_run
 
 export EDITOR=nvim
 #----------------------------------------------------------------------
+
+complete -C /usr/local/bin/mc mc
