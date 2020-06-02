@@ -101,11 +101,11 @@ show_cursor_error = false
 # name = "github"
 
 [[layers]]
-# https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Python
-# XXX: lsp is not stable enough, renaming support, requires setup etc
-name = 'lsp'
-filetypes = ['python', 'scala', 'sh']
-
+# ~/.config/coc/extensions/node_modules/
+name = "lsp"
+filetypes = ["python", "scala", "sh"]
+[layers.override_cmd]
+python = ["pyls"]
 
 [[layers]]
 name = "shell"
@@ -146,14 +146,14 @@ name = "lang#sh"
 # tmuxline_separators_alt = "arrow"
 
 # ==============================================================================
-# [[custom_plugins]]
+[[custom_plugins]]
 # # https://github.com/neoclide/coc.nvim
 # # https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
 # # :help dein-options
-# name = 'neoclide/coc.nvim'
-# merged = 0
-# # rev = 'release'
-# build = 'yarn install --frozen-lockfile'
+name = 'neoclide/coc.nvim'
+merged = 0
+rev = 'release'
+build = 'yarn install --frozen-lockfile'
 
 # ==============================================================================
 ## colorscheme ##
@@ -302,10 +302,6 @@ merged = 0
 # https://github.com/previm/previm
 name = "previm/previm"
 merged = 0
-
-# [[custom_plugins]]
-# name = "ryanolsonx/vim-lsp-python"
-# merged = 0
 
 # [[custom_plugins]]
 # name = "vim-scripts/dbext.vim"
@@ -483,6 +479,11 @@ merged = 0
 [[custom_plugins]]
 # https://github.com/mustache/vim-mustache-handlebars
 name = "mustache/vim-mustache-handlebars"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/neoclide/jsonc.vim
+name = "neoclide/jsonc.vim"
 merged = 0
 
 # ------------------------------------------------------------------------------
