@@ -22,7 +22,6 @@ search_tools                   = ["rg", "ag", "grep"]
 # https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim.vim#L296
 # snippet_engine                 = "ultisnips"
 snippet_engine                 = "neosnippet"
-autocomplete_method            = "coc"
 statusline_separator           = "arrow"
 statusline_inactive_separator  = "arrow"
 vimcompatible                  = 0
@@ -104,8 +103,8 @@ show_cursor_error = false
 # ~/.config/coc/extensions/node_modules/
 name = "lsp"
 filetypes = ["python", "scala", "sh"]
-[layers.override_cmd]
-python = ["pyls"]
+# [layers.override_cmd]
+# python = ["pyls"]
 
 [[layers]]
 name = "shell"
@@ -146,14 +145,14 @@ name = "lang#sh"
 # tmuxline_separators_alt = "arrow"
 
 # ==============================================================================
-[[custom_plugins]]
-# # https://github.com/neoclide/coc.nvim
-# # https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
-# # :help dein-options
-name = 'neoclide/coc.nvim'
-merged = 0
-rev = 'release'
-build = 'yarn install --frozen-lockfile'
+# [[custom_plugins]]
+# # # https://github.com/neoclide/coc.nvim
+# # # https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
+# # # :help dein-options
+# name = 'neoclide/coc.nvim'
+# merged = 0
+# rev = 'release'
+# build = 'yarn install --frozen-lockfile'
 
 # ==============================================================================
 ## colorscheme ##
