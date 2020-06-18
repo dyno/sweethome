@@ -21,6 +21,7 @@ relativenumber                 = 0
 search_tools                   = ["rg", "ag", "grep"]
 # https://github.com/SpaceVim/SpaceVim/blob/master/autoload/SpaceVim.vim#L296
 # snippet_engine                 = "ultisnips"
+autocomplete_method            = "coc"
 snippet_engine                 = "neosnippet"
 statusline_separator           = "arrow"
 statusline_inactive_separator  = "arrow"

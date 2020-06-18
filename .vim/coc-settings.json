@@ -1,0 +1,16 @@
+{
+  "diagnostic.displayByAle": true,
+  "diagnostic.messageTarget": "echo",
+
+  "python.formatting.provider": "black",
+  // https://github.com/neoclide/coc-python/issues/18, Way to disable MLPS linter, python.analysis? - not working
+  // https://github.com/palantir/python-language-server/issues/433, this works. means coc-python is palantir?
+  "python.jediEnabled": false,
+  "python.linting.enabled": false,
+  "python.analysis.diagnosticEnabled": false,
+
+  "python.linting.flake8Enabled": false,
+  "python.linting.pep8Enabled": false,
+  "python.linting.pydocstyleEnabled": false,
+  "python.linting.pylintEnabled": false,
+}
