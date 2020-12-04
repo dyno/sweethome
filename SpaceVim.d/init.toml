@@ -478,4 +478,14 @@ merged = 0
 name = "mustache/vim-mustache-handlebars"
 merged = 0
 
+[[custom_plugins]]
+# https://github.com/neoclide/jsonc.vim
+name = "neoclide/jsonc.vim"
+merged = 0
+
+[[custom_plugins]]
+# https://github.com/tpope/vim-cucumber
+name = "tpope/vim-cucumber"
+merged = 0
+
 # ------------------------------------------------------------------------------

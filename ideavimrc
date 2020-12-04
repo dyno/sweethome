@@ -5,3 +5,10 @@ endif
 if has('unnamedplus')
   set clipboard^=unnamedplus
 endif
+
+" https://superuser.com/questions/622898/how-to-turn-off-the-bell-sound-in-intellij
+set visualbell
+set noerrorbells
+
+" https://sittinginoblivion.com/wiki/disable-terminal-bell-intellij
+" echo 'set bell-style none' >> ~/.inputrc
