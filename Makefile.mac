@@ -16,6 +16,7 @@ install-mac:
 	brew install neovim
 	brew install tig
 	brew install tmux
+	brew install ripgrep
 	# python
 	brew install libjpeg
 	brew install graphviz

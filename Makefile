@@ -90,7 +90,7 @@ bashrc: liquidprompt neovim
 
 # -----------------------------------------------------------------------------
 #  ## Python ##
-PYTHON_VERSION := 3.6.9
+PYTHON_VERSION := 3.7.10
 
 .PHONY: pyenv python
 pyenv:
