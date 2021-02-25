@@ -1,0 +1,22 @@
+install-mac:
+	# opengrok
+	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+	brew install poetry
+	# maven
+	brew install openjdk
+	brew install maven
+	brew install tomcat
+	# admin
+	brew install --cask osquery
+	brew install bash-completion
+	brew install bat
+	brew install fzf
+	brew install htop
+	brew install jq
+	brew install neovim
+	brew install tig
+	brew install tmux
+	# python
+	brew install libjpeg
+	brew install graphviz
+  
