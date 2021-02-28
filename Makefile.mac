@@ -12,6 +12,7 @@ install-mac:
 	brew install bat
 	brew install fzf
 	brew install htop
+  brew install jsonnet
 	brew install jq
 	brew install neovim
 	brew install tig
