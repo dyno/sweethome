@@ -25,3 +25,4 @@ install-mac:
   brew install --cask docker
   brew install --cask perforce
   brew install kubernetes-cli kubectx lazydocker k9s
+  brew install awscli
