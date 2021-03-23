@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "sweethome"
+version = "2021.03.16"
+description = "home setup"
+authors = ["Dyno Fu <dyno.fu@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "~3.7"
+altair = "*"
+attrs = "*"
+black = "*"
+cattrs = "*"
+fsspec = "*"
+iplantuml = "*"
+ipython = "*"
+isort = "*"
+more-itertools = "*"
+numpy = "*"
+pandas = "*"
+requests = "*"
+s3fs = "*"
+tabulate = "*"
+toolz = "*"
+tqdm = "*"
+
+[tool.poetry.dev-dependencies]
+black = "*"
+flake8 = "*"
+isort = "*"
+pytest = "*"
+
+[tool.black]
+line-length = 120
+target-version = ['py37', 'py38']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.cache
+  | \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.ropeproject
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
