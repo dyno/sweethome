@@ -30,16 +30,25 @@ if [[ -d ${HOME}/env.d ]]; then
   done
 fi
 
-for pth in ${HOME}/bin ${HOME}/.local/bin \
+for pth in \
+  ${HOME}/bin \
+  ${HOME}/.local/bin \
   ${HOME}/.cargo/bin \
-  /usr/local/bin /usr/local/sbin \
-  /usr/bin /usr/sbin \
-  /bin /sbin; do
+; do
   if ! echo ":${PATH}:" | grep -q ":${pth}:"; then
     PATH=${PATH}:${pth}
   fi
 done
 
+# need to move these default path to the last, otherwise pyenv, sdkman etc
+# won't work because their substituate alternative needs to take precedence
+# in path search.
+for pth in /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin; do
+  if echo ":${PATH}:" | grep -q ":${pth}:"; then
+    PATH=${PATH/:${pth}:/:}
+  fi
+  PATH=${PATH}:${pth}
+done
 export PATH
 
 #----------------------------------------------------------------------
