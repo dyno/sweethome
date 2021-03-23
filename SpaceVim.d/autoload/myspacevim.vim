@@ -283,8 +283,7 @@ func! myspacevim#after() abort
     autocmd BufRead,BufNewFile *.hivet    set filetype=sql
     autocmd BufRead,BufNewFile *.py       set foldmethod=indent foldlevel=1 expandtab
     autocmd BufRead,BufNewFile *.vim      set foldmethod=indent foldlevel=1 expandtab
-    autocmd BufRead,BufNewFile Makefile*  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶
-    autocmd BufRead,BufNewFile Makefile*  setlocal filetype=make tabstop=8 noexpandtab list
+    autocmd BufRead,BufNewFile Makefile*,*.mk  setlocal listchars=tab:→\ ,trail:·,extends:↷,precedes:↶ filetype=make tabstop=8 noexpandtab list
 
     " arc diff buffers
     autocmd BufRead,BufNewFile differential-*,*-commit*,*commit-* set filetype=gitcommit
@@ -364,7 +363,7 @@ function GitRepoUrl()
   let repo = arr[4]  "dyno/sweethome
 
   " https://github.com/dyno/sweethome/blob/master/SpaceVim.d/autoload/myspacevim.vim#L237
-  let url = 'https://' . host . '/'. repo . '/' . s:repo_sep[host] . '/' . branch . '/' . filepath . s:repo_linenum[host] . line('.')
+  let url = 'https://' . host . '/'. repo . '/' . get(s:repo_sep, host, 'blob') . '/' . branch . '/' . filepath . get(s:repo_linenum, host, '#L') . line('.')
 
   call setreg(s:clipboard_register, url)
   return url
