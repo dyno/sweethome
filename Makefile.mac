@@ -25,3 +25,11 @@ install-mac:
   brew install --cask perforce
   brew install kubernetes-cli kubectx lazydocker k9s
   brew install awscli
+  brew install coursier
+  brew install tree
+  brew install remake
+
+  install-dev:
+    brew install terraform
+    brew install tflint
+    brew install vault
