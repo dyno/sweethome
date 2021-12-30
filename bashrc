@@ -34,6 +34,7 @@ for pth in \
   ${HOME}/bin \
   ${HOME}/.local/bin \
   ${HOME}/.cargo/bin \
+  ${HOME}/.krew/bin \
 ; do
   if ! echo ":${PATH}:" | grep -q ":${pth}:"; then
     PATH=${PATH}:${pth}
@@ -87,3 +88,6 @@ alias fz=fuzzy_run
 
 export EDITOR=nvim
 #----------------------------------------------------------------------
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
