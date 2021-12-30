@@ -211,7 +211,7 @@ func! myspacevim#after() abort
   " :Neoformat
   let g:neoformat_sql_sqlformat = {
         \ 'exe': 'sqlformat',
-        \ 'args': ['--keywords', 'upper', '-'],
+        \ 'args': ['--reindent', '--keywords', 'upper', '-'],
         \ 'stdin': 1,
         \ }
   let g:neoformat_enabled_sql = ['sqlformat']
