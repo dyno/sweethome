@@ -130,7 +130,7 @@ ifeq ($(UNAME),Darwin)
 	# END
 endif
 	~/.pyenv/bin/pyenv global $(PYTHON_VERSION)
-	python -m pip install --upgrade --ignore-installed pip
+	python3 -m pip install --upgrade --ignore-installed pip
 
 
 # -----------------------------------------------------------------------------
