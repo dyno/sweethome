@@ -24,13 +24,8 @@ if [[ "${SHELL}" =~ bash ]]; then
 fi # end of if is bash
 
 #----------------------------------------------------------------------
-if [[ -d ${HOME}/env.d ]]; then
-  for _env in ${HOME}/env.d/*.env; do
-    source ${_env}
-  done
-fi
-
 for pth in \
+  /opt/homebrew/bin \
   ${HOME}/bin \
   ${HOME}/.local/bin \
   ${HOME}/.cargo/bin \
@@ -40,6 +35,12 @@ for pth in \
     PATH=${PATH}:${pth}
   fi
 done
+
+if [[ -d ${HOME}/env.d ]]; then
+  for _env in ${HOME}/env.d/*.env; do
+    source ${_env}
+  done
+fi
 
 # need to move these default path to the last, otherwise pyenv, sdkman etc
 # won't work because their substituate alternative needs to take precedence
